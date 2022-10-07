@@ -34,7 +34,7 @@ setup(name=meta['title'],
       classifiers=[
           'Development Status :: 1 - Planning',
           'Intended Audience :: Developers',
-          'License :: OSI Approved :: GNU General Public License v3',
+          'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
           'Natural Language :: English',
           'Operating System :: OS Independent',
           'Programming Language :: Python :: 3.6',
