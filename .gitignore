@@ -127,3 +127,21 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# PyCharm
+.idea/
+
+# OS
+.DS_Store
+
+*.cpp
+*.c
+
+docs/build/
+
+/target
+
+wheelhouse/
+
+# Node modules
+node_modules/
