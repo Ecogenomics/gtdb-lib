@@ -138,6 +138,7 @@ dmypy.json
 *.c
 
 docs/build/
+docs/source/generated/
 
 /target
 
@@ -145,3 +146,4 @@ wheelhouse/
 
 # Node modules
 node_modules/
+
