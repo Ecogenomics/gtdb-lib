@@ -30,86 +30,139 @@ jobs:
     outputs:
       version: ${{ steps.semantic_release.outputs.version }}
 
-  build_python:
-    name: Python build
+  build_docs:
     runs-on: ubuntu-latest
     needs: semantic_release_next_version
-    if: needs.semantic_release_next_version.outputs.version != ''
     steps:
+      # Checkout the main branch to ~/main and build docs
       - uses: actions/checkout@v3
+        with:
+          path: main
+
+      # Checkout the documentation branch to ~/gh_pages
+      - uses: actions/checkout@v3
+        with:
+          ref: gh_pages
+          path: gh_pages
+
+      # Download the (maybe new) versioned files
       - uses: actions/download-artifact@v3
         with:
           name: semantic-release
+          path: ${{ github.workspace }}/main/
+
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.7'
-      - run: |
-          python -m pip install -U setuptools wheel
-          python setup.py sdist bdist_wheel
-      - uses: actions/upload-artifact@v3
-        with:
-          name: pypi
-          path: dist/*
-          retention-days: 1
+          python-version: '3.9'
 
-  test_python_sdist:
-    name: Python test *.tar.gz
-    runs-on: ubuntu-latest
-    needs: build_python
-    steps:
-      - uses: actions/download-artifact@v3
-        with:
-          name: pypi
-          path: dist
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.7'
-      - run: python -m pip install dist/*.tar.gz
+      - name: Install Sphinx requirements
+        working-directory: ${{ github.workspace }}/main
+        run: |
+          python -m pip install -r docs/requirements.txt
+          python setup.py egg_info
+          python -m pip install -r gtdblib.egg-info/requires.txt
 
-  test_python_wheel:
-    name: Python test *.whl
-    runs-on: ubuntu-latest
-    needs: build_python
-    steps:
-      - uses: actions/download-artifact@v3
-        with:
-          name: pypi
-          path: dist
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.7'
-      - run: python -m pip install dist/*.whl
+      - name: Build documentation
+        working-directory: ${{ github.workspace }}/main/docs
+        run: |
+          mkdir -p _static
+          sphinx-apidoc --force -o . ../gtdblib/
+          make html
 
-  semantic_release_publish:
-    name: Publish to GitHub
-    needs: [test_python_sdist, test_python_wheel]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          cache: npm
-          node-version: 16
-      - run: npm install
-      - run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Move documentation
+        run: |
+          touch main/docs/_build/html/.nojekyll
+          cp -ar main/docs/_build/html/. ${{ github.workspace }}/gh_pages/
 
-  upload_pypi:
-    name: Publish to PyPI
-    needs: [semantic_release_publish]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v3
-        with:
-          name: pypi
-          path: dist
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.7'
-      - run: |
-          python -m pip install -U twine
-          twine upload dist/*
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+      - name: Upload documentation
+        working-directory: ${{ github.workspace }}/gh_pages
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add --all
+          git diff-index --quiet HEAD || git commit -m "docs update" -a
+          git push
+#
+#  build_python:
+#    name: Python build
+#    runs-on: ubuntu-latest
+#    needs: semantic_release_next_version
+#    if: needs.semantic_release_next_version.outputs.version != ''
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: actions/download-artifact@v3
+#        with:
+#          name: semantic-release
+#      - uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.7'
+#      - run: |
+#          python -m pip install -U setuptools wheel
+#          python setup.py sdist bdist_wheel
+#      - uses: actions/upload-artifact@v3
+#        with:
+#          name: pypi
+#          path: dist/*
+#          retention-days: 1
+#
+#  test_python_sdist:
+#    name: Python test *.tar.gz
+#    runs-on: ubuntu-latest
+#    needs: build_python
+#    steps:
+#      - uses: actions/download-artifact@v3
+#        with:
+#          name: pypi
+#          path: dist
+#      - uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.7'
+#      - run: python -m pip install dist/*.tar.gz
+#
+#  test_python_wheel:
+#    name: Python test *.whl
+#    runs-on: ubuntu-latest
+#    needs: build_python
+#    steps:
+#      - uses: actions/download-artifact@v3
+#        with:
+#          name: pypi
+#          path: dist
+#      - uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.7'
+#      - run: python -m pip install dist/*.whl
+#
+#  semantic_release_publish:
+#    name: Publish to GitHub
+#    needs: [test_python_sdist, test_python_wheel]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: actions/setup-node@v3
+#        with:
+#          cache: npm
+#          node-version: 16
+#      - run: npm install
+#      - run: npx semantic-release
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#
+#  upload_pypi:
+#    name: Publish to PyPI
+#    needs: [semantic_release_publish]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/download-artifact@v3
+#        with:
+#          name: pypi
+#          path: dist
+#      - uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.7'
+#      - run: |
+#          python -m pip install -U twine
+#          twine upload dist/*
+#        env:
+#          TWINE_USERNAME: __token__
+#          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}

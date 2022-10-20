@@ -9,6 +9,9 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
+_build/
+_static/
+_templates/
 develop-eggs/
 dist/
 downloads/
@@ -138,6 +141,7 @@ dmypy.json
 *.c
 
 docs/build/
+docs/source/generated/
 
 /target
 
@@ -145,3 +149,8 @@ wheelhouse/
 
 # Node modules
 node_modules/
+
+# RST files
+docs/*.rst
+!docs/index.rst
+
