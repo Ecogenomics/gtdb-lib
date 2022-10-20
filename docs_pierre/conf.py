@@ -8,8 +8,7 @@ import sphinx_rtd_theme
 sys.path.append(os.path.join(os.path.dirname(__name__), '..'))
 sys.path.insert(0, os.path.abspath('../gtdblib'))
 sys.path.insert(0, os.path.abspath('../gtdblib/util'))
-sys.path.insert(0, os.path.abspath('../gtdblib/util/shell'))
-sys.path.insert(0, os.path.abspath('../gtdblib/util/bio'))
+
 
 
 # -- Project information -----------------------------------------------------
@@ -27,10 +26,13 @@ release = '0.0.1'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ["sphinx_rtd_theme",
-              "sphinx.ext.autodoc"]
+              "sphinx.ext.autodoc",
+              'sphinx.ext.autosummary']
+
+autosummary_generate = True  # Turn on sphinx.ext.autosummary
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build','_templates', 'Thumbs.db', '.DS_Store']
 
 
 

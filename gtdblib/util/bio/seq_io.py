@@ -21,7 +21,7 @@ import sys
 import gzip
 import traceback
 
-from exceptions import BioError
+from .exceptions import BioError
 
 
 class InputFileError(BioError):
