@@ -151,5 +151,6 @@ wheelhouse/
 node_modules/
 
 # RST files
-*.rst
+docs/*.rst
+!docs/index.rst
 
