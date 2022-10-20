@@ -1,0 +1,22 @@
+gtdblib package
+===============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   gtdblib.exception
+   gtdblib.file
+   gtdblib.taxon
+   gtdblib.taxonomy
+   gtdblib.util
+
+Module contents
+---------------
+
+.. automodule:: gtdblib
+   :members:
+   :undoc-members:
+   :show-inheritance:

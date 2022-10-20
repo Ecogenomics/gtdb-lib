@@ -1,0 +1,21 @@
+gtdblib.taxonomy package
+========================
+
+Submodules
+----------
+
+gtdblib.taxonomy.taxonomy module
+--------------------------------
+
+.. automodule:: gtdblib.taxonomy.taxonomy
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: gtdblib.taxonomy
+   :members:
+   :undoc-members:
+   :show-inheritance:

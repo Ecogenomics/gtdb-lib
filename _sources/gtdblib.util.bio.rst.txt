@@ -1,0 +1,29 @@
+gtdblib.util.bio package
+========================
+
+Submodules
+----------
+
+gtdblib.util.bio.exceptions module
+----------------------------------
+
+.. automodule:: gtdblib.util.bio.exceptions
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gtdblib.util.bio.seq\_io module
+-------------------------------
+
+.. automodule:: gtdblib.util.bio.seq_io
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: gtdblib.util.bio
+   :members:
+   :undoc-members:
+   :show-inheritance:

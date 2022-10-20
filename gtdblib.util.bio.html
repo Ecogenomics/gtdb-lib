@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gtdblib.util.bio package &mdash; GTDB Library 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="gtdblib.util.shell package" href="gtdblib.util.shell.html" />
+    <link rel="prev" title="gtdblib.util package" href="gtdblib.util.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> GTDB Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.html">gtdblib package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.file.itol.html">gtdblib.file.itol package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.taxonomy.html">gtdblib.taxonomy package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.util.html">gtdblib.util package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">gtdblib.util.bio package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-gtdblib.util.bio.exceptions">gtdblib.util.bio.exceptions module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.bio.exceptions.BioError"><code class="docutils literal notranslate"><span class="pre">BioError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-gtdblib.util.bio.seq_io">gtdblib.util.bio.seq_io module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.bio.seq_io.InputFileError"><code class="docutils literal notranslate"><span class="pre">InputFileError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.bio.seq_io.extract_seqs"><code class="docutils literal notranslate"><span class="pre">extract_seqs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.bio.seq_io.is_nucleotide"><code class="docutils literal notranslate"><span class="pre">is_nucleotide()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.bio.seq_io.is_protein"><code class="docutils literal notranslate"><span class="pre">is_protein()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.bio.seq_io.read"><code class="docutils literal notranslate"><span class="pre">read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.bio.seq_io.read_fasta"><code class="docutils literal notranslate"><span class="pre">read_fasta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.bio.seq_io.read_fasta_seq"><code class="docutils literal notranslate"><span class="pre">read_fasta_seq()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.bio.seq_io.read_fastq"><code class="docutils literal notranslate"><span class="pre">read_fastq()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.bio.seq_io.read_fastq_seq"><code class="docutils literal notranslate"><span class="pre">read_fastq_seq()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.bio.seq_io.read_seq"><code class="docutils literal notranslate"><span class="pre">read_seq()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.bio.seq_io.seq_lengths"><code class="docutils literal notranslate"><span class="pre">seq_lengths()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.bio.seq_io.write_fasta"><code class="docutils literal notranslate"><span class="pre">write_fasta()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-gtdblib.util.bio">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.util.shell.html">gtdblib.util.shell package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">gtdblib</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GTDB Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="gtdblib.html">gtdblib package</a> &raquo;</li>
+          <li><a href="gtdblib.util.html">gtdblib.util package</a> &raquo;</li>
+      <li>gtdblib.util.bio package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/gtdblib.util.bio.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gtdblib-util-bio-package">
+<h1>gtdblib.util.bio package<a class="headerlink" href="#gtdblib-util-bio-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-gtdblib.util.bio.exceptions">
+<span id="gtdblib-util-bio-exceptions-module"></span><h2>gtdblib.util.bio.exceptions module<a class="headerlink" href="#module-gtdblib.util.bio.exceptions" title="Permalink to this heading"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="gtdblib.util.bio.exceptions.BioError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.exceptions.</span></span><span class="sig-name descname"><span class="pre">BioError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.exceptions.BioError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-gtdblib.util.bio.seq_io">
+<span id="gtdblib-util-bio-seq-io-module"></span><h2>gtdblib.util.bio.seq_io module<a class="headerlink" href="#module-gtdblib.util.bio.seq_io" title="Permalink to this heading"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="gtdblib.util.bio.seq_io.InputFileError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">InputFileError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.InputFileError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gtdblib.util.bio.exceptions.BioError" title="gtdblib.util.bio.exceptions.BioError"><code class="xref py py-class docutils literal notranslate"><span class="pre">BioError</span></code></a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.seq_io.extract_seqs">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">extract_seqs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fasta_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seqs_to_extract</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.extract_seqs" title="Permalink to this definition"></a></dt>
+<dd><p>Extract specific sequences from fasta file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fasta_file</strong> – str, Fasta file containing sequences.</p></li>
+<li><p><strong>seqs_to_extract</strong> – set, Ids of sequences to extract.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict[seq_id] -&gt; seq, Dictionary of sequences indexed by sequence id.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.seq_io.is_nucleotide">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">is_nucleotide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">req_perc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_seqs_to_read</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.is_nucleotide" title="Permalink to this definition"></a></dt>
+<dd><p>Check if a file contains sequences in nucleotide space.</p>
+<p>The check is performed by looking for the characters in
+{a,c,g,t,n,.,-} and confirming that these comprise the
+majority of a sequences. A set number of sequences are
+read and the file assumed to be not be in nucleotide space
+if none of these sequences are comprised primarily of the
+defined nucleotide set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq_file</strong> – str, Name of fasta/q file to read.</p></li>
+<li><p><strong>req_perc</strong> – float, Percentage of nucleotide bases before declaring the sequences as being in nucleotide space.</p></li>
+<li><p><strong>max_seqs_to_read</strong> – int, Maximum sequences to read before declaring sequence file to not be in nucleotide space.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>boolean, True is sequences are in nucleotide space.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.seq_io.is_protein">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">is_protein</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">req_perc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_seqs_to_read</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.is_protein" title="Permalink to this definition"></a></dt>
+<dd><p>Check if a file contains sequences in protein space.</p>
+<p>The check is performed by looking for the 20 amino acids,
+along with X, and the insertion characters ‘-’ and ‘.’, in
+order to confirm that these comprise the majority of a
+sequences. A set number of sequences are read and the file
+assumed to be not be in nucleotide space if none of these
+sequences are comprised primarily of the defined nucleotide set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq_file</strong> – str, Name of fasta/q file to read.</p></li>
+<li><p><strong>req_perc</strong> – float, Percentage of amino acid bases before declaring the sequences as being in amino acid space.</p></li>
+<li><p><strong>max_seqs_to_read</strong> – int, Maximum sequences to read before declaring sequence file to not be in amino acid space.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>boolean, True is sequences are in amino acid space.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.seq_io.read">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.read" title="Permalink to this definition"></a></dt>
+<dd><p>Read sequences from fasta/q file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>seq_file</strong> – str, Name of fasta/q file to read.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict[seq_id] -&gt; seq, Sequences indexed by sequence id.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.seq_io.read_fasta">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">read_fasta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fasta_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_annotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.read_fasta" title="Permalink to this definition"></a></dt>
+<dd><p>Read sequences from fasta file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fasta_file</strong> – str, Name of fasta file to read.</p></li>
+<li><p><strong>keep_annotation</strong> – boolean, Determine is sequence id should contain annotation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict[seq_id] -&gt; seq, Sequences indexed by sequence id.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.seq_io.read_fasta_seq">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">read_fasta_seq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fasta_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_annotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.read_fasta_seq" title="Permalink to this definition"></a></dt>
+<dd><p>Generator function to read sequences from fasta file.</p>
+<p>This function is intended to be used as a generator
+in order to avoid having to have large sequence files
+in memory. Input file may be gzipped.</p>
+<dl class="field-list">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seq_io</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seq_io</span><span class="o">.</span><span class="n">read_fasta_seq</span><span class="p">(</span><span class="n">fasta_file</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">seq_id</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">seq</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>fasta_file</strong> – str, Name of fasta file to read.</p></li>
+<li><p><strong>keep_annotation</strong> – boolean, Determine if annotation string should be returned.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Iterator[seq_id, seq, [annotation]], Unique id of the sequence followed by the sequence itself,
+and the annotation if keep_annotation is True.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.seq_io.read_fastq">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">read_fastq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fastq_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.read_fastq" title="Permalink to this definition"></a></dt>
+<dd><p>Read sequences from fastq file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fastq_file</strong> – str, Name of fastq file to read.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict[seq_id] -&gt; seq, Sequences indexed by sequence id.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.seq_io.read_fastq_seq">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">read_fastq_seq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fastq_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.read_fastq_seq" title="Permalink to this definition"></a></dt>
+<dd><p>Generator function to read sequences from fastq file.</p>
+<p>This function is intended to be used as a generator
+in order to avoid having to have large sequence files
+in memory. Input file may be gzipped.</p>
+<dl class="field-list">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seq_io</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seq_io</span><span class="o">.</span><span class="n">read_fastq_seq</span><span class="p">(</span><span class="n">fastq_file</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">seq_id</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">seq</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>fastq_file</strong> – str, Name of fastq file to read.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Iterator[seq_id, seq], Unique id of the sequence followed by the sequence itself.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.seq_io.read_seq">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">read_seq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_annotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.read_seq" title="Permalink to this definition"></a></dt>
+<dd><p>Generator function to read sequences from fasta/q file.</p>
+<p>This function is intended to be used as a generator
+in order to avoid having to have large sequence files
+in memory. Input file may be gzipped and in either
+fasta or fastq format. It is slightly more efficient
+to directly call read_fasta_seq() or read_fastq_seq()
+if the type of input file in known.</p>
+<dl class="field-list">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seq_io</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seq_io</span><span class="o">.</span><span class="n">read_seq</span><span class="p">(</span><span class="n">fasta_file</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">seq_id</span>
+<span class="go">&gt;&gt;&gt;&gt;    print seq</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>:param seq_file:str, Name of fasta/q file to read.
+:param keep_annotation:boolean, Determine if annotation string should be returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Iterator[seq_id, seq, [annotation]], Unique id of the sequence followed by the sequence itself,
+and the annotation if keep_annotation is True.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.seq_io.seq_lengths">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">seq_lengths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fasta_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.seq_lengths" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate length of each sequence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fasta_file</strong> – str, Fasta file containing sequences.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>d[seq_id] -&gt; length, Length of each sequence.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.seq_io.write_fasta">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">write_fasta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seqs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wrap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.write_fasta" title="Permalink to this definition"></a></dt>
+<dd><p>Write sequences to fasta file.</p>
+<p>If the output file has the extension ‘gz’,
+it will be compressed using gzip.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seqs</strong> – dict[seq_id] -&gt; seq, Sequences indexed by sequence id.</p></li>
+<li><p><strong>output_file</strong> – str, Name of fasta file to produce.</p></li>
+<li><p><strong>wrap</strong> – int, Number of characters per line.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-gtdblib.util.bio">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-gtdblib.util.bio" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gtdblib.util.html" class="btn btn-neutral float-left" title="gtdblib.util package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gtdblib.util.shell.html" class="btn btn-neutral float-right" title="gtdblib.util.shell package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Aaron,Donovan,Pierre.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

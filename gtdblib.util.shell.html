@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gtdblib.util.shell package &mdash; GTDB Library 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="gtdblib" href="modules.html" />
+    <link rel="prev" title="gtdblib.util.bio package" href="gtdblib.util.bio.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> GTDB Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.html">gtdblib package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.file.itol.html">gtdblib.file.itol package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.taxonomy.html">gtdblib.taxonomy package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.util.html">gtdblib.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.util.bio.html">gtdblib.util.bio package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">gtdblib.util.shell package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-gtdblib.util.shell.checksum">gtdblib.util.shell.checksum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.checksum.sha256"><code class="docutils literal notranslate"><span class="pre">sha256()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.checksum.sha256_rb"><code class="docutils literal notranslate"><span class="pre">sha256_rb()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-gtdblib.util.shell.color">gtdblib.util.shell.color module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.color.hex_to_rgb"><code class="docutils literal notranslate"><span class="pre">hex_to_rgb()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.color.rgb_to_hex"><code class="docutils literal notranslate"><span class="pre">rgb_to_hex()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-gtdblib.util.shell.gtdbshutil">gtdblib.util.shell.gtdbshutil module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.gtdbshutil.check_dir_exists"><code class="docutils literal notranslate"><span class="pre">check_dir_exists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.gtdbshutil.check_file_exists"><code class="docutils literal notranslate"><span class="pre">check_file_exists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.gtdbshutil.get_num_lines"><code class="docutils literal notranslate"><span class="pre">get_num_lines()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.gtdbshutil.make_sure_path_exists"><code class="docutils literal notranslate"><span class="pre">make_sure_path_exists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.gtdbshutil.symlink"><code class="docutils literal notranslate"><span class="pre">symlink()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-gtdblib.util.shell">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">gtdblib</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GTDB Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="gtdblib.html">gtdblib package</a> &raquo;</li>
+          <li><a href="gtdblib.util.html">gtdblib.util package</a> &raquo;</li>
+      <li>gtdblib.util.shell package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/gtdblib.util.shell.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gtdblib-util-shell-package">
+<h1>gtdblib.util.shell package<a class="headerlink" href="#gtdblib-util-shell-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-gtdblib.util.shell.checksum">
+<span id="gtdblib-util-shell-checksum-module"></span><h2>gtdblib.util.shell.checksum module<a class="headerlink" href="#module-gtdblib.util.shell.checksum" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.checksum.sha256">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.checksum.</span></span><span class="sig-name descname"><span class="pre">sha256</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.checksum.sha256" title="Permalink to this definition"></a></dt>
+<dd><p>Determine SHA256 hash for file.</p>
+<dl class="simple">
+<dt>input_file<span class="classifier">str</span></dt><dd><p>Name of file.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>str</dt><dd><p>SHA256 hash.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.checksum.sha256_rb">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.checksum.</span></span><span class="sig-name descname"><span class="pre">sha256_rb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.checksum.sha256_rb" title="Permalink to this definition"></a></dt>
+<dd><p>Determine SHA256 hash for binary format.</p>
+<dl class="simple">
+<dt>input_file<span class="classifier">str</span></dt><dd><p>Name of file.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>str</dt><dd><p>SHA256 hash.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-gtdblib.util.shell.color">
+<span id="gtdblib-util-shell-color-module"></span><h2>gtdblib.util.shell.color module<a class="headerlink" href="#module-gtdblib.util.shell.color" title="Permalink to this heading"></a></h2>
+<p>Utility functions for modifying color formats.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.color.hex_to_rgb">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.color.</span></span><span class="sig-name descname"><span class="pre">hex_to_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#gtdblib.util.shell.color.hex_to_rgb" title="Permalink to this definition"></a></dt>
+<dd><p>Convert hex to RGB color format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>hex</strong> – Hex color format.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>RGB color format.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.color.rgb_to_hex">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.color.</span></span><span class="sig-name descname"><span class="pre">rgb_to_hex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gtdblib.util.shell.color.rgb_to_hex" title="Permalink to this definition"></a></dt>
+<dd><p>Convert RGB to hex color format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> – Red value.</p></li>
+<li><p><strong>g</strong> – Green value.</p></li>
+<li><p><strong>b</strong> – Blue value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Hex color format.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-gtdblib.util.shell.gtdbshutil">
+<span id="gtdblib-util-shell-gtdbshutil-module"></span><h2>gtdblib.util.shell.gtdbshutil module<a class="headerlink" href="#module-gtdblib.util.shell.gtdbshutil" title="Permalink to this heading"></a></h2>
+<p>Utility functions for copying and archiving files and directory trees.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.gtdbshutil.check_dir_exists">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.gtdbshutil.</span></span><span class="sig-name descname"><span class="pre">check_dir_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.gtdbshutil.check_dir_exists" title="Permalink to this definition"></a></dt>
+<dd><p>Check if directory exists.This function is copied from <a class="reference external" href="https://github.com/dparks1134/biolib">biolib</a> on the 09/10/2020.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_dir</strong> – path to directory</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if path exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.gtdbshutil.check_file_exists">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.gtdbshutil.</span></span><span class="sig-name descname"><span class="pre">check_file_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.gtdbshutil.check_file_exists" title="Permalink to this definition"></a></dt>
+<dd><p>Check if file exists.This function is copied from <a class="reference external" href="https://github.com/dparks1134/biolib">biolib</a> on the 09/10/2020.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_file</strong> – path to file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if path exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.gtdbshutil.get_num_lines">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.gtdbshutil.</span></span><span class="sig-name descname"><span class="pre">get_num_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.gtdbshutil.get_num_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the number of lines in a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> – path to file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>number of lines in file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.gtdbshutil.make_sure_path_exists">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.gtdbshutil.</span></span><span class="sig-name descname"><span class="pre">make_sure_path_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.gtdbshutil.make_sure_path_exists" title="Permalink to this definition"></a></dt>
+<dd><p>Create directory if it does not exist. This function is copied from <a class="reference external" href="https://github.com/dparks1134/biolib">biolib</a> on the 09/10/2020.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> – path to directory</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if directory exists or was created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.gtdbshutil.symlink">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.gtdbshutil.</span></span><span class="sig-name descname"><span class="pre">symlink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.gtdbshutil.symlink" title="Permalink to this definition"></a></dt>
+<dd><p>Create a symbolic link named link_name pointing to target.</p>
+<p>If link_name exists then FileExistsError is raised, unless overwrite=True.
+When trying to overwrite a directory, IsADirectoryError is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> – The target of the link.</p></li>
+<li><p><strong>link_name</strong> – The name of the link.</p></li>
+<li><p><strong>overwrite</strong> – If True, overwrite existing files and directories.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>FileExistsError</strong> – If link_name exists and overwrite=False.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-gtdblib.util.shell">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-gtdblib.util.shell" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gtdblib.util.bio.html" class="btn btn-neutral float-left" title="gtdblib.util.bio package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="gtdblib" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Aaron,Donovan,Pierre.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

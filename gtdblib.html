@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gtdblib package &mdash; GTDB Library 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="gtdblib.exception package" href="gtdblib.exception.html" />
+    <link rel="prev" title="Welcome to GTDB Library’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> GTDB Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">gtdblib package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.taxonomy.html">gtdblib.taxonomy package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.util.html">gtdblib.util package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-gtdblib">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.file.itol.html">gtdblib.file.itol package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.taxonomy.html">gtdblib.taxonomy package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.util.html">gtdblib.util package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.util.bio.html">gtdblib.util.bio package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.util.shell.html">gtdblib.util.shell package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">gtdblib</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">gtdblib package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxonomy.html">gtdblib.taxonomy package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.html">gtdblib.util package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-gtdblib">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GTDB Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>gtdblib package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/gtdblib.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gtdblib-package">
+<h1>gtdblib package<a class="headerlink" href="#gtdblib-package" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.exception.html#module-gtdblib.exception">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.exception.html#gtdblib.exception.GtdbLibException"><code class="docutils literal notranslate"><span class="pre">GtdbLibException</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.file.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.file.itol.html">gtdblib.file.itol package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.file.itol.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.file.itol.html#module-gtdblib.file.itol.collapse">gtdblib.file.itol.collapse module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.file.itol.html#module-gtdblib.file.itol.label">gtdblib.file.itol.label module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.file.itol.html#module-gtdblib.file.itol.popup">gtdblib.file.itol.popup module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.file.itol.html#module-gtdblib.file.itol.tree_colors">gtdblib.file.itol.tree_colors module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.file.itol.html#module-gtdblib.file.itol">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.file.html#module-gtdblib.file">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.file.html#gtdblib.file.File"><code class="docutils literal notranslate"><span class="pre">File</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.file.html#gtdblib.file.File.path"><code class="docutils literal notranslate"><span class="pre">File.path</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.taxon.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.taxon.html#module-gtdblib.taxon.rank">gtdblib.taxon.rank module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.rank.TaxonRank"><code class="docutils literal notranslate"><span class="pre">TaxonRank</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.rank.TaxonRank.CLASS"><code class="docutils literal notranslate"><span class="pre">TaxonRank.CLASS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.rank.TaxonRank.DOMAIN"><code class="docutils literal notranslate"><span class="pre">TaxonRank.DOMAIN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.rank.TaxonRank.FAMILY"><code class="docutils literal notranslate"><span class="pre">TaxonRank.FAMILY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.rank.TaxonRank.GENUS"><code class="docutils literal notranslate"><span class="pre">TaxonRank.GENUS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.rank.TaxonRank.ORDER"><code class="docutils literal notranslate"><span class="pre">TaxonRank.ORDER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.rank.TaxonRank.PHYLUM"><code class="docutils literal notranslate"><span class="pre">TaxonRank.PHYLUM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.rank.TaxonRank.SPECIES"><code class="docutils literal notranslate"><span class="pre">TaxonRank.SPECIES</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.taxon.html#module-gtdblib.taxon.taxon">gtdblib.taxon.taxon module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon"><code class="docutils literal notranslate"><span class="pre">Taxon</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon.rank"><code class="docutils literal notranslate"><span class="pre">Taxon.rank</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon.value"><code class="docutils literal notranslate"><span class="pre">Taxon.value</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.taxon.html#module-gtdblib.taxon">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.taxonomy.html">gtdblib.taxonomy package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.taxonomy.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.taxonomy.html#module-gtdblib.taxonomy.taxonomy">gtdblib.taxonomy.taxonomy module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.taxonomy.html#gtdblib.taxonomy.taxonomy.Taxonomy"><code class="docutils literal notranslate"><span class="pre">Taxonomy</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxonomy.html#gtdblib.taxonomy.taxonomy.Taxonomy.c"><code class="docutils literal notranslate"><span class="pre">Taxonomy.c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxonomy.html#gtdblib.taxonomy.taxonomy.Taxonomy.d"><code class="docutils literal notranslate"><span class="pre">Taxonomy.d</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxonomy.html#gtdblib.taxonomy.taxonomy.Taxonomy.f"><code class="docutils literal notranslate"><span class="pre">Taxonomy.f</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxonomy.html#gtdblib.taxonomy.taxonomy.Taxonomy.g"><code class="docutils literal notranslate"><span class="pre">Taxonomy.g</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxonomy.html#gtdblib.taxonomy.taxonomy.Taxonomy.o"><code class="docutils literal notranslate"><span class="pre">Taxonomy.o</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxonomy.html#gtdblib.taxonomy.taxonomy.Taxonomy.p"><code class="docutils literal notranslate"><span class="pre">Taxonomy.p</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.taxonomy.html#gtdblib.taxonomy.taxonomy.Taxonomy.s"><code class="docutils literal notranslate"><span class="pre">Taxonomy.s</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.taxonomy.html#module-gtdblib.taxonomy">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.util.html">gtdblib.util package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.util.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.util.bio.html">gtdblib.util.bio package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.bio.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.bio.html#module-gtdblib.util.bio.exceptions">gtdblib.util.bio.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.bio.html#module-gtdblib.util.bio.seq_io">gtdblib.util.bio.seq_io module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.bio.html#module-gtdblib.util.bio">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.util.shell.html">gtdblib.util.shell package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.shell.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.shell.html#module-gtdblib.util.shell.checksum">gtdblib.util.shell.checksum module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.shell.html#module-gtdblib.util.shell.color">gtdblib.util.shell.color module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.shell.html#module-gtdblib.util.shell.gtdbshutil">gtdblib.util.shell.gtdbshutil module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.shell.html#module-gtdblib.util.shell">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.util.html#module-gtdblib.util">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-gtdblib">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-gtdblib" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to GTDB Library’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gtdblib.exception.html" class="btn btn-neutral float-right" title="gtdblib.exception package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Aaron,Donovan,Pierre.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+gtdblib.file.itol package
+=========================
+
+Submodules
+----------
+
+gtdblib.file.itol.collapse module
+---------------------------------
+
+.. automodule:: gtdblib.file.itol.collapse
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gtdblib.file.itol.label module
+------------------------------
+
+.. automodule:: gtdblib.file.itol.label
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gtdblib.file.itol.popup module
+------------------------------
+
+.. automodule:: gtdblib.file.itol.popup
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gtdblib.file.itol.tree\_colors module
+-------------------------------------
+
+.. automodule:: gtdblib.file.itol.tree_colors
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: gtdblib.file.itol
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,10 @@
+gtdblib.exception package
+=========================
+
+Module contents
+---------------
+
+.. automodule:: gtdblib.exception
+   :members:
+   :undoc-members:
+   :show-inheritance:

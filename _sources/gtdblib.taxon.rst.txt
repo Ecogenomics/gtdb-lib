@@ -1,0 +1,29 @@
+gtdblib.taxon package
+=====================
+
+Submodules
+----------
+
+gtdblib.taxon.rank module
+-------------------------
+
+.. automodule:: gtdblib.taxon.rank
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gtdblib.taxon.taxon module
+--------------------------
+
+.. automodule:: gtdblib.taxon.taxon
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: gtdblib.taxon
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,19 @@
+gtdblib.util package
+====================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   gtdblib.util.bio
+   gtdblib.util.shell
+
+Module contents
+---------------
+
+.. automodule:: gtdblib.util
+   :members:
+   :undoc-members:
+   :show-inheritance:

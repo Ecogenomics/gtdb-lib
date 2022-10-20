@@ -1,0 +1,37 @@
+gtdblib.util.shell package
+==========================
+
+Submodules
+----------
+
+gtdblib.util.shell.checksum module
+----------------------------------
+
+.. automodule:: gtdblib.util.shell.checksum
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gtdblib.util.shell.color module
+-------------------------------
+
+.. automodule:: gtdblib.util.shell.color
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gtdblib.util.shell.gtdbshutil module
+------------------------------------
+
+.. automodule:: gtdblib.util.shell.gtdbshutil
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: gtdblib.util.shell
+   :members:
+   :undoc-members:
+   :show-inheritance:

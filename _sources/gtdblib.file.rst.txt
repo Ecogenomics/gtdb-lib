@@ -1,0 +1,18 @@
+gtdblib.file package
+====================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   gtdblib.file.itol
+
+Module contents
+---------------
+
+.. automodule:: gtdblib.file
+   :members:
+   :undoc-members:
+   :show-inheritance:
