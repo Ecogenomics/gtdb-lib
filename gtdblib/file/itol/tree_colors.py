@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import List, Literal, Optional
+from typing import List, Optional
 
 from gtdblib.file import File
 
@@ -20,7 +20,7 @@ class iTolTreeColorsFile(File):
             self,
             node_id: str,
             color: str,
-            branch_style: Literal['normal', 'dashed'],
+            branch_style: str,  # Literal['normal', 'dashed']
             scale_factor: float):
         """defines color/style for all branches in a clade"""
         self.data.append('\t'.join([node_id, 'clade', color, branch_style, str(scale_factor)]))
@@ -29,7 +29,7 @@ class iTolTreeColorsFile(File):
             self,
             node_id: str,
             color: str,
-            branch_style: Literal['normal', 'dashed'],
+            branch_style: str,  # Literal['normal', 'dashed']
             scale_factor: float):
         """defines color/style for a single branch"""
         self.data.append('\t'.join([node_id, 'branch', color, branch_style, str(scale_factor)]))
@@ -38,7 +38,7 @@ class iTolTreeColorsFile(File):
             self,
             node_id: str,
             color: str,
-            font_style: Optional[Literal['normal', 'bold', 'italic', 'bold-italic']] = None,
+            font_style: Optional[str] = None,  # Literal['normal', 'bold', 'italic', 'bold-italic']
             scale_factor: Optional[float] = None,
     ):
         """defines font color/style for the leaf label"""
@@ -56,7 +56,7 @@ class iTolTreeColorsFile(File):
     def write(self):
         with self.path.open('w') as f:
             f.write('\n'.join([
-                'TREE_COLORS',
-                'SEPARATOR TAB',
-                'DATA'
-            ] + self.data) + '\n')
+                                  'TREE_COLORS',
+                                  'SEPARATOR TAB',
+                                  'DATA'
+                              ] + self.data) + '\n')
