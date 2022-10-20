@@ -39,11 +39,11 @@ jobs:
         with:
           path: main
 
-      # Checkout the documentation branch to ~/gh_pages
+      # Checkout the documentation branch to ~/gh-pages
       - uses: actions/checkout@v3
         with:
-          ref: gh_pages
-          path: gh_pages
+          ref: gh-pages
+          path: gh-pages
 
       # Download the (maybe new) versioned files
       - uses: actions/download-artifact@v3
@@ -72,10 +72,10 @@ jobs:
       - name: Move documentation
         run: |
           touch main/docs/_build/html/.nojekyll
-          cp -ar main/docs/_build/html/. ${{ github.workspace }}/gh_pages/
+          cp -ar main/docs/_build/html/. ${{ github.workspace }}/gh-pages/
 
       - name: Upload documentation
-        working-directory: ${{ github.workspace }}/gh_pages
+        working-directory: ${{ github.workspace }}/gh-pages
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
