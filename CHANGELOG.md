@@ -1,3 +1,13 @@
+# [1.1.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.0.1...v1.1.0) (2022-10-21)
+
+
+### Features
+
+* **docs/taxon:** Add docs and an example of taxon/taxonomy. ([a010c48](https://github.com/Ecogenomics/gtdb-lib/commit/a010c48113f841c03913468a4c8120d4d756e0a1))
+* **iTOL:** File wrappers for iTOL. ([43bd118](https://github.com/Ecogenomics/gtdb-lib/commit/43bd118f088b8a5744890e8d9afcc789104e38ad))
+* **iTOL:** File wrappers for iTOL. ([92740b4](https://github.com/Ecogenomics/gtdb-lib/commit/92740b4617ceeed964518d4e688eb0a5eea9d7aa))
+* **Tools implementation:** Add first set of tools ([9cc2464](https://github.com/Ecogenomics/gtdb-lib/commit/9cc246487061663401d0518541056192ca288778))
+
 ## [1.0.1](https://github.com/Ecogenomics/gtdb-lib/compare/v1.0.0...v1.0.1) (2022-10-07)
 
 
