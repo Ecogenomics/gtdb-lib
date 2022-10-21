@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Tuple, Union, List
+from typing import List
 
 from gtdblib.file import File
 
@@ -11,13 +11,13 @@ class iTolPopupFile(File):
         super().__init__(path)
         self.data: List[str] = list()
 
-    def insert(self, node_id: Union[str, Tuple[str, str]], title: str, content: str):
+    def insert(self, node_id: str, title: str, content: str):
         self.data.append(f'{node_id}\t{title}\t{content}')
 
     def write(self):
         with self.path.open('w') as f:
             f.write('\n'.join([
-                'POPUP_INFO',
-                'SEPARATOR TAB',
-                'DATA'
-            ] + self.data) + '\n')
+                                  'POPUP_INFO',
+                                  'SEPARATOR TAB',
+                                  'DATA'
+                              ] + self.data) + '\n')
