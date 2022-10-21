@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Ecogenomics/gtdb-lib/compare/v1.1.0...v1.1.1) (2022-10-21)
+
+
+### Bug Fixes
+
+* **ci:** Fix an issue where version was not being applied to PyPI package. ([6e4add8](https://github.com/Ecogenomics/gtdb-lib/commit/6e4add8b60892db9faf44887e9e65d74a8892f2d))
+
 # [1.1.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.0.1...v1.1.0) (2022-10-21)
 
 
