@@ -12,6 +12,22 @@ gtdblib.file.itol.collapse module
    :undoc-members:
    :show-inheritance:
 
+gtdblib.file.itol.dataset\_color\_strip module
+----------------------------------------------
+
+.. automodule:: gtdblib.file.itol.dataset_color_strip
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gtdblib.file.itol.dataset\_text module
+--------------------------------------
+
+.. automodule:: gtdblib.file.itol.dataset_text
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gtdblib.file.itol.label module
 ------------------------------
 
