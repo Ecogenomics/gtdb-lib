@@ -26,6 +26,7 @@ jobs:
           name: semantic-release
           path: |
             gtdblib/__init__.py
+            CHANGELOG.md
           retention-days: 1
     outputs:
       version: ${{ steps.semantic_release.outputs.version }}
