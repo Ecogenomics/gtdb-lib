@@ -11,5 +11,13 @@ Welcome to GTDB Library's documentation!
    :caption: Contents:
    :glob:
 
-   gtdblib*
-   *
+   gtdblib
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
