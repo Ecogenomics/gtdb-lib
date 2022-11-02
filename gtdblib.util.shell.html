@@ -20,7 +20,6 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="gtdblib" href="modules.html" />
     <link rel="prev" title="gtdblib.util.bio package" href="gtdblib.util.bio.html" /> 
 </head>
 
@@ -41,38 +40,35 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="gtdblib.html">gtdblib package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gtdblib.file.itol.html">gtdblib.file.itol package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gtdblib.taxonomy.html">gtdblib.taxonomy package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gtdblib.util.html">gtdblib.util package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gtdblib.util.bio.html">gtdblib.util.bio package</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">gtdblib.util.shell package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-gtdblib.util.shell.checksum">gtdblib.util.shell.checksum module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.checksum.sha256"><code class="docutils literal notranslate"><span class="pre">sha256()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.checksum.sha256_rb"><code class="docutils literal notranslate"><span class="pre">sha256_rb()</span></code></a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="gtdblib.html">gtdblib package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="gtdblib.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.taxonomy.html">gtdblib.taxonomy package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="gtdblib.util.html">gtdblib.util package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="gtdblib.util.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="gtdblib.util.bio.html">gtdblib.util.bio package</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">gtdblib.util.shell package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.shell.color">gtdblib.util.shell.color module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.shell.filemgmt">gtdblib.util.shell.filemgmt module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.shell.gtdbshutil">gtdblib.util.shell.gtdbshutil module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.shell">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-gtdblib.util.shell.color">gtdblib.util.shell.color module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.color.hex_to_rgb"><code class="docutils literal notranslate"><span class="pre">hex_to_rgb()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.color.rgb_to_hex"><code class="docutils literal notranslate"><span class="pre">rgb_to_hex()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-gtdblib.util.shell.gtdbshutil">gtdblib.util.shell.gtdbshutil module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.gtdbshutil.check_dir_exists"><code class="docutils literal notranslate"><span class="pre">check_dir_exists()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.gtdbshutil.check_file_exists"><code class="docutils literal notranslate"><span class="pre">check_file_exists()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.gtdbshutil.get_num_lines"><code class="docutils literal notranslate"><span class="pre">get_num_lines()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.gtdbshutil.make_sure_path_exists"><code class="docutils literal notranslate"><span class="pre">make_sure_path_exists()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gtdblib.util.shell.gtdbshutil.symlink"><code class="docutils literal notranslate"><span class="pre">symlink()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.html#module-gtdblib.util.color">gtdblib.util.color module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.html#module-gtdblib.util">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-gtdblib.util.shell">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">gtdblib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.html#module-gtdblib">Module contents</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -106,37 +102,6 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-gtdblib.util.shell.checksum">
-<span id="gtdblib-util-shell-checksum-module"></span><h2>gtdblib.util.shell.checksum module<a class="headerlink" href="#module-gtdblib.util.shell.checksum" title="Permalink to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="gtdblib.util.shell.checksum.sha256">
-<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.checksum.</span></span><span class="sig-name descname"><span class="pre">sha256</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.checksum.sha256" title="Permalink to this definition"></a></dt>
-<dd><p>Determine SHA256 hash for file.</p>
-<dl class="simple">
-<dt>input_file<span class="classifier">str</span></dt><dd><p>Name of file.</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>str</dt><dd><p>SHA256 hash.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gtdblib.util.shell.checksum.sha256_rb">
-<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.checksum.</span></span><span class="sig-name descname"><span class="pre">sha256_rb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.checksum.sha256_rb" title="Permalink to this definition"></a></dt>
-<dd><p>Determine SHA256 hash for binary format.</p>
-<dl class="simple">
-<dt>input_file<span class="classifier">str</span></dt><dd><p>Name of file.</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>str</dt><dd><p>SHA256 hash.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
 <section id="module-gtdblib.util.shell.color">
 <span id="gtdblib-util-shell-color-module"></span><h2>gtdblib.util.shell.color module<a class="headerlink" href="#module-gtdblib.util.shell.color" title="Permalink to this heading"></a></h2>
 <p>Utility functions for modifying color formats.</p>
@@ -168,6 +133,66 @@
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Hex color format.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-gtdblib.util.shell.filemgmt">
+<span id="gtdblib-util-shell-filemgmt-module"></span><h2>gtdblib.util.shell.filemgmt module<a class="headerlink" href="#module-gtdblib.util.shell.filemgmt" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.filemgmt.matching_brackets">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.filemgmt.</span></span><span class="sig-name descname"><span class="pre">matching_brackets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.filemgmt.matching_brackets" title="Permalink to this definition"></a></dt>
+<dd><p>Split a string to a list with matching brackets.
+a string a split into substrings based on matching brackets. so we can return nested brackets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>line</strong> – str, line to be processed.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list, list of strings.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.filemgmt.select_delimiter">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.filemgmt.</span></span><span class="sig-name descname"><span class="pre">select_delimiter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.filemgmt.select_delimiter" title="Permalink to this definition"></a></dt>
+<dd><p>Select delimiter for a specific file (.csv,.tsv,…).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_file</strong> – str, Name of file.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>str, Delimiter.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.filemgmt.sha256">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.filemgmt.</span></span><span class="sig-name descname"><span class="pre">sha256</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.filemgmt.sha256" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the SHA256 hash for a specific file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_file</strong> – str, Name of file.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>str, SHA256 hash.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.filemgmt.sha256_rb">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.filemgmt.</span></span><span class="sig-name descname"><span class="pre">sha256_rb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.filemgmt.sha256_rb" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate SHA256 hash for a specific file with a binary format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_file</strong> – str, Name of file.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>str, SHA256 hash.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -236,7 +261,7 @@
 <dt class="sig sig-object py" id="gtdblib.util.shell.gtdbshutil.symlink">
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.gtdbshutil.</span></span><span class="sig-name descname"><span class="pre">symlink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.gtdbshutil.symlink" title="Permalink to this definition"></a></dt>
 <dd><p>Create a symbolic link named link_name pointing to target.</p>
-<p>If link_name exists then FileExistsError is raised, unless overwrite=True.
+<p>If link_name exists then FileExistsError is raised, unless <code class="docutils literal notranslate"><span class="pre">overwrite=True</span></code>.
 When trying to overwrite a directory, IsADirectoryError is raised.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -266,7 +291,6 @@ When trying to overwrite a directory, IsADirectoryError is raised.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="gtdblib.util.bio.html" class="btn btn-neutral float-left" title="gtdblib.util.bio package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="modules.html" class="btn btn-neutral float-right" title="gtdblib" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
