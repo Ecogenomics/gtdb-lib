@@ -22,21 +22,18 @@ __license__ = 'GPL3'
 __maintainer__ = 'Donovan Parks'
 __email__ = 'donovan.parks@gmail.com'
 
+import csv
 import hashlib
+import re
 
 
 def sha256(input_file):
-    """Determine SHA256 hash for file.
+    """Calculate the SHA256 hash for a specific file.
 
-    Parameters
-    ----------
-    input_file : str
-        Name of file.
+    :param input_file: str, Name of file.
 
-    Returns
-    -------
-    str
-        SHA256 hash.
+    :return: str, SHA256 hash.
+
     """
 
     BLOCKSIZE = 65536
@@ -50,17 +47,12 @@ def sha256(input_file):
     return hasher.hexdigest()
 
 def sha256_rb(input_file):
-    """Determine SHA256 hash for binary format.
+    """Calculate SHA256 hash for a specific file with a binary format.
 
-    Parameters
-    ----------
-    input_file : str
-        Name of file.
+    :param input_file: str, Name of file.
 
-    Returns
-    -------
-    str
-        SHA256 hash.
+    :return: str, SHA256 hash.
+
     """
 
     BLOCKSIZE = 65536
@@ -72,3 +64,50 @@ def sha256_rb(input_file):
             buf = onefile.read(BLOCKSIZE)
 
     return hasher.hexdigest()
+
+def select_delimiter(input_file):
+    """Select delimiter for a specific file (.csv,.tsv,...).
+
+    :param input_file: str, Name of file.
+
+    :return: str, Delimiter.
+
+    """
+    with open(input_file) as f:
+        first_line = f.readline()
+        # detect the separator
+        sniffer = csv.Sniffer()
+        dialect = sniffer.sniff(first_line)
+        return dialect.delimiter
+
+def matching_brackets(line):
+    """Split a string to a list with matching brackets.
+    a string a split into substrings based on matching brackets. so we can return nested brackets.
+
+    :param line: str, line to be processed.
+
+    :return: list, list of strings.
+    """
+
+    result, start_parens_count, end_parens_count, term = [], 0, 0, ""
+    for x in re.split(r"([\[\]])", line):
+        if not x.strip():
+            continue
+        elif x == "[":
+            if start_parens_count > 0:
+                term += "["
+            start_parens_count += 1
+        elif x == "]":
+            end_parens_count += 1
+            if end_parens_count == start_parens_count:
+                result.append(term)
+                end_parens_count, start_parens_count, term = 0, 0, ""
+            else:
+                term += "]"
+        elif start_parens_count > end_parens_count:
+            term += x
+        else:
+            result.extend(x.strip(" ").split(" "))
+
+
+    return result
