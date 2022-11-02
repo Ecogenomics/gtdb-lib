@@ -8,6 +8,8 @@ import sphinx_rtd_theme
 sys.path.append(os.path.join(os.path.dirname(__name__), '..'))
 sys.path.insert(0, os.path.abspath('../gtdblib'))
 sys.path.insert(0, os.path.abspath('../gtdblib/util'))
+sys.path.insert(0, os.path.abspath('../gtdblib/util/bio'))
+sys.path.insert(0, os.path.abspath('../gtdblib/util/shell'))
 
 
 
@@ -41,4 +43,6 @@ exclude_patterns = ['_build','_templates', 'Thumbs.db', '.DS_Store']
 
 html_theme = "sphinx_rtd_theme"
 html_static_path = ['_static']
+
+html_theme_options = {'navigation_depth': 6}
 

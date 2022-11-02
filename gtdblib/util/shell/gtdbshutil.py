@@ -26,7 +26,7 @@ def get_num_lines(file_path):
 def symlink(target: str, link_name: str, overwrite: bool=False):
     '''Create a symbolic link named link_name pointing to target.
 
-    If link_name exists then FileExistsError is raised, unless overwrite=True.
+    If link_name exists then FileExistsError is raised, unless ``overwrite=True``.
     When trying to overwrite a directory, IsADirectoryError is raised.
 
     :param target: The target of the link.
