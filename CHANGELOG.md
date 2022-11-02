@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.1.1...v1.2.0) (2022-11-02)
+
+
+### Features
+
+* **change checksum to filemgmt:** doc refactoring ([25e9042](https://github.com/Ecogenomics/gtdb-lib/commit/25e90426a9640392fd7d5bb533e2614ccdc1c2cf))
+
 ## [1.1.1](https://github.com/Ecogenomics/gtdb-lib/compare/v1.1.0...v1.1.1) (2022-10-21)
 
 
