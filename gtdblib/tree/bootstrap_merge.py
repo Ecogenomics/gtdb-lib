@@ -1,4 +1,4 @@
-from collections import defaultdict
+from math import floor
 from pathlib import Path
 from typing import Collection
 
@@ -6,18 +6,6 @@ import dendropy
 from rich.progress import track
 
 from gtdblib import log
-from gtdblib.exception import GtdbLibExit
-from gtdblib.tree.get_node_to_desc_taxa import get_tree_node_to_desc_taxa
-from gtdblib.util.bio.newick import parse_label, create_label
-
-
-def _load_newick(path: Path):
-    return dendropy.Tree.get_from_path(
-        str(path),
-        schema='newick',
-        rooting='force-unrooted',
-        preserve_underscores=True
-    )
 
 
 def bootstrap_merge_replicates(input_tree: Path, output_tree: Path, replicate_trees: Collection[Path]):
@@ -29,47 +17,54 @@ def bootstrap_merge_replicates(input_tree: Path, output_tree: Path, replicate_tr
     :param replicate_trees: The trees to calculate the bootstraps from.
     """
 
-    n_replicates = len(replicate_trees)
+    # Validate arguments
+    if not isinstance(input_tree, Path):
+        raise ValueError(f'Input tree is not a Path object.')
+    if not isinstance(output_tree, Path):
+        raise ValueError(f'Output tree is not a Path object.')
+    if not isinstance(replicate_trees, Collection):
+        raise ValueError(f'Replicate trees is not a Collection object.')
+    if not all(isinstance(x, Path) for x in replicate_trees):
+        raise ValueError(f'Not all replicate trees are Path objects.')
 
-    log.info(f'Loading input tree: {input_tree}')
-    orig_tree = _load_newick(input_tree)
-    orig_taxa = {x.label for x in orig_tree.taxon_namespace}
+    # Method taken from genometreetk/tree_support.py
+    tree = dendropy.Tree.get_from_path(str(input_tree), schema='newick', rooting='force-unrooted',
+                                       preserve_underscores=True)
+    for node in tree.internal_nodes():
+        node.label = 0
+        node.nontrivial_splits = 0
 
-    # 1. Get the unique monophyletic groups in the original tree
-    d_orig_node_to_desc_taxa = get_tree_node_to_desc_taxa(orig_tree)
+    log.info(f'Loading {len(replicate_trees):,} replicate trees')
+    for rep_tree_file in track(replicate_trees, description="Processing..."):
+        print(rep_tree_file)
+        rep_tree = dendropy.Tree.get_from_path(str(rep_tree_file), schema='newick', rooting='force-unrooted',
+                                               preserve_underscores=True)
 
-    # 2. Load the replicate trees and calculate the unique monophyletic groups
-    log.info('Loading replicate trees')
-    d_rep_desc_taxa_to_count = defaultdict(lambda: 0)
-    for replicate_tree in track(replicate_trees, description="Processing..."):
-        rep_tree = _load_newick(replicate_tree)
-        rep_taxa = {x.label for x in rep_tree.taxon_namespace}
-        if orig_taxa != rep_taxa:
-            raise GtdbLibExit(f'Input tree and replicate tree taxa do not match: {input_tree} {replicate_tree}')
+        rep_tree_list = dendropy.TreeList([rep_tree])
 
-        d_rep_node_to_desc_taxa = get_tree_node_to_desc_taxa(rep_tree)
-        for rep_desc_taxa_set in d_rep_node_to_desc_taxa.values():
-            d_rep_desc_taxa_to_count[rep_desc_taxa_set] += 1
+        rep_tree_taxa_set = set([x.taxon.label for x in rep_tree.leaf_nodes()])
 
-    # 3. Annotate each of the labels with the bootstrap value
-    for node, desc_taxa in d_orig_node_to_desc_taxa.items():
-        if node.is_leaf():
-            continue
+        for i, node in enumerate(tree.internal_nodes()):
+            taxa_labels = set([x.taxon.label for x in node.leaf_nodes()]).intersection(rep_tree_taxa_set)
 
-        n_observed = d_rep_desc_taxa_to_count[desc_taxa]
-        bootstrap = round(100 * n_observed / n_replicates, 2)
+            split = rep_tree.taxon_namespace.taxa_bitmask(labels=taxa_labels)
+            normalized_split = dendropy.Bipartition.normalize_bitmask(
+                bitmask=split,
+                fill_bitmask=rep_tree.taxon_namespace.all_taxa_bitmask(),
+                lowest_relevant_bit=1)
 
-        if node.label:
-            support, taxon, aux_info = parse_label(node.label)
-            node.label = create_label(bootstrap, taxon, aux_info)
+            if len(taxa_labels) > 1:
+                # tabulate results for non-trivial splits
+                node.label += int(rep_tree_list.frequency_of_bipartition(split_bitmask=normalized_split))
+                node.nontrivial_splits += 1
+
+    for node in tree.internal_nodes():
+        if node.nontrivial_splits > 0:
+            node.label = str(int(floor(node.label * 100.0 / node.nontrivial_splits)))
         else:
-            node.label = str(bootstrap)
+            node.label = 'NA'
 
-    # 4. Write the tree to disk
-    orig_tree.write_to_path(str(output_tree),
-                            schema='newick',
-                            suppress_rooting=True,
-                            unquoted_underscores=True)
+    tree.write_to_path(str(output_tree), schema='newick', suppress_rooting=True, unquoted_underscores=True)
     log.info(f'Wrote tree to: {output_tree}')
 
     return

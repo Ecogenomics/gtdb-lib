@@ -110,7 +110,7 @@ class TestTreeBootstrapMerge(unittest.TestCase):
     #         self.assertEqual(seed_bs, 100.0)
 
    def test_bootstrap_merge_replicates_local(self):
-        path_out = Path('/tmp/ar_try.tree')
+        path_out = Path('/tmp/ar/merged.tree')
         path_ref = Path('/tmp/ar/ar53_r207.tree')
 
         import os
@@ -119,8 +119,9 @@ class TestTreeBootstrapMerge(unittest.TestCase):
             if file.endswith('.treefile'):
                 rep_paths.append(Path('/tmp/ar/bootstrap_trees') / file)
 
-
+        rep_paths = rep_paths[0:3]
         bootstrap_merge_replicates(path_ref, path_out, rep_paths)
         return
+
 
 
