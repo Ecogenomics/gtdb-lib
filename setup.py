@@ -31,6 +31,11 @@ setup(name=meta['title'],
           'Documentation': meta['doc_url'],
           'Source Code': meta['src_url'],
       },
+      entry_points={
+          'console_scripts': [
+              'gtdblib = gtdblib.__main__:main'
+          ]
+      },
       classifiers=[
           'Development Status :: 1 - Planning',
           'Intended Audience :: Developers',
