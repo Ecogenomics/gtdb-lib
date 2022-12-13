@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.3.0...v1.4.0) (2022-12-13)
+
+
+### Bug Fixes
+
+* **cli:** Add CLI entrypoint to setup.py ([5d471bc](https://github.com/Ecogenomics/gtdb-lib/commit/5d471bc06adcc3f8348b6c3c731a29c67fc81aa0))
+
+
+### Features
+
+* **bootstrap_merge:** Add multiprocessing option. ([4aea129](https://github.com/Ecogenomics/gtdb-lib/commit/4aea12906b5df2ed00261aa1f61ba1cc21019dd4))
+
 # [1.3.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.2.0...v1.3.0) (2022-12-13)
 
 
