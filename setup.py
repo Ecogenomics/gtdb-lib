@@ -52,6 +52,6 @@ setup(name=meta['title'],
       ],
       packages=find_packages(),
       include_package_data=True,
-      install_requires=['numpy>=1.9.0', 'tqdm>=4.35.0', 'typer[all]', 'dendropy'],
+      install_requires=['numpy>=1.9.0', 'tqdm>=4.35.0', 'typer[all]>=0.7.0', 'dendropy', 'rich'],
       python_requires='>=3.6',
       )
