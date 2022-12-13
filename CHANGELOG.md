@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.2.0...v1.3.0) (2022-12-13)
+
+
+### Features
+
+* **cli:** Add CLI and tree manipulation methods. ([298954e](https://github.com/Ecogenomics/gtdb-lib/commit/298954e627931b11305b175dae323978b0c287ef))
+* **cli:** Add CLI and tree manipulation methods. ([263c2dd](https://github.com/Ecogenomics/gtdb-lib/commit/263c2ddf8c756492921b4eacfc56c5079b39a0a0))
+* **cli:** Add CLI and tree manipulation methods. ([f7c04a1](https://github.com/Ecogenomics/gtdb-lib/commit/f7c04a1210a5adc80c1d0fb31ebc110d1e51c547))
+
 # [1.2.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.1.1...v1.2.0) (2022-11-02)
 
 
