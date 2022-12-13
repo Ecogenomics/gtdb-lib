@@ -8,3 +8,14 @@ __license__ = 'GPL-3.0'
 __bug_url__ = 'https://github.com/Ecogenomics/gtdb-lib'
 __doc_url__ = 'https://github.com/Ecogenomics/gtdb-lib'
 __src_url__ = 'https://github.com/Ecogenomics/gtdb-lib'
+
+import logging
+
+from rich.logging import RichHandler
+
+FORMAT = "%(message)s"
+logging.basicConfig(
+    level="NOTSET", format=FORMAT, datefmt="[%Y-%m-%d %H:%M:%S]", handlers=[RichHandler()]
+)
+
+log = logging.getLogger("rich")
