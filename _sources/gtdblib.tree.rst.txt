@@ -1,0 +1,53 @@
+gtdblib.tree package
+====================
+
+Submodules
+----------
+
+gtdblib.tree.bootstrap\_merge module
+------------------------------------
+
+.. automodule:: gtdblib.tree.bootstrap_merge
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gtdblib.tree.get\_node\_depth module
+------------------------------------
+
+.. automodule:: gtdblib.tree.get_node_depth
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gtdblib.tree.get\_node\_to\_desc\_taxa module
+---------------------------------------------
+
+.. automodule:: gtdblib.tree.get_node_to_desc_taxa
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gtdblib.tree.get\_unique\_mrca\_for\_internal\_nodes module
+-----------------------------------------------------------
+
+.. automodule:: gtdblib.tree.get_unique_mrca_for_internal_nodes
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+gtdblib.tree.polytomy module
+----------------------------
+
+.. automodule:: gtdblib.tree.polytomy
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: gtdblib.tree
+   :members:
+   :undoc-members:
+   :show-inheritance:

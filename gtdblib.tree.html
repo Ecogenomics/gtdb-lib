@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gtdblib.tree package &mdash; GTDB Library 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="gtdblib.util package" href="gtdblib.util.html" />
+    <link rel="prev" title="gtdblib.taxonomy package" href="gtdblib.taxonomy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> GTDB Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="gtdblib.html">gtdblib package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="gtdblib.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.cli.html">gtdblib.cli package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.taxonomy.html">gtdblib.taxonomy package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">gtdblib.tree package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.tree.bootstrap_merge">gtdblib.tree.bootstrap_merge module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.tree.bootstrap_merge.bootstrap_merge_replicates"><code class="docutils literal notranslate"><span class="pre">bootstrap_merge_replicates()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.tree.get_node_depth">gtdblib.tree.get_node_depth module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.tree.get_node_depth.get_tree_node_depth"><code class="docutils literal notranslate"><span class="pre">get_tree_node_depth()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.tree.get_node_to_desc_taxa">gtdblib.tree.get_node_to_desc_taxa module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.tree.get_node_to_desc_taxa.get_tree_node_to_desc_taxa"><code class="docutils literal notranslate"><span class="pre">get_tree_node_to_desc_taxa()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.tree.get_unique_mrca_for_internal_nodes">gtdblib.tree.get_unique_mrca_for_internal_nodes module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.tree.get_unique_mrca_for_internal_nodes.get_tree_unique_mrca_for_internal_nodes"><code class="docutils literal notranslate"><span class="pre">get_tree_unique_mrca_for_internal_nodes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.tree.polytomy">gtdblib.tree.polytomy module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.tree.polytomy.collapse_polytomy"><code class="docutils literal notranslate"><span class="pre">collapse_polytomy()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.tree.polytomy.collapse_polytomy_tree"><code class="docutils literal notranslate"><span class="pre">collapse_polytomy_tree()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.tree">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.util.html">gtdblib.util package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.html#module-gtdblib">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GTDB Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="gtdblib.html">gtdblib package</a> &raquo;</li>
+      <li>gtdblib.tree package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/gtdblib.tree.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gtdblib-tree-package">
+<h1>gtdblib.tree package<a class="headerlink" href="#gtdblib-tree-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-gtdblib.tree.bootstrap_merge">
+<span id="gtdblib-tree-bootstrap-merge-module"></span><h2>gtdblib.tree.bootstrap_merge module<a class="headerlink" href="#module-gtdblib.tree.bootstrap_merge" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.tree.bootstrap_merge.bootstrap_merge_replicates">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.tree.bootstrap_merge.</span></span><span class="sig-name descname"><span class="pre">bootstrap_merge_replicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicate_trees</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.tree.bootstrap_merge.bootstrap_merge_replicates" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates non-parametric bootstraps for monophyletic groups and
+transposes them to the input tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_tree</strong> – The tree to merge the bootstraps to.</p></li>
+<li><p><strong>output_tree</strong> – The path to write the tree to.</p></li>
+<li><p><strong>replicate_trees</strong> – The trees to calculate the bootstraps from.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-gtdblib.tree.get_node_depth">
+<span id="gtdblib-tree-get-node-depth-module"></span><h2>gtdblib.tree.get_node_depth module<a class="headerlink" href="#module-gtdblib.tree.get_node_depth" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.tree.get_node_depth.get_tree_node_depth">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.tree.get_node_depth.</span></span><span class="sig-name descname"><span class="pre">get_tree_node_depth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tree</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">Node</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.tree.get_node_depth.get_tree_node_depth" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the depth of all nodes in the tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> – The dendropy tree object to calculate the depths for.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary of depths to nodes at that depth.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-gtdblib.tree.get_node_to_desc_taxa">
+<span id="gtdblib-tree-get-node-to-desc-taxa-module"></span><h2>gtdblib.tree.get_node_to_desc_taxa module<a class="headerlink" href="#module-gtdblib.tree.get_node_to_desc_taxa" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.tree.get_node_to_desc_taxa.get_tree_node_to_desc_taxa">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.tree.get_node_to_desc_taxa.</span></span><span class="sig-name descname"><span class="pre">get_tree_node_to_desc_taxa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tree</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Node</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FrozenSet</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.tree.get_node_to_desc_taxa.get_tree_node_to_desc_taxa" title="Permalink to this definition"></a></dt>
+<dd><p>Get each node and the taxa that are descendants of this node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> – The dendropy tree object to calculate the depths for.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary of nodes and their descendant taxa.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-gtdblib.tree.get_unique_mrca_for_internal_nodes">
+<span id="gtdblib-tree-get-unique-mrca-for-internal-nodes-module"></span><h2>gtdblib.tree.get_unique_mrca_for_internal_nodes module<a class="headerlink" href="#module-gtdblib.tree.get_unique_mrca_for_internal_nodes" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.tree.get_unique_mrca_for_internal_nodes.get_tree_unique_mrca_for_internal_nodes">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.tree.get_unique_mrca_for_internal_nodes.</span></span><span class="sig-name descname"><span class="pre">get_tree_unique_mrca_for_internal_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tree</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Node</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.tree.get_unique_mrca_for_internal_nodes.get_tree_unique_mrca_for_internal_nodes" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate a unique MRCA for each internal node, i.e. using these taxa
+will always yield the same internal node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tree</strong> – The dendropy tree object to calculate the depths for.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary of nodes and a tuple of each taxon that identifies the node.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-gtdblib.tree.polytomy">
+<span id="gtdblib-tree-polytomy-module"></span><h2>gtdblib.tree.polytomy module<a class="headerlink" href="#module-gtdblib.tree.polytomy" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.tree.polytomy.collapse_polytomy">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.tree.polytomy.</span></span><span class="sig-name descname"><span class="pre">collapse_polytomy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_in</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_out</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">support</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.tree.polytomy.collapse_polytomy" title="Permalink to this definition"></a></dt>
+<dd><p>Collapse nodes with low bootstrap support.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_in</strong> – Tree to collapse.</p></li>
+<li><p><strong>path_out</strong> – The path to write the tree to.</p></li>
+<li><p><strong>support</strong> – Collapse nodes that have a support less than this value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.tree.polytomy.collapse_polytomy_tree">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.tree.polytomy.</span></span><span class="sig-name descname"><span class="pre">collapse_polytomy_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">support</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.tree.polytomy.collapse_polytomy_tree" title="Permalink to this definition"></a></dt>
+<dd><p>Collapse nodes with low bootstrap support, works on the Tree object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tree</strong> – Tree to collapse.</p></li>
+<li><p><strong>support</strong> – Collapse nodes that have a support less than this value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-gtdblib.tree">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-gtdblib.tree" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gtdblib.taxonomy.html" class="btn btn-neutral float-left" title="gtdblib.taxonomy package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gtdblib.util.html" class="btn btn-neutral float-right" title="gtdblib.util package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Aaron,Donovan,Pierre.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -7,10 +7,12 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   gtdblib.cli
    gtdblib.exception
    gtdblib.file
    gtdblib.taxon
    gtdblib.taxonomy
+   gtdblib.tree
    gtdblib.util
 
 Module contents

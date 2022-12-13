@@ -43,15 +43,18 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="gtdblib.html">gtdblib package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="gtdblib.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.cli.html">gtdblib.cli package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.taxonomy.html">gtdblib.taxonomy package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.tree.html">gtdblib.tree package</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="gtdblib.util.html">gtdblib.util package</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="gtdblib.util.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l5 current"><a class="current reference internal" href="#">gtdblib.util.bio package</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.bio.exceptions">gtdblib.util.bio.exceptions module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.bio.newick">gtdblib.util.bio.newick module</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.bio.seq_io">gtdblib.util.bio.seq_io module</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.bio">Module contents</a></li>
 </ul>
@@ -61,6 +64,7 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="gtdblib.util.html#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gtdblib.util.html#module-gtdblib.util.color">gtdblib.util.color module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.html#module-gtdblib.util.types">gtdblib.util.types module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gtdblib.util.html#module-gtdblib.util">Module contents</a></li>
 </ul>
 </li>
@@ -108,6 +112,38 @@
 <dt class="sig sig-object py" id="gtdblib.util.bio.exceptions.BioError">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.exceptions.</span></span><span class="sig-name descname"><span class="pre">BioError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.exceptions.BioError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-gtdblib.util.bio.newick">
+<span id="gtdblib-util-bio-newick-module"></span><h2>gtdblib.util.bio.newick module<a class="headerlink" href="#module-gtdblib.util.bio.newick" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.newick.create_label">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.newick.</span></span><span class="sig-name descname"><span class="pre">create_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">support</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gtdblib.util.bio.newick.create_label" title="Permalink to this definition"></a></dt>
+<dd><p>Create label for Newick tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>support</strong> – The support value.</p></li>
+<li><p><strong>taxon</strong> – The taxon.</p></li>
+<li><p><strong>auxiliary_info</strong> – The auxiliary information.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.newick.parse_label">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.newick.</span></span><span class="sig-name descname"><span class="pre">parse_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.util.bio.newick.parse_label" title="Permalink to this definition"></a></dt>
+<dd><p>Parse a Newick label which may contain a support value, taxon, and/or auxiliary information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>label</strong> – The label to parse.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A tuple containing the support value, taxon, and auxiliary information.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

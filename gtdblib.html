@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="gtdblib.exception package" href="gtdblib.exception.html" />
+    <link rel="next" title="gtdblib.cli package" href="gtdblib.cli.html" />
     <link rel="prev" title="Welcome to GTDB Library’s documentation!" href="index.html" /> 
 </head>
 
@@ -43,10 +43,12 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">gtdblib package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.cli.html">gtdblib.cli package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.taxonomy.html">gtdblib.taxonomy package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.tree.html">gtdblib.tree package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.util.html">gtdblib.util package</a></li>
 </ul>
 </li>
@@ -85,9 +87,20 @@
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.cli.html">gtdblib.cli package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.cli.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.cli.html#module-gtdblib.cli.tree">gtdblib.cli.tree module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.cli.html#gtdblib.cli.tree.bootstrap_merge"><code class="docutils literal notranslate"><span class="pre">bootstrap_merge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.cli.html#gtdblib.cli.tree.polytomy"><code class="docutils literal notranslate"><span class="pre">polytomy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.cli.html#module-gtdblib.cli">Module contents</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="gtdblib.exception.html#module-gtdblib.exception">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.exception.html#gtdblib.exception.GtdbLibException"><code class="docutils literal notranslate"><span class="pre">GtdbLibException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.exception.html#gtdblib.exception.GtdbLibExit"><code class="docutils literal notranslate"><span class="pre">GtdbLibExit</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -160,11 +173,38 @@
 <li class="toctree-l2"><a class="reference internal" href="gtdblib.taxonomy.html#module-gtdblib.taxonomy">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="gtdblib.tree.html">gtdblib.tree package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.tree.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.tree.html#module-gtdblib.tree.bootstrap_merge">gtdblib.tree.bootstrap_merge module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.tree.html#gtdblib.tree.bootstrap_merge.bootstrap_merge_replicates"><code class="docutils literal notranslate"><span class="pre">bootstrap_merge_replicates()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.tree.html#module-gtdblib.tree.get_node_depth">gtdblib.tree.get_node_depth module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.tree.html#gtdblib.tree.get_node_depth.get_tree_node_depth"><code class="docutils literal notranslate"><span class="pre">get_tree_node_depth()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.tree.html#module-gtdblib.tree.get_node_to_desc_taxa">gtdblib.tree.get_node_to_desc_taxa module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.tree.html#gtdblib.tree.get_node_to_desc_taxa.get_tree_node_to_desc_taxa"><code class="docutils literal notranslate"><span class="pre">get_tree_node_to_desc_taxa()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.tree.html#module-gtdblib.tree.get_unique_mrca_for_internal_nodes">gtdblib.tree.get_unique_mrca_for_internal_nodes module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.tree.html#gtdblib.tree.get_unique_mrca_for_internal_nodes.get_tree_unique_mrca_for_internal_nodes"><code class="docutils literal notranslate"><span class="pre">get_tree_unique_mrca_for_internal_nodes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.tree.html#module-gtdblib.tree.polytomy">gtdblib.tree.polytomy module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.tree.html#gtdblib.tree.polytomy.collapse_polytomy"><code class="docutils literal notranslate"><span class="pre">collapse_polytomy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.tree.html#gtdblib.tree.polytomy.collapse_polytomy_tree"><code class="docutils literal notranslate"><span class="pre">collapse_polytomy_tree()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.tree.html#module-gtdblib.tree">Module contents</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="gtdblib.util.html">gtdblib.util package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="gtdblib.util.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.util.bio.html">gtdblib.util.bio package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="gtdblib.util.bio.html#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gtdblib.util.bio.html#module-gtdblib.util.bio.exceptions">gtdblib.util.bio.exceptions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gtdblib.util.bio.html#module-gtdblib.util.bio.newick">gtdblib.util.bio.newick module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gtdblib.util.bio.html#module-gtdblib.util.bio.seq_io">gtdblib.util.bio.seq_io module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gtdblib.util.bio.html#module-gtdblib.util.bio">Module contents</a></li>
 </ul>
@@ -184,6 +224,10 @@
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.util.html#gtdblib.util.color.rgb_to_hex"><code class="docutils literal notranslate"><span class="pre">rgb_to_hex()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.util.html#module-gtdblib.util.types">gtdblib.util.types module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.util.html#gtdblib.util.types.is_float"><code class="docutils literal notranslate"><span class="pre">is_float()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="gtdblib.util.html#module-gtdblib.util">Module contents</a></li>
 </ul>
 </li>
@@ -200,7 +244,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to GTDB Library’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="gtdblib.exception.html" class="btn btn-neutral float-right" title="gtdblib.exception package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="gtdblib.cli.html" class="btn btn-neutral float-right" title="gtdblib.cli package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

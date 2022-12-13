@@ -12,6 +12,14 @@ gtdblib.util.bio.exceptions module
    :undoc-members:
    :show-inheritance:
 
+gtdblib.util.bio.newick module
+------------------------------
+
+.. automodule:: gtdblib.util.bio.newick
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gtdblib.util.bio.seq\_io module
 -------------------------------
 

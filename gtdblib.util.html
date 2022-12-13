@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="gtdblib.util.bio package" href="gtdblib.util.bio.html" />
-    <link rel="prev" title="gtdblib.taxonomy package" href="gtdblib.taxonomy.html" /> 
+    <link rel="prev" title="gtdblib.tree package" href="gtdblib.tree.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,10 +43,12 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="gtdblib.html">gtdblib package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="gtdblib.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.cli.html">gtdblib.cli package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.taxonomy.html">gtdblib.taxonomy package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.tree.html">gtdblib.tree package</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">gtdblib.util package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="gtdblib.util.bio.html">gtdblib.util.bio package</a></li>
@@ -56,6 +58,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.util.color">gtdblib.util.color module</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#gtdblib.util.color.rgb_to_hex"><code class="docutils literal notranslate"><span class="pre">rgb_to_hex()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.util.types">gtdblib.util.types module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.util.types.is_float"><code class="docutils literal notranslate"><span class="pre">is_float()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.util">Module contents</a></li>
@@ -103,6 +109,11 @@
 <li class="toctree-l2"><a class="reference internal" href="gtdblib.util.bio.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gtdblib.util.bio.html#module-gtdblib.util.bio.exceptions">gtdblib.util.bio.exceptions module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.util.bio.html#gtdblib.util.bio.exceptions.BioError"><code class="docutils literal notranslate"><span class="pre">BioError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.util.bio.html#module-gtdblib.util.bio.newick">gtdblib.util.bio.newick module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.util.bio.html#gtdblib.util.bio.newick.create_label"><code class="docutils literal notranslate"><span class="pre">create_label()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.util.bio.html#gtdblib.util.bio.newick.parse_label"><code class="docutils literal notranslate"><span class="pre">parse_label()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="gtdblib.util.bio.html#module-gtdblib.util.bio.seq_io">gtdblib.util.bio.seq_io module</a><ul>
@@ -162,6 +173,20 @@
 <dd></dd></dl>
 
 </section>
+<section id="module-gtdblib.util.types">
+<span id="gtdblib-util-types-module"></span><h2>gtdblib.util.types module<a class="headerlink" href="#module-gtdblib.util.types" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.types.is_float">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.types.</span></span><span class="sig-name descname"><span class="pre">is_float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gtdblib.util.types.is_float" title="Permalink to this definition"></a></dt>
+<dd><p>Check if a string can be converted to a float.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>s</strong> – Any object to convert to a float.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 <section id="module-gtdblib.util">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-gtdblib.util" title="Permalink to this heading"></a></h2>
 </section>
@@ -171,7 +196,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="gtdblib.taxonomy.html" class="btn btn-neutral float-left" title="gtdblib.taxonomy package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gtdblib.tree.html" class="btn btn-neutral float-left" title="gtdblib.tree package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="gtdblib.util.bio.html" class="btn btn-neutral float-right" title="gtdblib.util.bio package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
