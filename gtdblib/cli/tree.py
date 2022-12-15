@@ -4,6 +4,7 @@ from typing import List
 import typer
 
 from gtdblib.tree.bootstrap_merge import bootstrap_merge_replicates
+from gtdblib.tree.convert_accession import convert_tree_accessions_to_canonical
 from gtdblib.tree.polytomy import collapse_polytomy
 
 app = typer.Typer()
@@ -56,3 +57,20 @@ def polytomy(
     Collapse nodes with low bootstrap support.
     """
     collapse_polytomy(tree, output, support)
+
+
+@app.command()
+def convert_to_canonical(
+        tree: Path = typer.Argument(
+            ...,
+            help='Path to the Newick tree.'
+        ),
+        output: Path = typer.Argument(
+            ...,
+            help='Path to the output tree.'
+        ),
+):
+    """
+    Convert accessions in the tree to canonical form (e.g. GCA_123456789.1 -> G123456789).
+    """
+    convert_tree_accessions_to_canonical(tree, output)
