@@ -120,7 +120,7 @@ class TestTreeBootstrapMerge(unittest.TestCase):
                 rep_paths.append(Path('/tmp/ar/bootstrap_trees') / file)
 
         rep_paths = rep_paths[0:2]
-        bootstrap_merge_replicates(path_ref, path_out, rep_paths, cpus=5)
+        bootstrap_merge_replicates(path_ref, path_out, rep_paths, cpus=15)
         return
 
 

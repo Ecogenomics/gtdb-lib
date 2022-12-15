@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Collection
 
 import dendropy
+import numpy as np
 from rich.progress import track
 
 from gtdblib import log
@@ -53,7 +54,7 @@ def bootstrap_merge_replicates(
     input_internal_nodes = tuple(tree.internal_nodes(), )
 
     # Generate the descendant taxa for those nodes
-    input_desc_taxa = tuple([frozenset({y.taxon.label for y in x.leaf_nodes()}) for x in input_internal_nodes], )
+    input_desc_taxa = tuple([frozenset({y.taxon.label for y in x.leaf_nodes()}) for x in input_internal_nodes])
 
     # Create a queue containing the input descendant taxa and
     queue = list()
@@ -96,6 +97,11 @@ def _calculate_support_worker(job):
     """A multiprocessing worker to calculate the support for a split."""
     rep_tree_path, taxa_labels = job
 
+    # Create a set that contains the taxa labels in the base tree
+    all_ref_taxa_labels = set()
+    [all_ref_taxa_labels.update(x) for x in taxa_labels]
+    all_ref_taxa_labels = frozenset(all_ref_taxa_labels)
+
     # Load the tree
     rep_tree = dendropy.Tree.get_from_path(
         str(rep_tree_path),
@@ -103,10 +109,33 @@ def _calculate_support_worker(job):
         rooting='force-unrooted',
         preserve_underscores=True
     )
+    all_taxa_bitmask = rep_tree.taxon_namespace.all_taxa_bitmask()
 
     # Calculate the descendant taxa for the reference tree
     rep_tree_list = dendropy.TreeList([rep_tree])
     rep_tree_taxa_set = frozenset({x.taxon.label for x in rep_tree.leaf_node_iter()})
+
+    # Load the common taxa
+    common_taxa = rep_tree.taxon_namespace.get_taxa(labels=sorted(rep_tree_taxa_set.intersection(all_ref_taxa_labels)))
+
+    # Determine the width of the largest bit vector
+    bit_vector_width = len(np.binary_repr(1 << len(rep_tree.taxon_namespace)))
+    bit_array = np.zeros((len(rep_tree.taxon_namespace), bit_vector_width), dtype=np.bool)
+
+    # Get the bitmask for all taxa that are common
+    d_taxon_to_idx = dict()
+    for i, taxon in enumerate(common_taxa):
+        # Generate the bitmask for this taxon
+        d_taxon_to_idx[taxon.label] = i
+        bitmask = np.binary_repr(
+            rep_tree.taxon_namespace.taxon_bitmask(taxon),
+            width=bit_vector_width
+        )
+
+        # Set the significant bits
+        for j, x in enumerate(bitmask):
+            if x == '1':
+                bit_array[i, j] = True
 
     # Iterate over the reference tree taxa internal nodes (order is consistent)
     results = list()
@@ -115,20 +144,28 @@ def _calculate_support_worker(job):
         # Only calculate the support for splits that are present in the reference tree
         taxa_labels = ref_taxa_labels.intersection(rep_tree_taxa_set)
 
-        # Calculate the split
-        split = rep_tree.taxon_namespace.taxa_bitmask(labels=taxa_labels)
-        normalized_split = dendropy.Bipartition.normalize_bitmask(
-            bitmask=split,
-            fill_bitmask=rep_tree.taxon_namespace.all_taxa_bitmask(),
-            lowest_relevant_bit=1)
-
         # Store the number of supported splits
         if len(taxa_labels) > 1:
+
+            # Get the indices of the bitmask array for these taxa
+            taxa_indices = [d_taxon_to_idx[x] for x in taxa_labels]
+            split_bit_vec = np.bitwise_or.reduce(bit_array[taxa_indices, :], axis=0)
+            split_bit_str = ''.join(['1' if x else '0' for x in split_bit_vec])
+
+            # Calculate the split support
+            split = int(split_bit_str, 2)
+            normalized_split = dendropy.Bipartition.normalize_bitmask(
+                bitmask=split,
+                fill_bitmask=all_taxa_bitmask,
+                lowest_relevant_bit=1)
+
             n_support = int(rep_tree_list.frequency_of_bipartition(split_bitmask=normalized_split))
             n_non_trivial_split = 1
         else:
             n_support = 0
             n_non_trivial_split = 0
+
+        # Save the result
         results.append((n_support, n_non_trivial_split))
 
     # Return the results (in the same order)
