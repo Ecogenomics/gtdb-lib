@@ -6,7 +6,6 @@ from typing import Collection
 import dendropy
 import numpy as np
 from rich.progress import track
-from tqdm import tqdm
 
 from gtdblib import log
 
@@ -116,7 +115,7 @@ def _calculate_support_worker(job):
 
     # Iterate over the reference tree taxa internal nodes (order is consistent)
     results = list()
-    for ref_taxa_labels in tqdm(taxa_labels):
+    for ref_taxa_labels in taxa_labels:
 
         # Only calculate the support for splits that are present in the reference tree
         taxa_labels = ref_taxa_labels.intersection(rep_tree_taxa_set)
