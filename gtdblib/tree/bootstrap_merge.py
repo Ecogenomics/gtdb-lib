@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Collection
 
 import dendropy
+import numpy as np
 from rich.progress import track
 
 from gtdblib import log
@@ -53,7 +54,7 @@ def bootstrap_merge_replicates(
     input_internal_nodes = tuple(tree.internal_nodes(), )
 
     # Generate the descendant taxa for those nodes
-    input_desc_taxa = tuple([frozenset({y.taxon.label for y in x.leaf_nodes()}) for x in input_internal_nodes], )
+    input_desc_taxa = tuple([frozenset({y.taxon.label for y in x.leaf_nodes()}) for x in input_internal_nodes])
 
     # Create a queue containing the input descendant taxa and
     queue = list()
@@ -103,10 +104,14 @@ def _calculate_support_worker(job):
         rooting='force-unrooted',
         preserve_underscores=True
     )
+    all_taxa_bitmask = rep_tree.taxon_namespace.all_taxa_bitmask()
 
     # Calculate the descendant taxa for the reference tree
     rep_tree_list = dendropy.TreeList([rep_tree])
     rep_tree_taxa_set = frozenset({x.taxon.label for x in rep_tree.leaf_node_iter()})
+
+    # Get the bitmask for all taxa that are common
+    d_taxon_label_to_bit_idx = {x.label: i for i, x in enumerate(rep_tree.taxon_namespace)}
 
     # Iterate over the reference tree taxa internal nodes (order is consistent)
     results = list()
@@ -115,20 +120,33 @@ def _calculate_support_worker(job):
         # Only calculate the support for splits that are present in the reference tree
         taxa_labels = ref_taxa_labels.intersection(rep_tree_taxa_set)
 
-        # Calculate the split
-        split = rep_tree.taxon_namespace.taxa_bitmask(labels=taxa_labels)
-        normalized_split = dendropy.Bipartition.normalize_bitmask(
-            bitmask=split,
-            fill_bitmask=rep_tree.taxon_namespace.all_taxa_bitmask(),
-            lowest_relevant_bit=1)
-
         # Store the number of supported splits
         if len(taxa_labels) > 1:
+
+            # Create the bit vector for the taxa
+            # This works as the bit shift done (1 << i) will always produce a
+            # bit vector with only one significant bit (i.e. the index of the
+            # taxon in the taxon namespace)
+            split_bit_vec = np.zeros(len(rep_tree_taxa_set), dtype=np.bool)
+            split_bit_vec[[d_taxon_label_to_bit_idx[x] for x in taxa_labels]] = True
+
+            # Reverse the ordering (as idx=0 should be 001, not 100)
+            split_bit_str = ''.join(['1' if x else '0' for x in reversed(split_bit_vec)])
+
+            # Calculate the split support
+            split = int(split_bit_str, 2)
+            normalized_split = dendropy.Bipartition.normalize_bitmask(
+                bitmask=split,
+                fill_bitmask=all_taxa_bitmask,
+                lowest_relevant_bit=1)
+
             n_support = int(rep_tree_list.frequency_of_bipartition(split_bitmask=normalized_split))
             n_non_trivial_split = 1
         else:
             n_support = 0
             n_non_trivial_split = 0
+
+        # Save the result
         results.append((n_support, n_non_trivial_split))
 
     # Return the results (in the same order)
