@@ -1,3 +1,17 @@
+# [1.5.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.4.0...v1.5.0) (2022-12-15)
+
+
+### Bug Fixes
+
+* **typer:** Fix minimum version of Typer for rich support. ([afa2000](https://github.com/Ecogenomics/gtdb-lib/commit/afa2000dbea305406d85ca30419ed94dafeb2b1b))
+
+
+### Features
+
+* **bootstrap_merge:** Improve performance of method by 30% using numpy. ([cb1b03d](https://github.com/Ecogenomics/gtdb-lib/commit/cb1b03d826e66d63ba923378e1f8c67b7cacd771))
+* **bootstrap_merge:** Improve performance of method by 33% using numpy. ([c0d0265](https://github.com/Ecogenomics/gtdb-lib/commit/c0d0265eed8a0b60051a0ce7a1601371cb300f2b))
+* **bootstrap_merge:** Improve performance of method by 33% using numpy. ([b24b3dc](https://github.com/Ecogenomics/gtdb-lib/commit/b24b3dcd653a78fb227e862b7ade9ff379bd79b6))
+
 # [1.4.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.3.0...v1.4.0) (2022-12-13)
 
 
