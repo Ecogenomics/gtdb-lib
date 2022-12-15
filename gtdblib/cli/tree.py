@@ -19,6 +19,11 @@ def bootstrap_merge(
             ...,
             help='Path to the output tree.'
         ),
+        cpus: int = typer.Argument(
+            1,
+            min=1,
+            help='The number of CPUs to use.'
+        ),
         replicates: List[Path] = typer.Argument(
             ...,
             help='Path(s) to the replicate tree(s).'
@@ -27,7 +32,7 @@ def bootstrap_merge(
     """
     Calculate non-parametric bootstrap values using multiple trees.
     """
-    bootstrap_merge_replicates(tree, output, replicates)
+    bootstrap_merge_replicates(tree, output, replicates, cpus)
 
 
 @app.command()
