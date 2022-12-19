@@ -53,6 +53,7 @@
 <li class="toctree-l4 current"><a class="reference internal" href="gtdblib.util.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l5 current"><a class="current reference internal" href="#">gtdblib.util.bio package</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.bio.accession">gtdblib.util.bio.accession module</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.bio.exceptions">gtdblib.util.bio.exceptions module</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.bio.newick">gtdblib.util.bio.newick module</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.bio.seq_io">gtdblib.util.bio.seq_io module</a></li>
@@ -105,6 +106,23 @@
 <h1>gtdblib.util.bio package<a class="headerlink" href="#gtdblib-util-bio-package" title="Permalink to this heading"></a></h1>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-gtdblib.util.bio.accession">
+<span id="gtdblib-util-bio-accession-module"></span><h2>gtdblib.util.bio.accession module<a class="headerlink" href="#module-gtdblib.util.bio.accession" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.accession.canonical_gid">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.accession.</span></span><span class="sig-name descname"><span class="pre">canonical_gid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gtdblib.util.bio.accession.canonical_gid" title="Permalink to this definition"></a></dt>
+<dd><p>Get canonical form of NCBI genome accession.</p>
+<dl class="simple">
+<dt>Example:</dt><dd><p>G005435135 -&gt; G005435135
+GCF_005435135.1 -&gt; G005435135
+GCF_005435135.1_ASM543513v1_genomic -&gt; G005435135
+RS_GCF_005435135.1 -&gt; G005435135
+GB_GCA_005435135.1 -&gt; G005435135</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-gtdblib.util.bio.exceptions">
 <span id="gtdblib-util-bio-exceptions-module"></span><h2>gtdblib.util.bio.exceptions module<a class="headerlink" href="#module-gtdblib.util.bio.exceptions" title="Permalink to this heading"></a></h2>

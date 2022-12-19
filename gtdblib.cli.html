@@ -47,6 +47,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.cli.tree">gtdblib.cli.tree module</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#gtdblib.cli.tree.bootstrap_merge"><code class="docutils literal notranslate"><span class="pre">bootstrap_merge()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.cli.tree.convert_to_canonical"><code class="docutils literal notranslate"><span class="pre">convert_to_canonical()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#gtdblib.cli.tree.polytomy"><code class="docutils literal notranslate"><span class="pre">polytomy()</span></code></a></li>
 </ul>
 </li>
@@ -100,8 +101,14 @@
 <span id="gtdblib-cli-tree-module"></span><h2>gtdblib.cli.tree module<a class="headerlink" href="#module-gtdblib.cli.tree" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="gtdblib.cli.tree.bootstrap_merge">
-<span class="sig-prename descclassname"><span class="pre">gtdblib.cli.tree.</span></span><span class="sig-name descname"><span class="pre">bootstrap_merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree:</span> <span class="pre">~pathlib.Path</span> <span class="pre">=</span> <span class="pre">&lt;typer.models.ArgumentInfo</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output:</span> <span class="pre">~pathlib.Path</span> <span class="pre">=</span> <span class="pre">&lt;typer.models.ArgumentInfo</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicates:</span> <span class="pre">~typing.List[~pathlib.Path]</span> <span class="pre">=</span> <span class="pre">&lt;typer.models.ArgumentInfo</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.cli.tree.bootstrap_merge" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">gtdblib.cli.tree.</span></span><span class="sig-name descname"><span class="pre">bootstrap_merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree:</span> <span class="pre">~pathlib.Path</span> <span class="pre">=</span> <span class="pre">&lt;typer.models.ArgumentInfo</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output:</span> <span class="pre">~pathlib.Path</span> <span class="pre">=</span> <span class="pre">&lt;typer.models.ArgumentInfo</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicates:</span> <span class="pre">~typing.List[~pathlib.Path]</span> <span class="pre">=</span> <span class="pre">&lt;typer.models.ArgumentInfo</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpus:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">&lt;typer.models.OptionInfo</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.cli.tree.bootstrap_merge" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate non-parametric bootstrap values using multiple trees.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.cli.tree.convert_to_canonical">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.cli.tree.</span></span><span class="sig-name descname"><span class="pre">convert_to_canonical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree:</span> <span class="pre">~pathlib.Path</span> <span class="pre">=</span> <span class="pre">&lt;typer.models.ArgumentInfo</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output:</span> <span class="pre">~pathlib.Path</span> <span class="pre">=</span> <span class="pre">&lt;typer.models.ArgumentInfo</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.cli.tree.convert_to_canonical" title="Permalink to this definition"></a></dt>
+<dd><p>Convert accessions in the tree to canonical form (e.g. GCA_123456789.1 -&gt; G123456789).</p>
 </dd></dl>
 
 <dl class="py function">

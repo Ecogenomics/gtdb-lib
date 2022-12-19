@@ -4,6 +4,14 @@ gtdblib.util.bio package
 Submodules
 ----------
 
+gtdblib.util.bio.accession module
+---------------------------------
+
+.. automodule:: gtdblib.util.bio.accession
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gtdblib.util.bio.exceptions module
 ----------------------------------
 

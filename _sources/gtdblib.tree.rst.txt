@@ -12,6 +12,14 @@ gtdblib.tree.bootstrap\_merge module
    :undoc-members:
    :show-inheritance:
 
+gtdblib.tree.convert\_accession module
+--------------------------------------
+
+.. automodule:: gtdblib.tree.convert_accession
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 gtdblib.tree.get\_node\_depth module
 ------------------------------------
 
