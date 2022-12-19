@@ -5,7 +5,7 @@ from typing import Collection
 
 import dendropy
 import numpy as np
-from rich.progress import track
+from rich.progress import Progress, TextColumn, BarColumn, TaskProgressColumn, TimeRemainingColumn
 
 from gtdblib import log
 
@@ -56,23 +56,34 @@ def bootstrap_merge_replicates(
     # Generate the descendant taxa for those nodes
     input_desc_taxa = tuple([frozenset({y.taxon.label for y in x.leaf_nodes()}) for x in input_internal_nodes])
 
-    # Create a queue containing the input descendant taxa and
-    queue = list()
-    for rep_tree_path in replicate_trees:
-        queue.append((rep_tree_path, input_desc_taxa))
+    # Process the input descendant taxa and
+    results = list()
+    with Progress(
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            TaskProgressColumn(),
+            TimeRemainingColumn(),
+            refresh_per_second=1
+    ) as p_bar:
+        task_total = p_bar.add_task(
+            total=100,
+            description=f'Processing tree 1 of {len(replicate_trees):,}'
+        )
 
-    # Calculate the support values single-threaded
-    if cpus == 1:
-        results = [_calculate_support_worker(x) for x in track(queue, description='Processing...')]
-
-    # Calculate support values with multiple threads
-    else:
-        with mp.Pool(processes=cpus) as pool:
-            results = list(track(
-                pool.imap_unordered(_calculate_support_worker, queue),
-                description='Processing...',
-                total=len(queue)
+        # Process each of the trees
+        for rep_tree_path in replicate_trees:
+            results.append(_calculate_support_worker(
+                rep_tree_path,
+                input_desc_taxa,
+                p_bar,
+                task_total,
+                len(replicate_trees),
+                cpus
             ))
+            p_bar.update(
+                task_total,
+                description=f'Processing tree {len(results):,} of {len(replicate_trees):,}'
+            )
 
     # Append the split information to the nodes
     for result in results:
@@ -93,9 +104,44 @@ def bootstrap_merge_replicates(
     return
 
 
-def _calculate_support_worker(job):
-    """A multiprocessing worker to calculate the support for a split."""
-    rep_tree_path, taxa_labels = job
+def _calculate_split_worker(jobs):
+    idx, cur_taxa_labels, rep_tree_taxa_set, d_taxon_label_to_bit_idx, all_taxa_bitmask, rep_tree_list = jobs
+
+    # Only calculate the support for splits that are present in the reference tree
+    common_taxon_labels = cur_taxa_labels.intersection(rep_tree_taxa_set)
+
+    # Store the number of supported splits
+    if len(common_taxon_labels) > 1:
+
+        # Create the bit vector for the taxa
+        # This works as the bit shift done (1 << i) will always produce a
+        # bit vector with only one significant bit (i.e. the index of the
+        # taxon in the taxon namespace)
+        split_bit_vec = np.zeros(len(rep_tree_taxa_set), dtype=np.bool)
+        split_bit_vec[[d_taxon_label_to_bit_idx[x] for x in common_taxon_labels]] = True
+
+        # Reverse the ordering (as idx=0 should be 001, not 100)
+        split_bit_str = ''.join(['1' if x else '0' for x in reversed(split_bit_vec)])
+
+        # Calculate the split support
+        split = int(split_bit_str, 2)
+        normalized_split = dendropy.Bipartition.normalize_bitmask(
+            bitmask=split,
+            fill_bitmask=all_taxa_bitmask,
+            lowest_relevant_bit=1)
+
+        n_support = int(rep_tree_list.frequency_of_bipartition(split_bitmask=normalized_split))
+        n_non_trivial_split = 1
+    else:
+        n_support = 0
+        n_non_trivial_split = 0
+
+    # Save the result
+    return idx, n_support, n_non_trivial_split
+
+
+def _calculate_support_worker(rep_tree_path, taxa_labels, p_bar, task_total, n_trees, cpus):
+    """Worker to calculate the support for splits."""
 
     # Load the tree
     rep_tree = dendropy.Tree.get_from_path(
@@ -114,40 +160,39 @@ def _calculate_support_worker(job):
     d_taxon_label_to_bit_idx = {x.label: i for i, x in enumerate(rep_tree.taxon_namespace)}
 
     # Iterate over the reference tree taxa internal nodes (order is consistent)
-    results = list()
-    for cur_taxa_labels in taxa_labels:
+    jobs = list()
+    for idx, cur_taxa_labels in enumerate(taxa_labels):
+        jobs.append((
+            idx,
+            cur_taxa_labels,
+            rep_tree_taxa_set,
+            d_taxon_label_to_bit_idx,
+            all_taxa_bitmask,
+            rep_tree_list
+        ))
 
-        # Only calculate the support for splits that are present in the reference tree
-        common_taxon_labels = cur_taxa_labels.intersection(rep_tree_taxa_set)
+    # Create a progress bar and process the jobs
+    task_inner = p_bar.add_task(f"{rep_tree_path.name}", total=len(jobs))
+    d_idx_to_result = dict()
+    pct_per_job = 100 / len(jobs) / n_trees
 
-        # Store the number of supported splits
-        if len(common_taxon_labels) > 1:
+    # Process the jobs single-threaded
+    if cpus == 1:
+        for result in (_calculate_split_worker(job) for job in jobs):
+            d_idx_to_result[result[0]] = result[1:]
+            p_bar.update(task_inner, advance=1)
+            p_bar.update(task_total, advance=pct_per_job)
 
-            # Create the bit vector for the taxa
-            # This works as the bit shift done (1 << i) will always produce a
-            # bit vector with only one significant bit (i.e. the index of the
-            # taxon in the taxon namespace)
-            split_bit_vec = np.zeros(len(rep_tree_taxa_set), dtype=np.bool)
-            split_bit_vec[[d_taxon_label_to_bit_idx[x] for x in common_taxon_labels]] = True
+    # Process multiple jobs in parallel
+    with mp.Pool(processes=cpus) as pool:
+        for result in pool.imap_unordered(_calculate_split_worker, jobs, chunksize=10):
+            d_idx_to_result[result[0]] = result[1:]
+            p_bar.update(task_inner, advance=1)
+            p_bar.update(task_total, advance=pct_per_job)
 
-            # Reverse the ordering (as idx=0 should be 001, not 100)
-            split_bit_str = ''.join(['1' if x else '0' for x in reversed(split_bit_vec)])
-
-            # Calculate the split support
-            split = int(split_bit_str, 2)
-            normalized_split = dendropy.Bipartition.normalize_bitmask(
-                bitmask=split,
-                fill_bitmask=all_taxa_bitmask,
-                lowest_relevant_bit=1)
-
-            n_support = int(rep_tree_list.frequency_of_bipartition(split_bitmask=normalized_split))
-            n_non_trivial_split = 1
-        else:
-            n_support = 0
-            n_non_trivial_split = 0
-
-        # Save the result
-        results.append((n_support, n_non_trivial_split))
+    # Remove the progress bar for this tree
+    p_bar.remove_task(task_inner)
 
     # Return the results (in the same order)
+    results = [d_idx_to_result[i] for i in range(len(taxa_labels))]
     return tuple(results, )
