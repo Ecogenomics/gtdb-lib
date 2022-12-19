@@ -115,20 +115,20 @@ def _calculate_support_worker(job):
 
     # Iterate over the reference tree taxa internal nodes (order is consistent)
     results = list()
-    for ref_taxa_labels in taxa_labels:
+    for cur_taxa_labels in taxa_labels:
 
         # Only calculate the support for splits that are present in the reference tree
-        taxa_labels = ref_taxa_labels.intersection(rep_tree_taxa_set)
+        common_taxon_labels = cur_taxa_labels.intersection(rep_tree_taxa_set)
 
         # Store the number of supported splits
-        if len(taxa_labels) > 1:
+        if len(common_taxon_labels) > 1:
 
             # Create the bit vector for the taxa
             # This works as the bit shift done (1 << i) will always produce a
             # bit vector with only one significant bit (i.e. the index of the
             # taxon in the taxon namespace)
             split_bit_vec = np.zeros(len(rep_tree_taxa_set), dtype=np.bool)
-            split_bit_vec[[d_taxon_label_to_bit_idx[x] for x in taxa_labels]] = True
+            split_bit_vec[[d_taxon_label_to_bit_idx[x] for x in common_taxon_labels]] = True
 
             # Reverse the ordering (as idx=0 should be 001, not 100)
             split_bit_str = ''.join(['1' if x else '0' for x in reversed(split_bit_vec)])
