@@ -1,3 +1,18 @@
+# [1.6.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.5.0...v1.6.0) (2022-12-19)
+
+
+### Bug Fixes
+
+* **bootstrap_merge:** Fix a bug where taxa labels would be replaced each iteration. ([a500f4e](https://github.com/Ecogenomics/gtdb-lib/commit/a500f4e53d07b9d94811de70f7522b33810e0d37))
+* **cli:** Update bootstrap_merge method to contain CPU argument. ([7f53d98](https://github.com/Ecogenomics/gtdb-lib/commit/7f53d98d333611f65275001e8f9ff81d31d807c1))
+* **cli:** Update bootstrap_merge method to contain CPU argument. ([17bd594](https://github.com/Ecogenomics/gtdb-lib/commit/17bd594cb752ae233bee9a04e1539d7264a40d79))
+
+
+### Features
+
+* **bootstrap_merge:** Updated to multiprocess on individual trees, not across multiple trees. ([2c6046a](https://github.com/Ecogenomics/gtdb-lib/commit/2c6046abdab7c0f37763606e2cc6b90e34dd55ce))
+* **convert_accession:** Add CLI and method to convert accessions within a tree to canonical form. ([504154f](https://github.com/Ecogenomics/gtdb-lib/commit/504154fb90632111e228d5e2a76855ecc56a76b0))
+
 # [1.5.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.4.0...v1.5.0) (2022-12-15)
 
 
