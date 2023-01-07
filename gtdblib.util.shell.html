@@ -54,6 +54,7 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#">gtdblib.util.shell package</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.shell.color">gtdblib.util.shell.color module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.shell.execute">gtdblib.util.shell.execute module</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.shell.filemgmt">gtdblib.util.shell.filemgmt module</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.shell.gtdbshutil">gtdblib.util.shell.gtdbshutil module</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-gtdblib.util.shell">Module contents</a></li>
@@ -136,6 +137,88 @@
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Hex color format.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-gtdblib.util.shell.execute">
+<span id="gtdblib-util-shell-execute-module"></span><h2>gtdblib.util.shell.execute module<a class="headerlink" href="#module-gtdblib.util.shell.execute" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.execute.check_dependencies">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.execute.</span></span><span class="sig-name descname"><span class="pre">check_dependencies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">programs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exit_on_fail</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.execute.check_dependencies" title="Permalink to this definition"></a></dt>
+<dd><p>Check if programs are on the system path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>programs</strong> – Names of executable programs.</p></li>
+<li><p><strong>exit_on_fail</strong> – Exit program with error code -1 if any program in not on path.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if all programs are on path, else False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.execute.check_on_path">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.execute.</span></span><span class="sig-name descname"><span class="pre">check_on_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exit_on_fail</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.execute.check_on_path" title="Permalink to this definition"></a></dt>
+<dd><p>Check if program is on the system path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>programs</strong> – Names of executable programs.</p></li>
+<li><p><strong>exit_on_fail</strong> – Exit program with error code -1 if any program in not on path.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if all program is on path, else False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.execute.is_executable">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.execute.</span></span><span class="sig-name descname"><span class="pre">is_executable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fpath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.execute.is_executable" title="Permalink to this definition"></a></dt>
+<dd><p>Check if file is executable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fpath</strong> – Path to file.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if executable, else False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.execute.run">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.execute.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gtdblib.util.shell.execute.run" title="Permalink to this definition"></a></dt>
+<dd><p>Execute external program.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Params cmd</dt>
+<dd class="field-odd"><p>Command to execute.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Output from stdout.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.shell.execute.which">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.execute.</span></span><span class="sig-name descname"><span class="pre">which</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.execute.which" title="Permalink to this definition"></a></dt>
+<dd><p>Return path to program.</p>
+<p>This is a Python implementation of the linux
+command ‘which’.</p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/377017/test-if-executable-exists-in-python">http://stackoverflow.com/questions/377017/test-if-executable-exists-in-python</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>programs</strong> – Names of executable programs.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Path to executable, or None if it isn’t on the path.</p>
 </dd>
 </dl>
 </dd></dl>

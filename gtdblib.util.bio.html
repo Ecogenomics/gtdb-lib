@@ -118,7 +118,35 @@
 GCF_005435135.1 -&gt; G005435135
 GCF_005435135.1_ASM543513v1_genomic -&gt; G005435135
 RS_GCF_005435135.1 -&gt; G005435135
-GB_GCA_005435135.1 -&gt; G005435135</p>
+GB_GCA_005435135.1 -&gt;</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>gid</strong> – Genome accesion to conver to canonical form.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Canonical form of accession.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.util.bio.accession.is_same_accn_version">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.accession.</span></span><span class="sig-name descname"><span class="pre">is_same_accn_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">accn1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accn2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gtdblib.util.bio.accession.is_same_accn_version" title="Permalink to this definition"></a></dt>
+<dd><p>Check if accessions have same version number.</p>
+<p>This method assumes accession versions are provided
+as a suffix proceeding a period. This is the format
+used for NCBI accessions, e.g. GCF_005435135.1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>accn1</strong> – First accession.</p></li>
+<li><p><strong>accn2</strong> – Second accession.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if version number is the same, else False.</p>
 </dd>
 </dl>
 </dd></dl>
