@@ -3,8 +3,10 @@ def is_float(s) -> bool:
 
     :param s: Any object to convert to a float.
     """
+
     try:
         float(s)
     except ValueError:
         return False
+
     return True

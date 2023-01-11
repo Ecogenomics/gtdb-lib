@@ -13,7 +13,8 @@ def _validate_support(support: float):
     if support is None or not is_float(support):
         raise GtdbLibExit(f'Support value "{support}" is not a float.')
     if support < 0.0 or support > 100.0:
-        raise GtdbLibExit(f'Invalid support "{support}", must be between 0.0 and 100.0.')
+        raise GtdbLibExit(
+            f'Invalid support "{support}", must be between 0.0 and 100.0.')
 
 
 def _validate_tree_path(path: Path):
@@ -97,7 +98,8 @@ def collapse_polytomy(path_in: Path, path_out: Path, support: float):
 
     # Write the output
     with open(path_out, 'w') as f:
-        f.write(tree.as_string(schema='newick', suppress_rooting=True, unquoted_underscores=True))
+        f.write(tree.as_string(schema='newick',
+                suppress_rooting=True, unquoted_underscores=True))
     log.info(f'Wrote tree to: {path_out}')
 
     return

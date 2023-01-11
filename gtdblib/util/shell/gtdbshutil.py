@@ -1,10 +1,12 @@
 """Utility functions for copying and archiving files and directory trees."""
+
 import errno
-import logging
 import os
 import sys
 import tempfile
 import mmap
+
+from gtdblib import log
 
 
 def get_num_lines(file_path):
@@ -14,16 +16,17 @@ def get_num_lines(file_path):
 
     :return: number of lines in file
     """
+
     fp = open(file_path, "r+")
     buf = mmap.mmap(fp.fileno(), 0)
     lines = 0
     while buf.readline():
         lines += 1
+
     return lines
 
 
-
-def symlink(target: str, link_name: str, overwrite: bool=False):
+def symlink(target: str, link_name: str, overwrite: bool = False):
     '''Create a symbolic link named link_name pointing to target.
 
     If link_name exists then FileExistsError is raised, unless ``overwrite=True``.
@@ -36,7 +39,6 @@ def symlink(target: str, link_name: str, overwrite: bool=False):
     :raises FileExistsError: If link_name exists and overwrite=False.
 
     :return: True
-
     '''
 
     if not overwrite:
@@ -58,7 +60,9 @@ def symlink(target: str, link_name: str, overwrite: bool=False):
             break
         except FileExistsError:
             pass
+
     return True
+
 
 def check_file_exists(input_file):
     """Check if file exists.This function is copied from `biolib <https://github.com/dparks1134/biolib>`_ on the 09/10/2020.
@@ -69,9 +73,9 @@ def check_file_exists(input_file):
     """
 
     if not os.path.exists(input_file) or not os.path.isfile(input_file):
-        logger = logging.getLogger('timestamp')
-        logger.error('Input file does not exists: ' + input_file + '\n')
+        log.error('Input file does not exists: ' + input_file + '\n')
         sys.exit()
+
     return True
 
 
@@ -82,10 +86,11 @@ def check_dir_exists(input_dir):
 
     :return: True if path exists
     """
+
     if not os.path.exists(input_dir) or not os.path.isdir(input_dir):
-        logger = logging.getLogger('timestamp')
-        logger.error('Input directory does not exists: ' + input_dir + '\n')
+        log.error('Input directory does not exists: ' + input_dir + '\n')
         sys.exit()
+
     return True
 
 
@@ -95,7 +100,6 @@ def make_sure_path_exists(path):
     :param path: path to directory
 
     :return: True if directory exists or was created
-
     """
 
     if not path:
@@ -107,7 +111,7 @@ def make_sure_path_exists(path):
         os.makedirs(path)
     except OSError as exception:
         if exception.errno != errno.EEXIST:
-            logger = logging.getLogger('timestamp')
-            logger.error('Specified path could not be created: ' + path + '\n')
+            log.error('Specified path could not be created: ' + path + '\n')
             sys.exit()
+
     return True
