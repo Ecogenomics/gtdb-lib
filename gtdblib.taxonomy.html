@@ -49,7 +49,32 @@
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">gtdblib.taxonomy package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gtdblib-taxonomy-taxonomy-module">gtdblib.taxonomy.taxonomy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.taxonomy.taxonomy">gtdblib.taxonomy.taxonomy module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy"><code class="docutils literal notranslate"><span class="pre">Taxonomy</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.CLASS_INDEX"><code class="docutils literal notranslate"><span class="pre">Taxonomy.CLASS_INDEX</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.DOMAIN_INDEX"><code class="docutils literal notranslate"><span class="pre">Taxonomy.DOMAIN_INDEX</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.FAMILY_INDEX"><code class="docutils literal notranslate"><span class="pre">Taxonomy.FAMILY_INDEX</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.GENUS_INDEX"><code class="docutils literal notranslate"><span class="pre">Taxonomy.GENUS_INDEX</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.ORDER_INDEX"><code class="docutils literal notranslate"><span class="pre">Taxonomy.ORDER_INDEX</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.PHYLUM_INDEX"><code class="docutils literal notranslate"><span class="pre">Taxonomy.PHYLUM_INDEX</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.RANK_INDEX"><code class="docutils literal notranslate"><span class="pre">Taxonomy.RANK_INDEX</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.RANK_LABELS"><code class="docutils literal notranslate"><span class="pre">Taxonomy.RANK_LABELS</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.RANK_PREFIXES"><code class="docutils literal notranslate"><span class="pre">Taxonomy.RANK_PREFIXES</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.SPECIES_INDEX"><code class="docutils literal notranslate"><span class="pre">Taxonomy.SPECIES_INDEX</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.c"><code class="docutils literal notranslate"><span class="pre">Taxonomy.c</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.d"><code class="docutils literal notranslate"><span class="pre">Taxonomy.d</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.f"><code class="docutils literal notranslate"><span class="pre">Taxonomy.f</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.g"><code class="docutils literal notranslate"><span class="pre">Taxonomy.g</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.o"><code class="docutils literal notranslate"><span class="pre">Taxonomy.o</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.p"><code class="docutils literal notranslate"><span class="pre">Taxonomy.p</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.s"><code class="docutils literal notranslate"><span class="pre">Taxonomy.s</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.fill_trailing_ranks"><code class="docutils literal notranslate"><span class="pre">fill_trailing_ranks()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.read_taxonomy"><code class="docutils literal notranslate"><span class="pre">read_taxonomy()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.read_taxonomy_from_tree"><code class="docutils literal notranslate"><span class="pre">read_taxonomy_from_tree()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.taxonomy.validation">gtdblib.taxonomy.validation module</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.validation.duplicate_names"><code class="docutils literal notranslate"><span class="pre">duplicate_names()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.validation.taxonomic_consistency"><code class="docutils literal notranslate"><span class="pre">taxonomic_consistency()</span></code></a></li>
@@ -99,14 +124,167 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="gtdblib-taxonomy-taxonomy-module">
-<h2>gtdblib.taxonomy.taxonomy module<a class="headerlink" href="#gtdblib-taxonomy-taxonomy-module" title="Permalink to this heading"></a></h2>
+<section id="module-gtdblib.taxonomy.taxonomy">
+<span id="gtdblib-taxonomy-taxonomy-module"></span><h2>gtdblib.taxonomy.taxonomy module<a class="headerlink" href="#module-gtdblib.taxonomy.taxonomy" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.taxonomy.</span></span><span class="sig-name descname"><span class="pre">Taxonomy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.CLASS_INDEX">
+<span class="sig-name descname"><span class="pre">CLASS_INDEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.CLASS_INDEX" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.DOMAIN_INDEX">
+<span class="sig-name descname"><span class="pre">DOMAIN_INDEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.DOMAIN_INDEX" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.FAMILY_INDEX">
+<span class="sig-name descname"><span class="pre">FAMILY_INDEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.FAMILY_INDEX" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.GENUS_INDEX">
+<span class="sig-name descname"><span class="pre">GENUS_INDEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.GENUS_INDEX" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.ORDER_INDEX">
+<span class="sig-name descname"><span class="pre">ORDER_INDEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.ORDER_INDEX" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.PHYLUM_INDEX">
+<span class="sig-name descname"><span class="pre">PHYLUM_INDEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.PHYLUM_INDEX" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.RANK_INDEX">
+<span class="sig-name descname"><span class="pre">RANK_INDEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'c__':</span> <span class="pre">2,</span> <span class="pre">'d__':</span> <span class="pre">0,</span> <span class="pre">'f__':</span> <span class="pre">4,</span> <span class="pre">'g__':</span> <span class="pre">5,</span> <span class="pre">'o__':</span> <span class="pre">3,</span> <span class="pre">'p__':</span> <span class="pre">1,</span> <span class="pre">'s__':</span> <span class="pre">6}</span></em><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.RANK_INDEX" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.RANK_LABELS">
+<span class="sig-name descname"><span class="pre">RANK_LABELS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('domain',</span> <span class="pre">'phylum',</span> <span class="pre">'class',</span> <span class="pre">'order',</span> <span class="pre">'family',</span> <span class="pre">'genus',</span> <span class="pre">'species')</span></em><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.RANK_LABELS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.RANK_PREFIXES">
+<span class="sig-name descname"><span class="pre">RANK_PREFIXES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('d__',</span> <span class="pre">'p__',</span> <span class="pre">'c__',</span> <span class="pre">'o__',</span> <span class="pre">'f__',</span> <span class="pre">'g__',</span> <span class="pre">'s__')</span></em><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.RANK_PREFIXES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.SPECIES_INDEX">
+<span class="sig-name descname"><span class="pre">SPECIES_INDEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.SPECIES_INDEX" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.c">
+<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.c" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.d">
+<span class="sig-name descname"><span class="pre">d</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.d" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.f">
+<span class="sig-name descname"><span class="pre">f</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.f" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.g">
+<span class="sig-name descname"><span class="pre">g</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.g" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.o">
+<span class="sig-name descname"><span class="pre">o</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.o" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.p">
+<span class="sig-name descname"><span class="pre">p</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.p" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.s">
+<span class="sig-name descname"><span class="pre">s</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.s" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.fill_trailing_ranks">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.taxonomy.</span></span><span class="sig-name descname"><span class="pre">fill_trailing_ranks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taxa</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.fill_trailing_ranks" title="Permalink to this definition"></a></dt>
+<dd><p>Fill in missing trailing ranks in a taxonomy string.</p>
+<p>This function assumes it will be provided with a list
+of taxa from the 7 canonical ranks in rank order. Any
+trailing ranks are filled in.</p>
+<p>Example: [d__Bacteria, d__Firmicutes] =&gt; [d__Bacteria, d__Firmicutes, <a href="#id1"><span class="problematic" id="id2">c__</span></a>, <a href="#id1"><span class="problematic" id="id3">o__</span></a>, <a href="#id1"><span class="problematic" id="id4">f__</span></a>, <a href="#id1"><span class="problematic" id="id5">g__</span></a>, <a href="#id1"><span class="problematic" id="id6">s__</span></a>]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>list</strong> (<em>taxa</em>) – List of taxa.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of taxa with filled trailing ranks.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.read_taxonomy">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.taxonomy.</span></span><span class="sig-name descname"><span class="pre">read_taxonomy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taxonomy_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_canonical_gid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.read_taxonomy" title="Permalink to this definition"></a></dt>
+<dd><p>Read Greengenes-style taxonomy file.</p>
+<p>This method is generic in that it can read any Greengenes-style taxonomy string
+and does not strictly require there to be the seven canonical ranks present.</p>
+<dl class="simple">
+<dt>Expected format is:</dt><dd><p>&lt;accession&gt;     &lt;taxonomy string&gt;</p>
+</dd>
+<dt>where the taxonomy string will typically have the formats:</dt><dd><p><a href="#id1"><span class="problematic" id="id7">d__</span></a>; <a href="#id1"><span class="problematic" id="id8">c__</span></a>; <a href="#id1"><span class="problematic" id="id9">o__</span></a>; <a href="#id1"><span class="problematic" id="id10">f__</span></a>; <a href="#id1"><span class="problematic" id="id11">g__</span></a>; <a href="#id1"><span class="problematic" id="id12">s__</span></a></p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>taxonomy_file</strong> – File indicating Greengenes-style taxonomic assignments.</p></li>
+<li><p><strong>use_canonical_gid</strong> – Flag indicating if accessions should be converted to their canonical form.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Mapping from accessions to a list of taxa.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.read_taxonomy_from_tree">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.taxonomy.</span></span><span class="sig-name descname"><span class="pre">read_taxonomy_from_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warnings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.read_taxonomy_from_tree" title="Permalink to this definition"></a></dt>
+<dd><p>Obtain the taxonomy for each extant taxa as specified by internal tree labels.</p>
+<p>This method is generic in that it can read any Greengenes-style taxonomy string
+and does not strictly require extran taxa to be classified to theseven canonical ranks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tree</strong> – Filename of Newick tree or Dendropy tree object.</p></li>
+<li><p><strong>warnings</strong> – Flag indicating if issues reading tree should be logged as warnings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Mapping from extent taxon labels to a list of taxa.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-gtdblib.taxonomy.validation">
 <span id="gtdblib-taxonomy-validation-module"></span><h2>gtdblib.taxonomy.validation module<a class="headerlink" href="#module-gtdblib.taxonomy.validation" title="Permalink to this heading"></a></h2>
 <p>Methods for validating a Greengenes-style taxonomy.</p>
 <dl class="simple">
-<dt>This class validates canonical 7 rank Greengenes-style taxonomy string:</dt><dd><p><a href="#id1"><span class="problematic" id="id2">d__</span></a>; <a href="#id1"><span class="problematic" id="id3">c__</span></a>; <a href="#id1"><span class="problematic" id="id4">o__</span></a>; <a href="#id1"><span class="problematic" id="id5">f__</span></a>; <a href="#id1"><span class="problematic" id="id6">g__</span></a>; <a href="#id1"><span class="problematic" id="id7">s__</span></a></p>
+<dt>This class validates canonical 7 rank Greengenes-style taxonomy string:</dt><dd><p><a href="#id1"><span class="problematic" id="id13">d__</span></a>; <a href="#id1"><span class="problematic" id="id14">c__</span></a>; <a href="#id1"><span class="problematic" id="id15">o__</span></a>; <a href="#id1"><span class="problematic" id="id16">f__</span></a>; <a href="#id1"><span class="problematic" id="id17">g__</span></a>; <a href="#id1"><span class="problematic" id="id18">s__</span></a></p>
 </dd>
 </dl>
 <dl class="py function">
@@ -152,7 +330,7 @@ assumes the two names should be separated by a space.</p>
 </dd>
 <dt>require_full<span class="classifier">boolean</span></dt><dd><p>Flag indicating if species name must include ‘generic name and ‘specific epithet’.</p>
 </dd>
-<dt>require_prefix<span class="classifier">boolean</span></dt><dd><p>Flag indicating if name must start with the species prefix (’<a href="#id1"><span class="problematic" id="id8">s__</span></a>’).</p>
+<dt>require_prefix<span class="classifier">boolean</span></dt><dd><p>Flag indicating if name must start with the species prefix (’<a href="#id1"><span class="problematic" id="id19">s__</span></a>’).</p>
 </dd>
 </dl>
 <dl class="simple">
