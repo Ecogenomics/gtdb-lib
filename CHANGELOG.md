@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.6.0...v1.7.0) (2023-01-07)
+
+
+### Features
+
+* added execute.py and method for checking accession versions in accession.py. ([eb7bd16](https://github.com/Ecogenomics/gtdb-lib/commit/eb7bd1619c15c36e8a9f26b880a8e391f03b3992))
+
 # [1.6.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.5.0...v1.6.0) (2022-12-19)
 
 
