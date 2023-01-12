@@ -12,6 +12,14 @@ gtdblib.taxonomy.taxonomy module
    :undoc-members:
    :show-inheritance:
 
+gtdblib.taxonomy.validation module
+----------------------------------
+
+.. automodule:: gtdblib.taxonomy.validation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

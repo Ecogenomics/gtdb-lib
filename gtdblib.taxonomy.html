@@ -49,17 +49,12 @@
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">gtdblib.taxonomy package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.taxonomy.taxonomy">gtdblib.taxonomy.taxonomy module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy"><code class="docutils literal notranslate"><span class="pre">Taxonomy</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.c"><code class="docutils literal notranslate"><span class="pre">Taxonomy.c</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.d"><code class="docutils literal notranslate"><span class="pre">Taxonomy.d</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.f"><code class="docutils literal notranslate"><span class="pre">Taxonomy.f</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.g"><code class="docutils literal notranslate"><span class="pre">Taxonomy.g</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.o"><code class="docutils literal notranslate"><span class="pre">Taxonomy.o</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.p"><code class="docutils literal notranslate"><span class="pre">Taxonomy.p</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.s"><code class="docutils literal notranslate"><span class="pre">Taxonomy.s</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="#gtdblib-taxonomy-taxonomy-module">gtdblib.taxonomy.taxonomy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.taxonomy.validation">gtdblib.taxonomy.validation module</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.validation.duplicate_names"><code class="docutils literal notranslate"><span class="pre">duplicate_names()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.validation.taxonomic_consistency"><code class="docutils literal notranslate"><span class="pre">taxonomic_consistency()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.validation.validate_species_name"><code class="docutils literal notranslate"><span class="pre">validate_species_name()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.validation.validate_taxonomy"><code class="docutils literal notranslate"><span class="pre">validate_taxonomy()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.taxonomy">Module contents</a></li>
@@ -104,47 +99,105 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-gtdblib.taxonomy.taxonomy">
-<span id="gtdblib-taxonomy-taxonomy-module"></span><h2>gtdblib.taxonomy.taxonomy module<a class="headerlink" href="#module-gtdblib.taxonomy.taxonomy" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.taxonomy.</span></span><span class="sig-name descname"><span class="pre">Taxonomy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="gtdblib.taxon.html#gtdblib.taxon.taxon.Taxon" title="gtdblib.taxon.taxon.Taxon"><span class="pre">Taxon</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.c">
-<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.c" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<section id="gtdblib-taxonomy-taxonomy-module">
+<h2>gtdblib.taxonomy.taxonomy module<a class="headerlink" href="#gtdblib-taxonomy-taxonomy-module" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-gtdblib.taxonomy.validation">
+<span id="gtdblib-taxonomy-validation-module"></span><h2>gtdblib.taxonomy.validation module<a class="headerlink" href="#module-gtdblib.taxonomy.validation" title="Permalink to this heading"></a></h2>
+<p>Methods for validating a Greengenes-style taxonomy.</p>
+<dl class="simple">
+<dt>This class validates canonical 7 rank Greengenes-style taxonomy string:</dt><dd><p><a href="#id1"><span class="problematic" id="id2">d__</span></a>; <a href="#id1"><span class="problematic" id="id3">c__</span></a>; <a href="#id1"><span class="problematic" id="id4">o__</span></a>; <a href="#id1"><span class="problematic" id="id5">f__</span></a>; <a href="#id1"><span class="problematic" id="id6">g__</span></a>; <a href="#id1"><span class="problematic" id="id7">s__</span></a></p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.validation.duplicate_names">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.validation.</span></span><span class="sig-name descname"><span class="pre">duplicate_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taxonomy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_species</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.taxonomy.validation.duplicate_names" title="Permalink to this definition"></a></dt>
+<dd><p>Identify duplicate names in taxonomy.</p>
+<dl class="simple">
+<dt>taxonomy<span class="classifier">d[unique_id] -&gt; [d__&lt;taxon&gt;; …; s__&lt;taxon&gt;]</span></dt><dd><p>Taxonomy strings indexed by unique ids.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict<span class="classifier">d[taxon] -&gt; lineages</span></dt><dd><p>List of lineages for duplicate taxa.</p>
+</dd>
+</dl>
+</dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.d">
-<span class="sig-name descname"><span class="pre">d</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.d" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.validation.taxonomic_consistency">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.validation.</span></span><span class="sig-name descname"><span class="pre">taxonomic_consistency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taxonomy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_errors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.taxonomy.validation.taxonomic_consistency" title="Permalink to this definition"></a></dt>
+<dd><p>Determine taxonomically consistent classification for taxa at each rank.</p>
+<dl class="simple">
+<dt>taxonomy<span class="classifier">d[unique_id] -&gt; [d__&lt;taxon&gt;; …; s__&lt;taxon&gt;]</span></dt><dd><p>Taxonomy strings indexed by unique ids.</p>
+</dd>
+<dt>report_errors<span class="classifier">boolean</span></dt><dd><p>Flag indicating if errors should be written to screen.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict<span class="classifier">d[taxa] -&gt; expected parent</span></dt><dd><p>Expected parent taxon for taxa at all taxonomic ranks, or
+None if the taxonomy is inconsistent.</p>
+</dd>
+</dl>
+</dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.f">
-<span class="sig-name descname"><span class="pre">f</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.f" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.validation.validate_species_name">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.validation.</span></span><span class="sig-name descname"><span class="pre">validate_species_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">require_full</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">require_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.taxonomy.validation.validate_species_name" title="Permalink to this definition"></a></dt>
+<dd><p>Validate species name.</p>
+<p>A full species name should be  binomial and include a ‘generic name’ (genus) and
+a ‘specific epithet’ (species), i.e. Escherichia coli. This method
+assumes the two names should be separated by a space.</p>
+<dl class="simple">
+<dt>species_name<span class="classifier">str</span></dt><dd><p>Species name to validate</p>
+</dd>
+<dt>require_full<span class="classifier">boolean</span></dt><dd><p>Flag indicating if species name must include ‘generic name and ‘specific epithet’.</p>
+</dd>
+<dt>require_prefix<span class="classifier">boolean</span></dt><dd><p>Flag indicating if name must start with the species prefix (’<a href="#id1"><span class="problematic" id="id8">s__</span></a>’).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>boolean</dt><dd><p>True if species name is valid, otherwise False.</p>
+</dd>
+<dt>str</dt><dd><p>Reason for failing validation, otherwise None.</p>
+</dd>
+</dl>
+</dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.g">
-<span class="sig-name descname"><span class="pre">g</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.g" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.o">
-<span class="sig-name descname"><span class="pre">o</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.o" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.p">
-<span class="sig-name descname"><span class="pre">p</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.p" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.Taxonomy.s">
-<span class="sig-name descname"><span class="pre">s</span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.Taxonomy.s" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.validation.validate_taxonomy">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.validation.</span></span><span class="sig-name descname"><span class="pre">validate_taxonomy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taxonomy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_prefixes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_ranks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_hierarchy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_species</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_group_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_duplicate_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_capitalization</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_errors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.taxonomy.validation.validate_taxonomy" title="Permalink to this definition"></a></dt>
+<dd><p>Check if taxonomy forms a strict hierarchy with all expected ranks.</p>
+<p>This method implements a full workflow for validating Greengenes-style taxonomy strings assigned
+to a set of accessions. It identifies a number of common issues and the issues checked can be
+configured using the set of boolean inputs.</p>
+<dl class="simple">
+<dt>taxonomy<span class="classifier">d[unique_id] -&gt; [d__&lt;taxon&gt;; …; s__&lt;taxon&gt;]</span></dt><dd><p>Taxonomy strings indexed by unique ids.</p>
+</dd>
+<dt>check_prefixes<span class="classifier">boolean</span></dt><dd><p>Flag indicating if prefix of taxon should be validated.</p>
+</dd>
+<dt>check_ranks<span class="classifier">boolean</span></dt><dd><p>Flag indicating if the presence of all ranks should be validated.</p>
+</dd>
+<dt>check_hierarchy<span class="classifier">boolean</span></dt><dd><p>Flag indicating if the taxonomic hierarchy should be validated.</p>
+</dd>
+<dt>check_species<span class="classifier">boolean</span></dt><dd><p>Flag indicating if the taxonomic consistency of named species should be validated.</p>
+</dd>
+<dt>check_group_names<span class="classifier">boolean</span></dt><dd><p>Flag indicating if group names should be checked for invalid characters.</p>
+</dd>
+<dt>check_duplicate_names<span class="classifier">boolean</span></dt><dd><p>Flag indicating if group names should be checked for duplicates.</p>
+</dd>
+<dt>report_errors<span class="classifier">boolean</span></dt><dd><p>Flag indicating if errors should be written to screen.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict<span class="classifier">d[taxon_id] -&gt; taxonomy</span></dt><dd><p>Taxa with invalid number of ranks.</p>
+</dd>
+<dt>dict<span class="classifier">d[taxon_id] -&gt; [taxon, taxonomy]</span></dt><dd><p>Taxa with invalid rank prefixes.</p>
+</dd>
+<dt>dict: d[taxon_id] -&gt; [species name, error message]</dt><dd><p>Taxa with invalid species names.</p>
+</dd>
+<dt>dict: d[child_taxon_id] -&gt; two or more parent taxon ids</dt><dd><p>Taxa with invalid hierarchies.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
