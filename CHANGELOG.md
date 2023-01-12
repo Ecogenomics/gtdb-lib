@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.7.0...v1.8.0) (2023-01-12)
+
+
+### Features
+
+* moved over BioLib functionality required by the GTDB Species Cluster pipeline; predominately extensions to handle Greengenes-style taxonomy strings ([df9e1fe](https://github.com/Ecogenomics/gtdb-lib/commit/df9e1fea09216680748dbb52f1989abcb1a74489))
+
 # [1.7.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.6.0...v1.7.0) (2023-01-07)
 
 
