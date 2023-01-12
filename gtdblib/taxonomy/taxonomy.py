@@ -5,7 +5,7 @@ from gtdblib import log
 from gtdblib.taxon.taxon import Taxon
 from gtdblib.taxon.rank import TaxonRank
 from gtdblib.util.types import is_float
-from gtdblib.utilshell.gtdbshutil import check_file_exists
+from gtdblib.util.shell.gtdbshutil import check_file_exists
 from gtdblib.util.bio.accession import canonical_gid
 
 
@@ -146,6 +146,20 @@ def read_taxonomy_from_tree(tree: str, warnings: bool = True) -> Dict[str, List[
 
 class Taxonomy:
     __slots__ = ('d', 'p', 'c', 'o', 'f', 'g', 's')
+
+    RANK_PREFIXES = ('d__', 'p__', 'c__', 'o__', 'f__', 'g__', 's__')
+    RANK_LABELS = ('domain', 'phylum', 'class', 'order',
+                   'family', 'genus', 'species')
+    RANK_INDEX = {'d__': 0, 'p__': 1, 'c__': 2,
+                  'o__': 3, 'f__': 4, 'g__': 5, 's__': 6}
+
+    DOMAIN_INDEX = 0
+    PHYLUM_INDEX = 1
+    CLASS_INDEX = 2
+    ORDER_INDEX = 3
+    FAMILY_INDEX = 4
+    GENUS_INDEX = 5
+    SPECIES_INDEX = 6
 
     def __init__(self, d: Taxon, p: Taxon, c: Taxon, o: Taxon, f: Taxon, g: Taxon, s: Taxon):
         self.d = d
