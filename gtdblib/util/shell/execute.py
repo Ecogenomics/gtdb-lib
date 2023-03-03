@@ -36,6 +36,18 @@ def run(cmd: List[str]) -> str:
     return stdout
 
 
+def run_bash(command: str):
+    """Execute command via bash."""
+
+    process = subprocess.run(["bash", "-c", command],
+                             stdout=subprocess.PIPE,
+                             stderr=subprocess.PIPE,
+                             stdin=None,
+                             check=True,
+                             encoding='utf-8')
+
+    return process.stdout
+
 def check_dependencies(programs: List[str], exit_on_fail: bool = True):
     """Check if programs are on the system path.
 
