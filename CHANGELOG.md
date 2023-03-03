@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.8.0...v1.9.0) (2023-03-03)
+
+
+### Features
+
+* added run_bash() to execute.py as this can be useful for complicated shell commands ([a87761e](https://github.com/Ecogenomics/gtdb-lib/commit/a87761e8c7e8de68e419d6b49a2e8af2e57a3063))
+
 # [1.8.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.7.0...v1.8.0) (2023-01-12)
 
 
