@@ -9,7 +9,7 @@
     [
       "@semantic-release/exec",
       {
-        "verifyReleaseCmd": "sed -i \"s/.*__version__.*/__version__ = '${nextRelease.version}'/g\" gtdblib/__init__.py && echo ::set-output name=version::${nextRelease.version}"
+        "verifyReleaseCmd": "sed -i \"s/.*__version__.*/__version__ = '${nextRelease.version}'/g\" gtdblib/__init__.py && sed -i \"s/version = .*/version = \"${nextRelease.version}\"/g\" pyproject.toml && echo \"version=${nextRelease.version}\" >> $GITHUB_OUTPUT"
       }
     ],
     [
@@ -23,7 +23,8 @@
       {
         "assets": [
           "CHANGELOG.md",
-          "gtdblib/__init__.py"
+          "gtdblib/__init__.py",
+          "pyproject.toml"
         ],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }

@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "gtdblib"
+version = "1.9.0"
+license = "GPL-3.0-or-later"
+description = "An abstraction of objects, files, and third-party tools used by the GTDB. Not intended for public use."
+authors = [
+    "Aaron Mussig <aaronmussig@gmail.com>",
+    "Pierre Chaumeil <p.chaumeil@uq.edu.au>",
+    "Donovan Parks <donovan.parks@gmail.com>"
+]
+readme = "README.md"
+homepage = "https://github.com/Ecogenomics/gtdb-lib"
+repository = "https://github.com/Ecogenomics/gtdb-lib"
+documentation = "https://ecogenomics.github.io/gtdb-lib/"
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Software Development",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities"
+]
+packages = [{ include = "gtdblib" }]
+
+[tool.poetry.scripts]
+gtdblib = 'gtdblib.__main__:main'
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/Ecogenomics/gtdb-lib/issues"
+
+[tool.poetry.dependencies]
+python = ">=3.7,<4.0.0"
+numpy = ">=1.9.0"
+tqdm = ">=4.35.0"
+typer = { version = ">=0.7.0", extras = ["all"] }
+dendropy = ">=4.4.0"
+pyyaml = "^6.0"
+sqlalchemy = "^2.0.9"
+psycopg2-binary = "^2.9.6"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
