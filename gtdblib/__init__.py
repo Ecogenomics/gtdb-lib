@@ -10,3 +10,7 @@ logging.basicConfig(
 )
 
 log = logging.getLogger("rich")
+
+# Suppress requests and urllib3 logging
+logging.getLogger("requests").setLevel(logging.WARNING)
+logging.getLogger("urllib3").setLevel(logging.WARNING)

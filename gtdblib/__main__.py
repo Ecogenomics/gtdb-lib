@@ -1,6 +1,7 @@
 import typer
 
 from gtdblib import __version__, log
+from gtdblib.cli.seqcode import app as seqcode_app
 from gtdblib.cli.tree import app as tree_app
 from gtdblib.exception import GtdbLibExit
 
@@ -24,6 +25,7 @@ def common(
 
 # Add subparsers
 app.add_typer(tree_app, name="tree", help='Commands for working with Newick trees.')
+app.add_typer(seqcode_app, name="seqcode", help='Commands for working with SeqCode.')
 
 
 def main():

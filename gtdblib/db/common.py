@@ -122,3 +122,66 @@ class LpsnHtmlSynonyms(Common):
 
     def __repr__(self) -> str:
         return f'LpsnHtmlSynonyms(id={self.id!r}, page_id={self.page_id!r}, synonym_id={self.synonym_id!r})'
+
+
+class SeqCodeHtml(Common):
+    __tablename__ = 'seqcode_html'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    updated: Mapped[datetime.datetime] = mapped_column(nullable=False, default=datetime.datetime.utcnow)
+    to_process: Mapped[bool] = mapped_column(nullable=False, default=True)
+    etag: Mapped[str] = mapped_column(nullable=True)
+    name: Mapped[str] = mapped_column(nullable=True)
+    rank: Mapped[str] = mapped_column(nullable=True)
+    status_name: Mapped[str] = mapped_column(nullable=True)
+    syllabification: Mapped[str] = mapped_column(nullable=True)
+    priority_date: Mapped[datetime.datetime] = mapped_column(nullable=True)
+    formal_styling_raw: Mapped[str] = mapped_column(nullable=True)
+    formal_styling_html: Mapped[str] = mapped_column(nullable=True)
+    etymology: Mapped[str] = mapped_column(nullable=True)
+    type_strain: Mapped[str] = mapped_column(nullable=True)
+    sc_created_at: Mapped[datetime.datetime] = mapped_column(nullable=True)
+    sc_updated_at: Mapped[datetime.datetime] = mapped_column(nullable=True)
+    domain_id: Mapped[int] = mapped_column(ForeignKey("seqcode_html.id"), nullable=True)
+    phylum_id: Mapped[int] = mapped_column(ForeignKey("seqcode_html.id"), nullable=True)
+    class_id: Mapped[int] = mapped_column(ForeignKey("seqcode_html.id"), nullable=True)
+    order_id: Mapped[int] = mapped_column(ForeignKey("seqcode_html.id"), nullable=True)
+    family_id: Mapped[int] = mapped_column(ForeignKey("seqcode_html.id"), nullable=True)
+    genus_id: Mapped[int] = mapped_column(ForeignKey("seqcode_html.id"), nullable=True)
+    species_id: Mapped[int] = mapped_column(ForeignKey("seqcode_html.id"), nullable=True)
+    corrigendum_by_id: Mapped[int] = mapped_column(nullable=True)
+    corrigendum_by_citation: Mapped[str] = mapped_column(nullable=True)
+    corrigendum_from: Mapped[str] = mapped_column(nullable=True)
+    content: Mapped[str] = mapped_column(nullable=False)
+    description_raw: Mapped[str] = mapped_column(nullable=True)
+    description_html: Mapped[str] = mapped_column(nullable=True)
+    proposed_by_id: Mapped[int] = mapped_column(nullable=True)
+    proposed_by_citation: Mapped[str] = mapped_column(nullable=True)
+    notes_raw: Mapped[str] = mapped_column(nullable=True)
+    notes_html: Mapped[str] = mapped_column(nullable=True)
+
+    def __repr__(self) -> str:
+        return f'SeqCodeHtml(id={self.id!r}, name={self.name!r})'
+
+
+class SeqCodeHtmlChildren(Common):
+    __tablename__ = 'seqcode_html_children'
+
+    parent_id: Mapped[int] = mapped_column(ForeignKey("seqcode_html.id"), nullable=False, primary_key=True)
+    child_id: Mapped[int] = mapped_column(ForeignKey("seqcode_html.id"), nullable=False, primary_key=True)
+
+    def __repr__(self) -> str:
+        return f'SeqCodeHtmlChildren(parent_id={self.parent_id!r}, child_id={self.child_id!r})'
+
+
+class SeqCodeHtmlQcWarnings(Common):
+    __tablename__ = 'seqcode_html_qc_warnings'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    sc_id: Mapped[int] = mapped_column(ForeignKey("seqcode_html.id"), nullable=False)
+    can_approve: Mapped[bool] = mapped_column(nullable=True)
+    text: Mapped[str] = mapped_column(nullable=False)
+    rules: Mapped[str] = mapped_column(nullable=True)
+
+    def __repr__(self) -> str:
+        return f'SeqCodeHtmlQcWarnings(parent_id={self.id!r}, sc_id={self.sc_id!r})'
