@@ -44,4 +44,5 @@ class _Config:
     def redis_pass(self):
         return self.config_file['redis']['pass']
 
+
 CONFIG = _Config()

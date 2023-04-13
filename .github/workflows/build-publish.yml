@@ -137,7 +137,7 @@ jobs:
 
   semantic_release_publish:
     name: Publish to GitHub
-    needs: [test_python_sdist, test_python_wheel]
+    needs: [ test_python_sdist, test_python_wheel ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -152,7 +152,7 @@ jobs:
 
   upload_pypi:
     name: Publish to PyPI
-    needs: [semantic_release_publish]
+    needs: [ semantic_release_publish ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
