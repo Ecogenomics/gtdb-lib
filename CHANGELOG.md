@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/Ecogenomics/gtdb-lib/compare/v1.10.0...v1.10.1) (2023-04-13)
+
+
+### Bug Fixes
+
+* **build:** Fix incorrect classifiers and poetry not installing docs correctly. ([ca5ec52](https://github.com/Ecogenomics/gtdb-lib/commit/ca5ec52b27f108e54e10389123042e60492d19de))
+
 # [1.10.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.9.0...v1.10.0) (2023-04-13)
 
 

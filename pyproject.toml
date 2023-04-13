@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gtdblib"
-version = "1.10.0"
+version = "1.10.1"
 license = "GPL-3.0-or-later"
 description = "An abstraction of objects, files, and third-party tools used by the GTDB. Not intended for public use."
 authors = [
