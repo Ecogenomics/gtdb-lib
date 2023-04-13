@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.9.0...v1.10.0) (2023-04-13)
+
+
+### Features
+
+* **db:** Add interface to GTDB common DB. ([0fc4c46](https://github.com/Ecogenomics/gtdb-lib/commit/0fc4c46c181e20468c01fecade9b282d7369518b))
+
 # [1.9.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.8.0...v1.9.0) (2023-03-03)
 
 
