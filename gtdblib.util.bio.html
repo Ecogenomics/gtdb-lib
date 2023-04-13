@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>gtdblib.util.bio package &mdash; GTDB Library 0.0.1 documentation</title>
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> GTDB Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GTDB Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -44,6 +48,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="gtdblib.html">gtdblib package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="gtdblib.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.cli.html">gtdblib.cli package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.db.html">gtdblib.db package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
@@ -71,6 +76,8 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.html#module-gtdblib.config">gtdblib.config module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gtdblib.html#module-gtdblib">Module contents</a></li>
 </ul>
 </li>
@@ -89,10 +96,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="gtdblib.html">gtdblib package</a> &raquo;</li>
-          <li><a href="gtdblib.util.html">gtdblib.util package</a> &raquo;</li>
-      <li>gtdblib.util.bio package</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="gtdblib.html">gtdblib package</a></li>
+          <li class="breadcrumb-item"><a href="gtdblib.util.html">gtdblib.util package</a></li>
+      <li class="breadcrumb-item active">gtdblib.util.bio package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/gtdblib.util.bio.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -122,10 +129,10 @@ GB_GCA_005435135.1 -&gt;</p>
 </dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>gid</strong> – Genome accesion to conver to canonical form.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Canonical form of accession.</p>
 </dd>
 </dl>
@@ -139,13 +146,13 @@ GB_GCA_005435135.1 -&gt;</p>
 as a suffix proceeding a period. This is the format
 used for NCBI accessions, e.g. GCF_005435135.1.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>accn1</strong> – First accession.</p></li>
 <li><p><strong>accn2</strong> – Second accession.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if version number is the same, else False.</p>
 </dd>
 </dl>
@@ -168,7 +175,7 @@ used for NCBI accessions, e.g. GCF_005435135.1.</p>
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.newick.</span></span><span class="sig-name descname"><span class="pre">create_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">support</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gtdblib.util.bio.newick.create_label" title="Permalink to this definition"></a></dt>
 <dd><p>Create label for Newick tree.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>support</strong> – The support value.</p></li>
 <li><p><strong>taxon</strong> – The taxon.</p></li>
@@ -183,10 +190,10 @@ used for NCBI accessions, e.g. GCF_005435135.1.</p>
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.newick.</span></span><span class="sig-name descname"><span class="pre">parse_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.util.bio.newick.parse_label" title="Permalink to this definition"></a></dt>
 <dd><p>Parse a Newick label which may contain a support value, taxon, and/or auxiliary information.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>label</strong> – The label to parse.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A tuple containing the support value, taxon, and auxiliary information.</p>
 </dd>
 </dl>
@@ -206,13 +213,13 @@ used for NCBI accessions, e.g. GCF_005435135.1.</p>
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">extract_seqs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fasta_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seqs_to_extract</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.extract_seqs" title="Permalink to this definition"></a></dt>
 <dd><p>Extract specific sequences from fasta file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>fasta_file</strong> – str, Fasta file containing sequences.</p></li>
 <li><p><strong>seqs_to_extract</strong> – set, Ids of sequences to extract.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>dict[seq_id] -&gt; seq, Dictionary of sequences indexed by sequence id.</p>
 </dd>
 </dl>
@@ -229,14 +236,14 @@ read and the file assumed to be not be in nucleotide space
 if none of these sequences are comprised primarily of the
 defined nucleotide set.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>seq_file</strong> – str, Name of fasta/q file to read.</p></li>
 <li><p><strong>req_perc</strong> – float, Percentage of nucleotide bases before declaring the sequences as being in nucleotide space.</p></li>
 <li><p><strong>max_seqs_to_read</strong> – int, Maximum sequences to read before declaring sequence file to not be in nucleotide space.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>boolean, True is sequences are in nucleotide space.</p>
 </dd>
 </dl>
@@ -253,14 +260,14 @@ sequences. A set number of sequences are read and the file
 assumed to be not be in nucleotide space if none of these
 sequences are comprised primarily of the defined nucleotide set.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>seq_file</strong> – str, Name of fasta/q file to read.</p></li>
 <li><p><strong>req_perc</strong> – float, Percentage of amino acid bases before declaring the sequences as being in amino acid space.</p></li>
 <li><p><strong>max_seqs_to_read</strong> – int, Maximum sequences to read before declaring sequence file to not be in amino acid space.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>boolean, True is sequences are in amino acid space.</p>
 </dd>
 </dl>
@@ -271,10 +278,10 @@ sequences are comprised primarily of the defined nucleotide set.</p>
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.read" title="Permalink to this definition"></a></dt>
 <dd><p>Read sequences from fasta/q file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>seq_file</strong> – str, Name of fasta/q file to read.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>dict[seq_id] -&gt; seq, Sequences indexed by sequence id.</p>
 </dd>
 </dl>
@@ -285,13 +292,13 @@ sequences are comprised primarily of the defined nucleotide set.</p>
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">read_fasta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fasta_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_annotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.read_fasta" title="Permalink to this definition"></a></dt>
 <dd><p>Read sequences from fasta file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>fasta_file</strong> – str, Name of fasta file to read.</p></li>
 <li><p><strong>keep_annotation</strong> – boolean, Determine is sequence id should contain annotation.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>dict[seq_id] -&gt; seq, Sequences indexed by sequence id.</p>
 </dd>
 </dl>
@@ -305,7 +312,7 @@ sequences are comprised primarily of the defined nucleotide set.</p>
 in order to avoid having to have large sequence files
 in memory. Input file may be gzipped.</p>
 <dl class="field-list">
-<dt class="field-odd">Example</dt>
+<dt class="field-odd">Example<span class="colon">:</span></dt>
 <dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seq_io</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seq_io</span><span class="o">.</span><span class="n">read_fasta_seq</span><span class="p">(</span><span class="n">fasta_file</span><span class="p">):</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">seq_id</span>
@@ -313,13 +320,13 @@ in memory. Input file may be gzipped.</p>
 </pre></div>
 </div>
 </dd>
-<dt class="field-even">Parameters</dt>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>fasta_file</strong> – str, Name of fasta file to read.</p></li>
 <li><p><strong>keep_annotation</strong> – boolean, Determine if annotation string should be returned.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Iterator[seq_id, seq, [annotation]], Unique id of the sequence followed by the sequence itself,
 and the annotation if keep_annotation is True.</p>
 </dd>
@@ -331,10 +338,10 @@ and the annotation if keep_annotation is True.</p>
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">read_fastq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fastq_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.read_fastq" title="Permalink to this definition"></a></dt>
 <dd><p>Read sequences from fastq file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>fastq_file</strong> – str, Name of fastq file to read.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>dict[seq_id] -&gt; seq, Sequences indexed by sequence id.</p>
 </dd>
 </dl>
@@ -348,7 +355,7 @@ and the annotation if keep_annotation is True.</p>
 in order to avoid having to have large sequence files
 in memory. Input file may be gzipped.</p>
 <dl class="field-list">
-<dt class="field-odd">Example</dt>
+<dt class="field-odd">Example<span class="colon">:</span></dt>
 <dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seq_io</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seq_io</span><span class="o">.</span><span class="n">read_fastq_seq</span><span class="p">(</span><span class="n">fastq_file</span><span class="p">):</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">seq_id</span>
@@ -356,10 +363,10 @@ in memory. Input file may be gzipped.</p>
 </pre></div>
 </div>
 </dd>
-<dt class="field-even">Parameters</dt>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>fastq_file</strong> – str, Name of fastq file to read.</p>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Iterator[seq_id, seq], Unique id of the sequence followed by the sequence itself.</p>
 </dd>
 </dl>
@@ -376,7 +383,7 @@ fasta or fastq format. It is slightly more efficient
 to directly call read_fasta_seq() or read_fastq_seq()
 if the type of input file in known.</p>
 <dl class="field-list">
-<dt class="field-odd">Example</dt>
+<dt class="field-odd">Example<span class="colon">:</span></dt>
 <dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seq_io</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seq_io</span><span class="o">.</span><span class="n">read_seq</span><span class="p">(</span><span class="n">fasta_file</span><span class="p">):</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">seq_id</span>
@@ -388,7 +395,7 @@ if the type of input file in known.</p>
 <p>:param seq_file:str, Name of fasta/q file to read.
 :param keep_annotation:boolean, Determine if annotation string should be returned.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Iterator[seq_id, seq, [annotation]], Unique id of the sequence followed by the sequence itself,
 and the annotation if keep_annotation is True.</p>
 </dd>
@@ -400,10 +407,10 @@ and the annotation if keep_annotation is True.</p>
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.seq_io.</span></span><span class="sig-name descname"><span class="pre">seq_lengths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fasta_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.bio.seq_io.seq_lengths" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate length of each sequence.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>fasta_file</strong> – str, Fasta file containing sequences.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>d[seq_id] -&gt; length, Length of each sequence.</p>
 </dd>
 </dl>
@@ -416,7 +423,7 @@ and the annotation if keep_annotation is True.</p>
 <p>If the output file has the extension ‘gz’,
 it will be compressed using gzip.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>seqs</strong> – dict[seq_id] -&gt; seq, Sequences indexed by sequence id.</p></li>
 <li><p><strong>output_file</strong> – str, Name of fasta file to produce.</p></li>

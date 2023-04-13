@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>gtdblib.tree package &mdash; GTDB Library 0.0.1 documentation</title>
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> GTDB Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GTDB Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -44,6 +48,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="gtdblib.html">gtdblib package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="gtdblib.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.cli.html">gtdblib.cli package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.db.html">gtdblib.db package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
@@ -81,6 +86,8 @@
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.util.html">gtdblib.util package</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.html#module-gtdblib.config">gtdblib.config module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gtdblib.html#module-gtdblib">Module contents</a></li>
 </ul>
 </li>
@@ -99,9 +106,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="gtdblib.html">gtdblib package</a> &raquo;</li>
-      <li>gtdblib.tree package</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="gtdblib.html">gtdblib package</a></li>
+      <li class="breadcrumb-item active">gtdblib.tree package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/gtdblib.tree.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -124,7 +131,7 @@
 <dd><p>Calculates non-parametric bootstraps for monophyletic groups and
 transposes them to the input tree.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>input_tree</strong> – The tree to merge the bootstraps to.</p></li>
 <li><p><strong>output_tree</strong> – The path to write the tree to.</p></li>
@@ -152,10 +159,10 @@ transposes them to the input tree.</p>
 <span class="sig-prename descclassname"><span class="pre">gtdblib.tree.get_node_depth.</span></span><span class="sig-name descname"><span class="pre">get_tree_node_depth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tree</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">Node</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.tree.get_node_depth.get_tree_node_depth" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate the depth of all nodes in the tree.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>tree</strong> – The dendropy tree object to calculate the depths for.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A dictionary of depths to nodes at that depth.</p>
 </dd>
 </dl>
@@ -169,10 +176,10 @@ transposes them to the input tree.</p>
 <span class="sig-prename descclassname"><span class="pre">gtdblib.tree.get_node_to_desc_taxa.</span></span><span class="sig-name descname"><span class="pre">get_tree_node_to_desc_taxa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tree</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Node</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FrozenSet</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.tree.get_node_to_desc_taxa.get_tree_node_to_desc_taxa" title="Permalink to this definition"></a></dt>
 <dd><p>Get each node and the taxa that are descendants of this node.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>tree</strong> – The dendropy tree object to calculate the depths for.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A dictionary of nodes and their descendant taxa.</p>
 </dd>
 </dl>
@@ -187,10 +194,10 @@ transposes them to the input tree.</p>
 <dd><p>Calculate a unique MRCA for each internal node, i.e. using these taxa
 will always yield the same internal node.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>tree</strong> – The dendropy tree object to calculate the depths for.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A dictionary of nodes and a tuple of each taxon that identifies the node.</p>
 </dd>
 </dl>
@@ -204,7 +211,7 @@ will always yield the same internal node.</p>
 <span class="sig-prename descclassname"><span class="pre">gtdblib.tree.polytomy.</span></span><span class="sig-name descname"><span class="pre">collapse_polytomy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_in</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_out</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">support</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.tree.polytomy.collapse_polytomy" title="Permalink to this definition"></a></dt>
 <dd><p>Collapse nodes with low bootstrap support.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>path_in</strong> – Tree to collapse.</p></li>
 <li><p><strong>path_out</strong> – The path to write the tree to.</p></li>
@@ -219,7 +226,7 @@ will always yield the same internal node.</p>
 <span class="sig-prename descclassname"><span class="pre">gtdblib.tree.polytomy.</span></span><span class="sig-name descname"><span class="pre">collapse_polytomy_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">support</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.tree.polytomy.collapse_polytomy_tree" title="Permalink to this definition"></a></dt>
 <dd><p>Collapse nodes with low bootstrap support, works on the Tree object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>tree</strong> – Tree to collapse.</p></li>
 <li><p><strong>support</strong> – Collapse nodes that have a support less than this value.</p></li>

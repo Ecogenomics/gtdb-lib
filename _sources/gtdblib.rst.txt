@@ -8,12 +8,24 @@ Subpackages
    :maxdepth: 4
 
    gtdblib.cli
+   gtdblib.db
    gtdblib.exception
    gtdblib.file
    gtdblib.taxon
    gtdblib.taxonomy
    gtdblib.tree
    gtdblib.util
+
+Submodules
+----------
+
+gtdblib.config module
+---------------------
+
+.. automodule:: gtdblib.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Module contents
 ---------------

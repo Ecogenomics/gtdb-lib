@@ -1,0 +1,21 @@
+gtdblib.db package
+==================
+
+Submodules
+----------
+
+gtdblib.db.common module
+------------------------
+
+.. automodule:: gtdblib.db.common
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: gtdblib.db
+   :members:
+   :undoc-members:
+   :show-inheritance:

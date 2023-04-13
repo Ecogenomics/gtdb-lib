@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>gtdblib.util.shell package &mdash; GTDB Library 0.0.1 documentation</title>
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> GTDB Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GTDB Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -43,6 +47,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="gtdblib.html">gtdblib package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="gtdblib.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.cli.html">gtdblib.cli package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gtdblib.db.html">gtdblib.db package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.exception.html">gtdblib.exception package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.file.html">gtdblib.file package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gtdblib.taxon.html">gtdblib.taxon package</a></li>
@@ -70,6 +75,8 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gtdblib.html#module-gtdblib.config">gtdblib.config module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gtdblib.html#module-gtdblib">Module contents</a></li>
 </ul>
 </li>
@@ -88,10 +95,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="gtdblib.html">gtdblib package</a> &raquo;</li>
-          <li><a href="gtdblib.util.html">gtdblib.util package</a> &raquo;</li>
-      <li>gtdblib.util.shell package</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="gtdblib.html">gtdblib package</a></li>
+          <li class="breadcrumb-item"><a href="gtdblib.util.html">gtdblib.util package</a></li>
+      <li class="breadcrumb-item active">gtdblib.util.shell package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/gtdblib.util.shell.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -114,10 +121,10 @@
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.color.</span></span><span class="sig-name descname"><span class="pre">hex_to_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#gtdblib.util.shell.color.hex_to_rgb" title="Permalink to this definition"></a></dt>
 <dd><p>Convert hex to RGB color format.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>hex</strong> – Hex color format.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>RGB color format.</p>
 </dd>
 </dl>
@@ -128,14 +135,14 @@
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.color.</span></span><span class="sig-name descname"><span class="pre">rgb_to_hex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gtdblib.util.shell.color.rgb_to_hex" title="Permalink to this definition"></a></dt>
 <dd><p>Convert RGB to hex color format.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>r</strong> – Red value.</p></li>
 <li><p><strong>g</strong> – Green value.</p></li>
 <li><p><strong>b</strong> – Blue value.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Hex color format.</p>
 </dd>
 </dl>
@@ -149,13 +156,13 @@
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.execute.</span></span><span class="sig-name descname"><span class="pre">check_dependencies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">programs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exit_on_fail</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.execute.check_dependencies" title="Permalink to this definition"></a></dt>
 <dd><p>Check if programs are on the system path.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>programs</strong> – Names of executable programs.</p></li>
 <li><p><strong>exit_on_fail</strong> – Exit program with error code -1 if any program in not on path.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if all programs are on path, else False.</p>
 </dd>
 </dl>
@@ -166,13 +173,13 @@
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.execute.</span></span><span class="sig-name descname"><span class="pre">check_on_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exit_on_fail</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.execute.check_on_path" title="Permalink to this definition"></a></dt>
 <dd><p>Check if program is on the system path.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>programs</strong> – Names of executable programs.</p></li>
 <li><p><strong>exit_on_fail</strong> – Exit program with error code -1 if any program in not on path.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if all program is on path, else False.</p>
 </dd>
 </dl>
@@ -183,10 +190,10 @@
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.execute.</span></span><span class="sig-name descname"><span class="pre">is_executable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fpath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.execute.is_executable" title="Permalink to this definition"></a></dt>
 <dd><p>Check if file is executable.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>fpath</strong> – Path to file.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if executable, else False.</p>
 </dd>
 </dl>
@@ -197,10 +204,10 @@
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.execute.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#gtdblib.util.shell.execute.run" title="Permalink to this definition"></a></dt>
 <dd><p>Execute external program.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Params cmd</dt>
+<dt class="field-odd">Params cmd<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Command to execute.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Output from stdout.</p>
 </dd>
 </dl>
@@ -220,10 +227,10 @@
 command ‘which’.</p>
 <p><a class="reference external" href="http://stackoverflow.com/questions/377017/test-if-executable-exists-in-python">http://stackoverflow.com/questions/377017/test-if-executable-exists-in-python</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>programs</strong> – Names of executable programs.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Path to executable, or None if it isn’t on the path.</p>
 </dd>
 </dl>
@@ -238,10 +245,10 @@ command ‘which’.</p>
 <dd><p>Split a string to a list with matching brackets.
 a string a split into substrings based on matching brackets. so we can return nested brackets.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>line</strong> – str, line to be processed.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>list, list of strings.</p>
 </dd>
 </dl>
@@ -252,10 +259,10 @@ a string a split into substrings based on matching brackets. so we can return ne
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.filemgmt.</span></span><span class="sig-name descname"><span class="pre">select_delimiter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.filemgmt.select_delimiter" title="Permalink to this definition"></a></dt>
 <dd><p>Select delimiter for a specific file (.csv,.tsv,…).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>input_file</strong> – str, Name of file.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>str, Delimiter.</p>
 </dd>
 </dl>
@@ -266,10 +273,10 @@ a string a split into substrings based on matching brackets. so we can return ne
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.filemgmt.</span></span><span class="sig-name descname"><span class="pre">sha256</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.filemgmt.sha256" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate the SHA256 hash for a specific file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>input_file</strong> – str, Name of file.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>str, SHA256 hash.</p>
 </dd>
 </dl>
@@ -280,10 +287,10 @@ a string a split into substrings based on matching brackets. so we can return ne
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.filemgmt.</span></span><span class="sig-name descname"><span class="pre">sha256_rb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.filemgmt.sha256_rb" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate SHA256 hash for a specific file with a binary format.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>input_file</strong> – str, Name of file.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>str, SHA256 hash.</p>
 </dd>
 </dl>
@@ -298,10 +305,10 @@ a string a split into substrings based on matching brackets. so we can return ne
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.gtdbshutil.</span></span><span class="sig-name descname"><span class="pre">check_dir_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.gtdbshutil.check_dir_exists" title="Permalink to this definition"></a></dt>
 <dd><p>Check if directory exists.This function is copied from <a class="reference external" href="https://github.com/dparks1134/biolib">biolib</a> on the 09/10/2020.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>input_dir</strong> – path to directory</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if path exists</p>
 </dd>
 </dl>
@@ -312,10 +319,10 @@ a string a split into substrings based on matching brackets. so we can return ne
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.gtdbshutil.</span></span><span class="sig-name descname"><span class="pre">check_file_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.gtdbshutil.check_file_exists" title="Permalink to this definition"></a></dt>
 <dd><p>Check if file exists.This function is copied from <a class="reference external" href="https://github.com/dparks1134/biolib">biolib</a> on the 09/10/2020.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>input_file</strong> – path to file</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if path exists</p>
 </dd>
 </dl>
@@ -326,10 +333,10 @@ a string a split into substrings based on matching brackets. so we can return ne
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.gtdbshutil.</span></span><span class="sig-name descname"><span class="pre">get_num_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.gtdbshutil.get_num_lines" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate the number of lines in a file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>file_path</strong> – path to file</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>number of lines in file</p>
 </dd>
 </dl>
@@ -340,10 +347,10 @@ a string a split into substrings based on matching brackets. so we can return ne
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.gtdbshutil.</span></span><span class="sig-name descname"><span class="pre">make_sure_path_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.gtdbshutil.make_sure_path_exists" title="Permalink to this definition"></a></dt>
 <dd><p>Create directory if it does not exist. This function is copied from <a class="reference external" href="https://github.com/dparks1134/biolib">biolib</a> on the 09/10/2020.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>path</strong> – path to directory</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if directory exists or was created</p>
 </dd>
 </dl>
@@ -356,17 +363,17 @@ a string a split into substrings based on matching brackets. so we can return ne
 <p>If link_name exists then FileExistsError is raised, unless <code class="docutils literal notranslate"><span class="pre">overwrite=True</span></code>.
 When trying to overwrite a directory, IsADirectoryError is raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>target</strong> – The target of the link.</p></li>
 <li><p><strong>link_name</strong> – The name of the link.</p></li>
 <li><p><strong>overwrite</strong> – If True, overwrite existing files and directories.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>FileExistsError</strong> – If link_name exists and overwrite=False.</p>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>True</p>
 </dd>
 </dl>
