@@ -13,7 +13,22 @@ specify a specific version when using it.
 Python >= 3.6 is required.
 
 ```bash
-python -m pip install gtdb
+python -m pip install gtdblib
+```
+
+## Configuration
+
+If you plan to use the database connections, then the environment variable `GTDBLIB_CONFIG` must be set to the path of a yaml file containing:
+
+```yaml
+db:
+  host: db.somehost.com
+  user: username
+  pass: password
+
+redis:
+  host: db.somehost.com
+  pass: password
 ```
 
 
