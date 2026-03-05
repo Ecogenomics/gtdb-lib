@@ -115,7 +115,7 @@ def read_taxonomy_from_tree(tree: str, warnings: bool = True) -> Dict[str, List[
                         taxa_str = taxa_str[:-1]
 
                     # check for concatenated ranks of the form: p__Crenarchaeota__c__Thermoprotei
-                    for prefix in Taxonomy.rank_prefixes:
+                    for prefix in Taxonomy.RANK_PREFIXES:
                         split_str = '__' + prefix
                         if split_str in taxa_str:
                             taxa_str = taxa_str.replace(
@@ -125,14 +125,14 @@ def read_taxonomy_from_tree(tree: str, warnings: bool = True) -> Dict[str, List[
                     taxa = [x.strip() for x in taxa_str.split(';')] + taxa
             node = node.parent_node
 
-        if warnings and len(taxa) > len(TaxonRank.RANK_LABELS):
+        if warnings and len(taxa) > len(Taxonomy.RANK_LABELS):
             log.warning('Invalid taxonomy string read from tree for taxon {}: {}'.format(
                 leaf.taxon.label,
                 ';'.join(taxa)))
 
         # check if genus name should be appended to species label as some trees
         # indicate species only by their specific epithet
-        if len(taxa) == len(TaxonRank.RANK_LABELS):
+        if len(taxa) == len(Taxonomy.RANK_LABELS):
             genus = taxa[5][3:]
             species = taxa[6][3:]
             if genus not in species and len(species.split()) == 1:
