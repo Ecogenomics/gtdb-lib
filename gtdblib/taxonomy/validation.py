@@ -9,7 +9,7 @@ from collections import defaultdict
 from typing import Dict, List, Tuple
 
 from gtdblib import log
-from gtdblib.taxon.rank import TaxonRank
+from gtdblib.taxonomy.taxonomy import Taxonomy
 
 
 def validate_taxonomy(
@@ -68,13 +68,13 @@ def validate_taxonomy(
         invalid_capitalization = set()
         for taxon_id, taxa in taxonomy.items():
             if check_ranks:
-                if len(taxa) != len(TaxonRank.RANK_PREFIXES):
+                if len(taxa) != len(Taxonomy.RANK_PREFIXES):
                     invalid_ranks[taxon_id] = ';'.join(taxa)
                     continue
 
             if check_prefixes:
                 for r, taxon in enumerate(taxa):
-                    if taxon[0:3] != TaxonRank.RANK_PREFIXES[r]:
+                    if taxon[0:3] != Taxonomy.RANK_PREFIXES[r]:
                         invalid_prefixes[taxon_id] = [taxon, ';'.join(taxa)]
                         break
 
@@ -88,8 +88,8 @@ def validate_taxonomy(
                                 taxon, 'Taxon contains invalid characters']
 
             if check_species:
-                genus_index = TaxonRank.RANK_INDEX['g__']
-                species_index = TaxonRank.RANK_INDEX['s__']
+                genus_index = Taxonomy.RANK_INDEX['g__']
+                species_index = Taxonomy.RANK_INDEX['s__']
                 if len(taxa) > species_index:
                     species_name = taxa[species_index]
                     valid, error_msg = validate_species_name(
@@ -130,7 +130,7 @@ def validate_taxonomy(
                 if len(taxa[r]) == 3:
                     continue
 
-                if r == TaxonRank.RANK_INDEX['s__'] and not check_species:
+                if r == Taxonomy.RANK_INDEX['s__'] and not check_species:
                     continue
 
                 if taxa[r] not in expected_parent:
