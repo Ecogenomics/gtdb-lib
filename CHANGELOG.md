@@ -1,3 +1,17 @@
+# [1.11.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.10.1...v1.11.0) (2026-11-10)
+
+
+### Bug Fixes
+
+* minor bug fix to resolve recent changes in taxonomy.py ([0904b88](https://github.com/Ecogenomics/gtdb-lib/commit/0904b887313cb637e4963fda7c7a81529fa289eb))
+* remaining TaxonRank reference and dropped help text; prepare 1.10.2 ([170579d](https://github.com/Ecogenomics/gtdb-lib/commit/170579d68130be83cb6cf217b318b95f671e07af))
+* resolved issue with RANK_PREFIXES now being defined in taxonomy.py instead of rank.py ([32669a8](https://github.com/Ecogenomics/gtdb-lib/commit/32669a836a4fd46933027dfc931997647b57db41))
+
+
+### Features
+
+* added custom_help_formatter.py ([ef0c96b](https://github.com/Ecogenomics/gtdb-lib/commit/ef0c96b41480c22a606951bb81664a6d3ed4ee25))
+
 ## [1.10.1](https://github.com/Ecogenomics/gtdb-lib/compare/v1.10.0...v1.10.1) (2023-04-13)
 
 
