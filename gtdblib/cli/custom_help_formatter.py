@@ -62,7 +62,7 @@ class CustomHelpFormatter(argparse.HelpFormatter):
                             h = '\n'.join(lines)
                         elif h:
                             h += ' (default: %(default)s)'
-            return h
+        return h
 
     def _format_action_invocation(self, action):
         """Removes duplicate ALLCAPS with positional arguments."""
