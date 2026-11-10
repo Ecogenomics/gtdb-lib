@@ -1,3 +1,17 @@
+## [1.10.2](https://github.com/Ecogenomics/gtdb-lib/compare/v1.10.1...v1.10.2) (2026-11-11)
+
+
+### Features
+
+* **cli:** added `custom_help_formatter.py` providing `CustomHelpFormatter` and `ChangeTempAction` for argparse ([ef0c96b](https://github.com/Ecogenomics/gtdb-lib/commit/ef0c96b))
+
+
+### Bug Fixes
+
+* **taxonomy:** `validate_taxonomy()` and `read_taxonomy_from_tree()` referenced rank constants on `TaxonRank` after they were moved to `Taxonomy`, raising `AttributeError` ([0904b88](https://github.com/Ecogenomics/gtdb-lib/commit/0904b88), [32669a8](https://github.com/Ecogenomics/gtdb-lib/commit/32669a8))
+* **taxonomy:** `fill_trailing_ranks()` raised `AttributeError` when given an empty list, as it still referenced `TaxonRank.RANK_PREFIXES`
+* **cli:** `CustomHelpFormatter` dropped the help text of arguments whose help already contained `%(default)s`
+
 ## [1.10.1](https://github.com/Ecogenomics/gtdb-lib/compare/v1.10.0...v1.10.1) (2023-04-13)
 
 

@@ -3,7 +3,6 @@ from typing import Dict, List
 
 from gtdblib import log
 from gtdblib.taxon.taxon import Taxon
-from gtdblib.taxon.rank import TaxonRank
 from gtdblib.util.types import is_float
 from gtdblib.util.shell.gtdbshutil import check_file_exists
 from gtdblib.util.bio.accession import canonical_gid
@@ -66,7 +65,7 @@ def fill_trailing_ranks(taxa: List[str]) -> List[str]:
     """
 
     if not taxa:
-        return ';'.join(TaxonRank.RANK_PREFIXES)
+        return ';'.join(Taxonomy.RANK_PREFIXES)
 
     try:
         last_rank = Taxonomy.RANK_PREFIXES.index(taxa[-1][0:3])
