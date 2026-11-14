@@ -5,6 +5,7 @@ from gtdblib import log
 from gtdblib.exception import GtdbLibException
 from gtdblib.taxon.taxon import Taxon
 from gtdblib.util.types import is_float
+from gtdblib.util.bio.newick import parse_label
 from gtdblib.util.shell.gtdbshutil import check_file_exists
 from gtdblib.util.bio.accession import canonical_gid
 
@@ -87,6 +88,41 @@ def fill_trailing_ranks(taxa: List[str]) -> List[str]:
     return taxa
 
 
+def _taxa_from_label(label: str) -> List[str]:
+    """Get the taxa specified by an internal node label.
+
+    The label may contain a support value and auxiliary information
+    (e.g. 100:d__Bacteria; p__Firmicutes|aux), which are ignored.
+
+    :param label: Internal node label.
+
+    :return: List of taxa in the label, or an empty list if it only has a support value.
+    """
+
+    if not label:
+        return []
+
+    try:
+        _support, taxa_str, _aux_info = parse_label(label)
+    except ValueError:
+        # label contains ':' but does not start with a support value
+        taxa_str = label.split(':', 1)[1]
+
+    if not taxa_str or is_float(taxa_str):
+        return []
+
+    if taxa_str[-1] == ';':
+        taxa_str = taxa_str[:-1]
+
+    # check for concatenated ranks of the form: p__Crenarchaeota__c__Thermoprotei
+    for prefix in Taxonomy.RANK_PREFIXES:
+        split_str = '__' + prefix
+        if split_str in taxa_str:
+            taxa_str = taxa_str.replace(split_str, ';' + prefix)
+
+    return [x.strip() for x in taxa_str.split(';')]
+
+
 def read_taxonomy_from_tree(tree: str, warnings: bool = True) -> Dict[str, List[str]]:
     """Obtain the taxonomy for each extant taxa as specified by internal tree labels.
 
@@ -106,31 +142,22 @@ def read_taxonomy_from_tree(tree: str, warnings: bool = True) -> Dict[str, List[
                                            rooting="force-rooted",
                                            preserve_underscores=True)
 
+    # Determine the taxa specified by each internal node and its ancestors in a
+    # single preorder traversal, so each internal label is only parsed once.
+    # Lists are shared between nodes and must not be modified.
+    lineages = {}
     taxonomy = {}
-    for leaf in tree.leaf_node_iter():
-        taxa = []
+    for node in tree.preorder_node_iter():
+        parent = node.parent_node
+        parent_taxa = lineages[parent] if parent is not None else []
 
-        node = leaf.parent_node
-        while node:
-            if node.label:
-                taxa_str = node.label
-                if ':' in taxa_str:
-                    taxa_str = taxa_str.split(':')[1]
+        if not node.is_leaf():
+            node_taxa = _taxa_from_label(node.label)
+            lineages[node] = parent_taxa + node_taxa if node_taxa else parent_taxa
+            continue
 
-                if not is_float(taxa_str):
-                    if taxa_str[-1] == ';':
-                        taxa_str = taxa_str[:-1]
-
-                    # check for concatenated ranks of the form: p__Crenarchaeota__c__Thermoprotei
-                    for prefix in Taxonomy.RANK_PREFIXES:
-                        split_str = '__' + prefix
-                        if split_str in taxa_str:
-                            taxa_str = taxa_str.replace(
-                                split_str, ';' + prefix)
-
-                    # appears to be an internal label and not simply a support value
-                    taxa = [x.strip() for x in taxa_str.split(';')] + taxa
-            node = node.parent_node
+        leaf = node
+        taxa = list(parent_taxa)
 
         if warnings and len(taxa) > len(Taxonomy.RANK_LABELS):
             log.warning('Invalid taxonomy string read from tree for taxon {}: {}'.format(

@@ -94,6 +94,23 @@ class TestTaxonomy(unittest.TestCase):
         self.assertEqual(taxonomy['A'], ['d__Bacteria', 'p__P1', 'c__', 'o__', 'f__', 'g__', 's__'])
         self.assertEqual(taxonomy['C'], EMPTY)
 
+    def test_read_taxonomy_from_tree_labels(self):
+        tree = dendropy.Tree.get(
+            data="((((A,B)'100:p__P1__c__C1|aux info',C)'90:',D)'95:d__Bacteria;',E)80;",
+            schema='newick')
+        taxonomy = read_taxonomy_from_tree(tree)
+        self.assertEqual(taxonomy['A'], ['d__Bacteria', 'p__P1', 'c__C1', 'o__', 'f__', 'g__', 's__'])
+        self.assertEqual(taxonomy['C'], ['d__Bacteria', 'p__', 'c__', 'o__', 'f__', 'g__', 's__'])
+        self.assertEqual(taxonomy['E'], EMPTY)
+
+    def test_read_taxonomy_from_tree_species_epithet(self):
+        tree = dendropy.Tree.get(
+            data="((A,B)'d__B; p__P; c__C; o__O; f__F; g__Gen; s__coli',C);", schema='newick')
+        taxonomy = read_taxonomy_from_tree(tree)
+        self.assertEqual(taxonomy['A'][6], 's__Gen coli')
+        self.assertEqual(taxonomy['B'], taxonomy['A'])
+        self.assertIsNot(taxonomy['B'], taxonomy['A'])
+
 
 if __name__ == '__main__':
     unittest.main()

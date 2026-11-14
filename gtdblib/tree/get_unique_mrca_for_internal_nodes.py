@@ -12,6 +12,15 @@ def get_tree_unique_mrca_for_internal_nodes(tree: dendropy.Tree) -> Dict[dendrop
     :returns: A dictionary of nodes and a tuple of each taxon that identifies the node.
     """
 
+    # Determine the first leaf (in preorder) below each node in a single
+    # postorder traversal, rather than traversing the subtree of each node
+    first_leaf = dict()
+    for node in tree.postorder_node_iter():
+        if node.is_leaf():
+            first_leaf[node] = node.taxon.label
+        else:
+            first_leaf[node] = first_leaf[node.child_nodes()[0]]
+
     out = dict()
     for node in tree.internal_nodes():
         child_nodes = node.child_nodes()
@@ -20,8 +29,8 @@ def get_tree_unique_mrca_for_internal_nodes(tree: dendropy.Tree) -> Dict[dendrop
         left_child = child_nodes[0]
         right_child = child_nodes[1]
 
-        left_taxon = left_child.leaf_nodes()[0].taxon.label
-        right_taxon = right_child.leaf_nodes()[0].taxon.label
+        left_taxon = first_leaf[left_child]
+        right_taxon = first_leaf[right_child]
 
         out[node] = (left_taxon, right_taxon)
 

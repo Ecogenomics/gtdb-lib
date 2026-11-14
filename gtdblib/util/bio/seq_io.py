@@ -147,20 +147,21 @@ def read_fasta(fasta_file, keep_annotation=False):
             open_file = gzip.open
 
         seqs = {}
-        for line in open_file(fasta_file, 'rt'):
-            # skip blank lines
-            if not line.strip():
-                continue
+        with open_file(fasta_file, 'rt') as f:
+            for line in f:
+                # skip blank lines
+                if not line.strip():
+                    continue
 
-            if line[0] == '>':
-                if keep_annotation:
-                    seq_id = line[1:-1]
+                if line[0] == '>':
+                    if keep_annotation:
+                        seq_id = line[1:-1]
+                    else:
+                        seq_id = line[1:].split(None, 1)[0]
+
+                    seqs[seq_id] = []
                 else:
-                    seq_id = line[1:].split(None, 1)[0]
-
-                seqs[seq_id] = []
-            else:
-                seqs[seq_id].append(line.strip())
+                    seqs[seq_id].append(line.strip())
 
         for seq_id, seq in seqs.items():
             seqs[seq_id] = ''.join(seq).replace(' ', '')
@@ -194,15 +195,16 @@ def read_fastq(fastq_file):
 
         seqs = {}
         line_num = 0
-        for line in open_file(fastq_file, 'rt'):
-            line_num += 1
+        with open_file(fastq_file, 'rt') as f:
+            for line in f:
+                line_num += 1
 
-            if line_num == 1:
-                seq_id = line[1:].split(None, 1)[0]
-            elif line_num == 2:
-                seqs[seq_id] = line.strip()
-            elif line_num == 4:
-                line_num = 0
+                if line_num == 1:
+                    seq_id = line[1:].split(None, 1)[0]
+                elif line_num == 2:
+                    seqs[seq_id] = line.strip()
+                elif line_num == 4:
+                    line_num = 0
     except:
         print(traceback.format_exc())
         print()
@@ -278,27 +280,28 @@ def read_fasta_seq(fasta_file, keep_annotation=False):
         seq_id = None
         annotation = None
         seq = None
-        for line in open_file(fasta_file, 'rt'):
-            # skip blank lines
-            if not line.strip():
-                continue
+        with open_file(fasta_file, 'rt') as f:
+            for line in f:
+                # skip blank lines
+                if not line.strip():
+                    continue
 
-            if line[0] == '>':
-                if seq_id != None:
-                    if keep_annotation:
-                        yield seq_id, ''.join(seq).replace(' ', ''), annotation
+                if line[0] == '>':
+                    if seq_id != None:
+                        if keep_annotation:
+                            yield seq_id, ''.join(seq).replace(' ', ''), annotation
+                        else:
+                            yield seq_id, ''.join(seq).replace(' ', '')
+
+                    line_split = line[1:-1].split(None, 1)
+                    if len(line_split) == 2:
+                        seq_id, annotation = line_split
                     else:
-                        yield seq_id, ''.join(seq).replace(' ', '')
-
-                line_split = line[1:-1].split(None, 1)
-                if len(line_split) == 2:
-                    seq_id, annotation = line_split
+                        seq_id = line_split[0]
+                        annotation = ''
+                    seq = []
                 else:
-                    seq_id = line_split[0]
-                    annotation = ''
-                seq = []
-            else:
-                seq.append(line.strip())
+                    seq.append(line.strip())
 
         # report last sequence
         if seq_id is not None:
@@ -345,15 +348,16 @@ def read_fastq_seq(fastq_file):
             open_file = gzip.open
 
         line_num = 0
-        for line in open_file(fastq_file, 'rt'):
-            line_num += 1
+        with open_file(fastq_file, 'rt') as f:
+            for line in f:
+                line_num += 1
 
-            if line_num == 1:
-                seq_id = line[1:].split(None, 1)[0]
-            elif line_num == 2:
-                yield seq_id, line.strip()
-            elif line_num == 4:
-                line_num = 0
+                if line_num == 1:
+                    seq_id = line[1:].split(None, 1)[0]
+                elif line_num == 2:
+                    yield seq_id, line.strip()
+                elif line_num == 4:
+                    line_num = 0
     except GeneratorExit:
         pass
     except:
@@ -380,16 +384,17 @@ def extract_seqs(fasta_file, seqs_to_extract):
         return {}
 
     seqs = {}
-    for line in open(fasta_file):
-        if line[0] == '>':
-            seq_id = line[1:].split(None, 1)[0]
+    with open(fasta_file) as f:
+        for line in f:
+            if line[0] == '>':
+                seq_id = line[1:].split(None, 1)[0]
 
-            seq_of_interest = False
-            if seq_id in seqs_to_extract:
-                seqs[seq_id] = []
-                seq_of_interest = True
-        elif seq_of_interest:
-            seqs[seq_id].append(line.strip())
+                seq_of_interest = False
+                if seq_id in seqs_to_extract:
+                    seqs[seq_id] = []
+                    seq_of_interest = True
+            elif seq_of_interest:
+                seqs[seq_id].append(line.strip())
 
     for seq_id, seq in seqs.items():
         seqs[seq_id] = ''.join(seq).replace(' ', '')
@@ -434,13 +439,9 @@ def write_fasta(seqs, output_file, wrap=80):
 
     """
 
-    if output_file.endswith('.gz'):
-        fout = gzip.open(output_file, 'wt')
-    else:
-        fout = open(output_file, 'w')
-
-    for gid, gseq in seqs.items():
-        fout.write('>{}\n'.format(gid))
-        for i in range(0, len(gseq), wrap):
-            fout.write('{}\n'.format(gseq[i:i + wrap]))
-    fout.close()
+    open_file = gzip.open if output_file.endswith('.gz') else open
+    with open_file(output_file, 'wt') as fout:
+        for gid, gseq in seqs.items():
+            fout.write('>{}\n'.format(gid))
+            for i in range(0, len(gseq), wrap):
+                fout.write('{}\n'.format(gseq[i:i + wrap]))
