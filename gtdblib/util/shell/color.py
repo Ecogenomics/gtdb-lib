@@ -10,13 +10,14 @@ def rgb_to_hex(r: int, g: int, b: int) -> str:
 
     :return: Hex color format.
     """
-    return f'#{r:X}{g:X}{b:X}'
+    return f'#{r:02X}{g:02X}{b:02X}'
 
 def hex_to_rgb(hex: str) -> tuple:
     """Convert hex to RGB color format.
 
-    :param hex: Hex color format.
+    :param hex: Hex color format, with or without a leading '#'.
 
     :return: RGB color format.
     """
+    hex = hex.lstrip('#')
     return tuple(int(hex[i:i+2], 16) for i in (0, 2, 4))

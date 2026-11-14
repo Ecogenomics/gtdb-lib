@@ -28,11 +28,14 @@ import re
 
 
 def sha256(input_file):
-    """Calculate the SHA256 hash for a specific file.
+    """Calculate the SHA1 hash for a specific file.
+
+    Despite its name, this function computes a SHA1 hash. This is
+    retained for compatibility with previously stored checksums.
 
     :param input_file: str, Name of file.
 
-    :return: str, SHA256 hash.
+    :return: str, SHA1 hash.
 
     """
 
@@ -47,11 +50,15 @@ def sha256(input_file):
     return hasher.hexdigest()
 
 def sha256_rb(input_file):
-    """Calculate SHA256 hash for a specific file with a binary format.
+    """Calculate the SHA1 hash for a file object opened in binary mode.
 
-    :param input_file: str, Name of file.
+    Despite its name, this function computes a SHA1 hash. This is
+    retained for compatibility with previously stored checksums.
+    The file object is closed once it has been read.
 
-    :return: str, SHA256 hash.
+    :param input_file: file object, File opened in binary mode.
+
+    :return: str, SHA1 hash.
 
     """
 

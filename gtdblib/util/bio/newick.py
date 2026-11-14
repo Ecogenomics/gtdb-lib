@@ -20,7 +20,7 @@ def parse_label(label: str) -> Tuple[Optional[float], Optional[str], Optional[st
             label, auxiliary_info = label.split('|', 1)
 
         if ':' in label:
-            support, taxon = label.split(':')
+            support, taxon = label.split(':', 1)
             support = float(support)
         else:
             if is_float(label):

@@ -21,6 +21,15 @@ class TestTaxonomy(unittest.TestCase):
     def test_fill_trailing_ranks_empty(self):
         self.assertEqual(fill_trailing_ranks([]), EMPTY)
 
+    def test_fill_trailing_ranks_does_not_modify_input(self):
+        taxa = ['d__Bacteria']
+        fill_trailing_ranks(taxa)
+        self.assertEqual(taxa, ['d__Bacteria'])
+
+    def test_fill_trailing_ranks_no_prefix(self):
+        with self.assertRaises(GtdbLibException):
+            fill_trailing_ranks(['d__Bacteria', 'Firmicutes'])
+
     def test_fill_missing_ranks(self):
         self.assertEqual(fill_missing_ranks(['d__Bacteria', 'c__Bacilli', 'g__Bacillus']),
                          ['d__Bacteria', 'p__', 'c__Bacilli', 'o__', 'f__', 'g__Bacillus', 's__'])
@@ -72,6 +81,12 @@ class TestTaxonomy(unittest.TestCase):
             self.assertEqual(path.read_text(), 'G1\td__B;p__P1;c__;o__;f__;g__;s__\n'
                                                'G2\td__A;p__P2;c__C;o__O;f__F;g__G;s__G s\n')
             self.assertEqual(read_taxonomy(str(path)), taxonomy)
+
+    def test_read_taxonomy_blank_lines(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'taxonomy.tsv'
+            path.write_text('G1\td__B;p__P1\n\nG2\td__A;\n\n')
+            self.assertEqual(read_taxonomy(str(path)), {'G1': ['d__B', 'p__P1'], 'G2': ['d__A']})
 
     def test_read_taxonomy_from_tree_undecorated_leaf(self):
         tree = dendropy.Tree.get(data="((A,B)'d__Bacteria; p__P1',C);", schema='newick')

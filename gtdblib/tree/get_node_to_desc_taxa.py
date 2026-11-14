@@ -9,7 +9,7 @@ from gtdblib.tree.get_node_depth import get_tree_node_depth
 def get_tree_node_to_desc_taxa(tree: dendropy.Tree) -> Dict[dendropy.Node, FrozenSet[str]]:
     """Get each node and the taxa that are descendants of this node.
 
-    :param tree: The dendropy tree object to calculate the depths for.
+    :param tree: The dendropy tree object to get descendant taxa for.
 
     :returns: A dictionary of nodes and their descendant taxa.
     """
@@ -26,7 +26,7 @@ def get_tree_node_to_desc_taxa(tree: dendropy.Tree) -> Dict[dendropy.Node, Froze
             if node.is_leaf():
                 out[node].add(node.taxon.label)
 
-            # Check bring up the taxa from the descendant nodes
+            # Bring up the taxa from the descendant nodes
             else:
                 for child in node.child_nodes():
                     out[node].update(out[child])

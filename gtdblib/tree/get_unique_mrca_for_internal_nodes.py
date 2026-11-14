@@ -7,7 +7,7 @@ def get_tree_unique_mrca_for_internal_nodes(tree: dendropy.Tree) -> Dict[dendrop
     """Calculate a unique MRCA for each internal node, i.e. using these taxa
     will always yield the same internal node.
 
-    :param tree: The dendropy tree object to calculate the depths for.
+    :param tree: The dendropy tree object to calculate unique MRCAs for.
 
     :returns: A dictionary of nodes and a tuple of each taxon that identifies the node.
     """

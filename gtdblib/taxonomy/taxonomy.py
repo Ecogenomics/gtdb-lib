@@ -1,4 +1,3 @@
-import sys
 from collections import defaultdict
 from typing import Dict, Iterable, List, Set
 
@@ -20,7 +19,7 @@ def read_taxonomy(taxonomy_file: str, use_canonical_gid: bool = False) -> Dict[s
         <accession>\t<taxonomy string>
 
     where the taxonomy string will typically have the formats:
-        d__; c__; o__; f__; g__; s__
+        d__; p__; c__; o__; f__; g__; s__
 
     :param taxonomy_file: File indicating Greengenes-style taxonomic assignments.
     :param use_canonical_gid: Flag indicating if accessions should be converted to their canonical form.
@@ -34,6 +33,10 @@ def read_taxonomy(taxonomy_file: str, use_canonical_gid: bool = False) -> Dict[s
         d = {}
         with open(taxonomy_file) as f:
             for row, line in enumerate(f):
+                # skip blank lines
+                if not line.strip():
+                    continue
+
                 line_split = line.split('\t')
                 unique_id = line_split[0]
 
@@ -59,11 +62,13 @@ def fill_trailing_ranks(taxa: List[str]) -> List[str]:
 
     This function assumes it will be provided with a list
     of taxa from the 7 canonical ranks in rank order. Any
-    trailing ranks are filled in.
+    trailing ranks are filled in. The input list is not modified.
 
-    Example: [d__Bacteria, d__Firmicutes] => [d__Bacteria, d__Firmicutes, c__, o__, f__, g__, s__]
+    Example: [d__Bacteria, p__Firmicutes] => [d__Bacteria, p__Firmicutes, c__, o__, f__, g__, s__]
 
-    :param taxa list: List of taxa.
+    :param taxa: List of taxa.
+
+    :raises GtdbLibException: If the last taxon is missing a rank prefix.
 
     :return: List of taxa with filled trailing ranks.
     """
@@ -71,11 +76,10 @@ def fill_trailing_ranks(taxa: List[str]) -> List[str]:
     if not taxa:
         return list(Taxonomy.RANK_PREFIXES)
 
-    try:
-        last_rank = Taxonomy.RANK_PREFIXES.index(taxa[-1][0:3])
-    except:
-        log.error('Taxon is missing rank prefix: %s' % ';'.join(taxa))
-        sys.exit(1)
+    taxa = list(taxa)
+    last_rank = Taxonomy.RANK_INDEX.get(taxa[-1][0:3])
+    if last_rank is None:
+        raise GtdbLibException(f'Taxon is missing rank prefix: {";".join(taxa)}')
 
     for i in range(last_rank+1, len(Taxonomy.RANK_PREFIXES)):
         taxa.append(Taxonomy.RANK_PREFIXES[i])
@@ -87,12 +91,12 @@ def read_taxonomy_from_tree(tree: str, warnings: bool = True) -> Dict[str, List[
     """Obtain the taxonomy for each extant taxa as specified by internal tree labels.
 
     This method is generic in that it can read any Greengenes-style taxonomy string
-    and does not strictly require extran taxa to be classified to theseven canonical ranks.
+    and does not strictly require extant taxa to be classified to the seven canonical ranks.
 
     :param tree: Filename of Newick tree or Dendropy tree object.
     :param warnings: Flag indicating if issues reading tree should be logged as warnings.
 
-    :return: Mapping from extent taxon labels to a list of taxa.
+    :return: Mapping from extant taxon labels to a list of taxa.
     """
 
     if isinstance(tree, str):

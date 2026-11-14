@@ -1,7 +1,7 @@
 """Methods for validating a Greengenes-style taxonomy.
 
-This class validates canonical 7 rank Greengenes-style taxonomy string:
-    d__; c__; o__; f__; g__; s__
+This module validates canonical 7 rank Greengenes-style taxonomy strings:
+    d__; p__; c__; o__; f__; g__; s__
 """
 
 import re
@@ -225,7 +225,7 @@ def duplicate_names(taxonomy: Dict[str, List[str]], check_species: bool = True) 
 def validate_species_name(species_name: str, require_full: bool = True, require_prefix: bool = True) -> Tuple[bool, str]:
     """Validate species name.
 
-    A full species name should be  binomial and include a 'generic name' (genus) and
+    A full species name should be binomial and include a 'generic name' (genus) and
     a 'specific epithet' (species), i.e. Escherichia coli. This method
     assumes the two names should be separated by a space.
 
@@ -234,7 +234,7 @@ def validate_species_name(species_name: str, require_full: bool = True, require_
     species_name : str
         Species name to validate
     require_full : boolean
-        Flag indicating if species name must include 'generic name and 'specific epithet'.
+        Flag indicating if species name must include 'generic name' and 'specific epithet'.
     require_prefix : boolean
         Flag indicating if name must start with the species prefix ('s__').
 
@@ -310,8 +310,8 @@ def taxonomic_consistency(taxonomy: Dict[str, List[str]], report_errors: bool = 
     Returns
     -------
     dict : d[taxa] -> expected parent
-        Expected parent taxon for taxa at all taxonomic ranks, or
-        None if the taxonomy is inconsistent.
+        Expected parent taxon for taxa at all taxonomic ranks. If the taxonomy
+        is inconsistent, the parent indicated by the last processed genome is used.
     """
 
     expected_parent = {}
@@ -333,7 +333,7 @@ def taxonomic_consistency(taxonomy: Dict[str, List[str]], report_errors: bool = 
                             'Provided taxonomy is not taxonomically consistent.')
                         log.warning('Genome %s indicates the parent of %s is %s.' % (
                             genome_id, taxa[r], taxa[r - 1]))
-                        log.warning('The parent of this taxa was previously indicated as %s.' % (
+                        log.warning('The parent of this taxon was previously indicated as %s.' % (
                             expected_parent[taxa[r]]))
 
             expected_parent[taxa[r]] = taxa[r - 1]

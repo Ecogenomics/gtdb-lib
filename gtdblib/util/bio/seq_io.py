@@ -32,14 +32,25 @@ protein_bases = {'a', 'r', 'n', 'd', 'c', 'q', 'e', 'g', 'h', 'i', 'l', 'k', 'm'
 nucleotide_bases = {'a', 'c', 'g', 't'}
 insertion_bases = {'-', '.'}
 
+FASTQ_EXTENSIONS = ('.fq', '.fastq', '.fq.gz', '.fastq.gz')
+
+
+def _fraction_of_chars(seq, chars):
+    """Fraction of characters in a lowercase sequence that are in `chars`."""
+
+    if not seq:
+        return 0.0
+
+    return sum(seq.count(c) for c in chars) / len(seq)
+
 
 def is_nucleotide(seq_file, req_perc=0.95, max_seqs_to_read=10):
     '''Check if a file contains sequences in nucleotide space.
 
     The check is performed by looking for the characters in
     {a,c,g,t,n,.,-} and confirming that these comprise the
-    majority of a sequences. A set number of sequences are
-    read and the file assumed to be not be in nucleotide space
+    majority of a sequence. A set number of sequences are
+    read and the file assumed to not be in nucleotide space
     if none of these sequences are comprised primarily of the
     defined nucleotide set.
 
@@ -47,7 +58,7 @@ def is_nucleotide(seq_file, req_perc=0.95, max_seqs_to_read=10):
     :param req_perc: float, Percentage of nucleotide bases before declaring the sequences as being in nucleotide space.
     :param max_seqs_to_read: int, Maximum sequences to read before declaring sequence file to not be in nucleotide space.
 
-    :return: boolean, True is sequences are in nucleotide space.
+    :return: boolean, True if sequences are in nucleotide space.
 
     '''
 
@@ -55,11 +66,7 @@ def is_nucleotide(seq_file, req_perc=0.95, max_seqs_to_read=10):
     for _seq_id, seq in read_seq(seq_file):
         seq = seq.lower()
 
-        nt_bases = 0
-        for c in (nucleotide_bases | {'n'} | insertion_bases):
-            nt_bases += seq.count(c)
-
-        if nt_bases / len(seq) >= req_perc:
+        if _fraction_of_chars(seq, nucleotide_bases | {'n'} | insertion_bases) >= req_perc:
             return True
 
         seq_count += 1
@@ -75,15 +82,18 @@ def is_protein(seq_file, req_perc=0.95, max_seqs_to_read=10):
     The check is performed by looking for the 20 amino acids,
     along with X, and the insertion characters '-' and '.', in
     order to confirm that these comprise the majority of a
-    sequences. A set number of sequences are read and the file
-    assumed to be not be in nucleotide space if none of these
-    sequences are comprised primarily of the defined nucleotide set.
+    sequence. Since the nucleotide characters {a,c,g,t,n} are also
+    amino acid characters, sequences comprised primarily of
+    nucleotide characters are not considered to be in amino acid
+    space. A set number of sequences are read and the file assumed
+    to not be in amino acid space if none of these sequences are
+    comprised primarily of the defined amino acid set.
 
     :param seq_file: str, Name of fasta/q file to read.
     :param req_perc: float, Percentage of amino acid bases before declaring the sequences as being in amino acid space.
     :param max_seqs_to_read: int, Maximum sequences to read before declaring sequence file to not be in amino acid space.
 
-    :return: boolean, True is sequences are in amino acid space.
+    :return: boolean, True if sequences are in amino acid space.
 
     """
 
@@ -91,11 +101,8 @@ def is_protein(seq_file, req_perc=0.95, max_seqs_to_read=10):
     for _seq_id, seq in read_seq(seq_file):
         seq = seq.lower()
 
-        prot_bases = 0
-        for c in (protein_bases | {'x'} | insertion_bases):
-            prot_bases += seq.count(c)
-
-        if prot_bases / len(seq) >= req_perc:
+        if (_fraction_of_chars(seq, protein_bases | {'x'} | insertion_bases) >= req_perc
+                and _fraction_of_chars(seq, nucleotide_bases | {'n'} | insertion_bases) < req_perc):
             return True
 
         seq_count += 1
@@ -113,7 +120,7 @@ def read(seq_file):
     :return: dict[seq_id] -> seq, Sequences indexed by sequence id.
 
     """
-    if seq_file.endswith(('.fq.gz', '.fastq.gz', '.fq', '.fq.gz')):
+    if seq_file.endswith(FASTQ_EXTENSIONS):
         return read_fastq(seq_file)
     else:
         return read_fasta(seq_file)
@@ -123,7 +130,7 @@ def read_fasta(fasta_file, keep_annotation=False):
     """Read sequences from fasta file.
 
     :param fasta_file: str, Name of fasta file to read.
-    :param keep_annotation: boolean, Determine is sequence id should contain annotation.
+    :param keep_annotation: boolean, Determine if sequence id should contain annotation.
 
     :return: dict[seq_id] -> seq, Sequences indexed by sequence id.
     """
@@ -193,7 +200,7 @@ def read_fastq(fastq_file):
             if line_num == 1:
                 seq_id = line[1:].split(None, 1)[0]
             elif line_num == 2:
-                seqs[seq_id].seq = line.strip()
+                seqs[seq_id] = line.strip()
             elif line_num == 4:
                 line_num = 0
     except:
@@ -213,14 +220,13 @@ def read_seq(seq_file, keep_annotation=False):
     in memory. Input file may be gzipped and in either
     fasta or fastq format. It is slightly more efficient
     to directly call read_fasta_seq() or read_fastq_seq()
-    if the type of input file in known.
+    if the type of input file is known.
 
     :Example:
 
-        >>> seq_io = SeqIO()
-        >>> for seq_id, seq in seq_io.read_seq(fasta_file):
-        >>>     print seq_id
-        >>>>    print seq
+        >>> for seq_id, seq in read_seq(fasta_file):
+        ...     print(seq_id)
+        ...     print(seq)
 
     :param seq_file:str, Name of fasta/q file to read.
     :param keep_annotation:boolean, Determine if annotation string should be returned.
@@ -230,7 +236,7 @@ def read_seq(seq_file, keep_annotation=False):
 
     """
 
-    if seq_file.endswith(('.fq.gz', '.fastq.gz', '.fq', '.fq.gz')):
+    if seq_file.endswith(FASTQ_EXTENSIONS):
         for rtn in read_fastq_seq(seq_file):
             yield rtn
     else:
@@ -246,10 +252,9 @@ def read_fasta_seq(fasta_file, keep_annotation=False):
     in memory. Input file may be gzipped.
 
     :Example:
-        >>> seq_io = SeqIO()
-        >>> for seq_id, seq in seq_io.read_fasta_seq(fasta_file):
-        >>>     print seq_id
-        >>>     print seq
+        >>> for seq_id, seq in read_fasta_seq(fasta_file):
+        ...     print(seq_id)
+        ...     print(seq)
 
     :param fasta_file: str, Name of fasta file to read.
     :param keep_annotation: boolean, Determine if annotation string should be returned.
@@ -263,7 +268,7 @@ def read_fasta_seq(fasta_file, keep_annotation=False):
         raise InputFileError('Input file %s does not exist.' % fasta_file)
 
     if os.stat(fasta_file).st_size == 0:
-        pass
+        return
 
     try:
         open_file = open
@@ -296,10 +301,11 @@ def read_fasta_seq(fasta_file, keep_annotation=False):
                 seq.append(line.strip())
 
         # report last sequence
-        if keep_annotation:
-            yield seq_id, ''.join(seq).replace(' ', ''), annotation
-        else:
-            yield seq_id, ''.join(seq).replace(' ', '')
+        if seq_id is not None:
+            if keep_annotation:
+                yield seq_id, ''.join(seq).replace(' ', ''), annotation
+            else:
+                yield seq_id, ''.join(seq).replace(' ', '')
     except GeneratorExit:
         pass
     except:
@@ -317,10 +323,9 @@ def read_fastq_seq(fastq_file):
     in memory. Input file may be gzipped.
 
     :Example:
-        >>> seq_io = SeqIO()
-        >>> for seq_id, seq in seq_io.read_fastq_seq(fastq_file):
-        >>>     print seq_id
-        >>>     print seq
+        >>> for seq_id, seq in read_fastq_seq(fastq_file):
+        ...     print(seq_id)
+        ...     print(seq)
 
     :param fastq_file: str, Name of fastq file to read.
 
@@ -332,7 +337,7 @@ def read_fastq_seq(fastq_file):
         raise InputFileError('Input file %s does not exist.' % fastq_file)
 
     if os.stat(fastq_file).st_size == 0:
-        pass
+        return
 
     try:
         open_file = open
@@ -377,7 +382,7 @@ def extract_seqs(fasta_file, seqs_to_extract):
     seqs = {}
     for line in open(fasta_file):
         if line[0] == '>':
-            seq_id = line[1:].partition(' ')[0]
+            seq_id = line[1:].split(None, 1)[0]
 
             seq_of_interest = False
             if seq_id in seqs_to_extract:
@@ -430,7 +435,7 @@ def write_fasta(seqs, output_file, wrap=80):
     """
 
     if output_file.endswith('.gz'):
-        fout = gzip.open(output_file, 'wb')
+        fout = gzip.open(output_file, 'wt')
     else:
         fout = open(output_file, 'w')
 
