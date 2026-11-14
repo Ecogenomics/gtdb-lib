@@ -122,7 +122,7 @@
 <dd><p>Convert hex to RGB color format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>hex</strong> – Hex color format.</p>
+<dd class="field-odd"><p><strong>hex</strong> – Hex color format, with or without a leading ‘#’.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>RGB color format.</p>
@@ -159,7 +159,7 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>programs</strong> – Names of executable programs.</p></li>
-<li><p><strong>exit_on_fail</strong> – Exit program with error code -1 if any program in not on path.</p></li>
+<li><p><strong>exit_on_fail</strong> – Exit program with error code 1 if any program is not on path.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -175,12 +175,12 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>programs</strong> – Names of executable programs.</p></li>
-<li><p><strong>exit_on_fail</strong> – Exit program with error code -1 if any program in not on path.</p></li>
+<li><p><strong>program</strong> – Name of executable program.</p></li>
+<li><p><strong>exit_on_fail</strong> – Exit program with error code 1 if the program is not on path.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>True if all program is on path, else False.</p>
+<dd class="field-even"><p>True if the program is on path, else False.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -228,7 +228,7 @@ command ‘which’.</p>
 <p><a class="reference external" href="http://stackoverflow.com/questions/377017/test-if-executable-exists-in-python">http://stackoverflow.com/questions/377017/test-if-executable-exists-in-python</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>programs</strong> – Names of executable programs.</p>
+<dd class="field-odd"><p><strong>program</strong> – Name of executable program.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Path to executable, or None if it isn’t on the path.</p>
@@ -271,13 +271,15 @@ a string a split into substrings based on matching brackets. so we can return ne
 <dl class="py function">
 <dt class="sig sig-object py" id="gtdblib.util.shell.filemgmt.sha256">
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.filemgmt.</span></span><span class="sig-name descname"><span class="pre">sha256</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.filemgmt.sha256" title="Permalink to this definition"></a></dt>
-<dd><p>Calculate the SHA256 hash for a specific file.</p>
+<dd><p>Calculate the SHA1 hash for a specific file.</p>
+<p>Despite its name, this function computes a SHA1 hash. This is
+retained for compatibility with previously stored checksums.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>input_file</strong> – str, Name of file.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>str, SHA256 hash.</p>
+<dd class="field-even"><p>str, SHA1 hash.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -285,13 +287,16 @@ a string a split into substrings based on matching brackets. so we can return ne
 <dl class="py function">
 <dt class="sig sig-object py" id="gtdblib.util.shell.filemgmt.sha256_rb">
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.filemgmt.</span></span><span class="sig-name descname"><span class="pre">sha256_rb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.filemgmt.sha256_rb" title="Permalink to this definition"></a></dt>
-<dd><p>Calculate SHA256 hash for a specific file with a binary format.</p>
+<dd><p>Calculate the SHA1 hash for a file object opened in binary mode.</p>
+<p>Despite its name, this function computes a SHA1 hash. This is
+retained for compatibility with previously stored checksums.
+The file object is closed once it has been read.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>input_file</strong> – str, Name of file.</p>
+<dd class="field-odd"><p><strong>input_file</strong> – file object, File opened in binary mode.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>str, SHA256 hash.</p>
+<dd class="field-even"><p>str, SHA1 hash.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -303,7 +308,7 @@ a string a split into substrings based on matching brackets. so we can return ne
 <dl class="py function">
 <dt class="sig sig-object py" id="gtdblib.util.shell.gtdbshutil.check_dir_exists">
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.gtdbshutil.</span></span><span class="sig-name descname"><span class="pre">check_dir_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.gtdbshutil.check_dir_exists" title="Permalink to this definition"></a></dt>
-<dd><p>Check if directory exists.This function is copied from <a class="reference external" href="https://github.com/dparks1134/biolib">biolib</a> on the 09/10/2020.</p>
+<dd><p>Check if directory exists. This function is copied from <a class="reference external" href="https://github.com/dparks1134/biolib">biolib</a> on the 09/10/2020.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>input_dir</strong> – path to directory</p>
@@ -317,7 +322,7 @@ a string a split into substrings based on matching brackets. so we can return ne
 <dl class="py function">
 <dt class="sig sig-object py" id="gtdblib.util.shell.gtdbshutil.check_file_exists">
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.shell.gtdbshutil.</span></span><span class="sig-name descname"><span class="pre">check_file_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.util.shell.gtdbshutil.check_file_exists" title="Permalink to this definition"></a></dt>
-<dd><p>Check if file exists.This function is copied from <a class="reference external" href="https://github.com/dparks1134/biolib">biolib</a> on the 09/10/2020.</p>
+<dd><p>Check if file exists. This function is copied from <a class="reference external" href="https://github.com/dparks1134/biolib">biolib</a> on the 09/10/2020.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>input_file</strong> – path to file</p>
@@ -371,7 +376,10 @@ When trying to overwrite a directory, IsADirectoryError is raised.</p>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>FileExistsError</strong> – If link_name exists and overwrite=False.</p>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>FileExistsError</strong> – If link_name exists and overwrite=False.</p></li>
+<li><p><strong>IsADirectoryError</strong> – If link_name is a directory and overwrite=True.</p></li>
+</ul>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>True</p>

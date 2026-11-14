@@ -169,7 +169,7 @@ contain a subset (or superset) of the taxa in the input tree.</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="gtdblib.tree.convert_accession.convert_tree_accessions_to_canonical">
 <span class="sig-prename descclassname"><span class="pre">gtdblib.tree.convert_accession.</span></span><span class="sig-name descname"><span class="pre">convert_tree_accessions_to_canonical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.tree.convert_accession.convert_tree_accessions_to_canonical" title="Permalink to this definition"></a></dt>
-<dd><p>Convert all accessions a tree to their canonical form.</p>
+<dd><p>Convert all accessions in a tree to their canonical form.</p>
 </dd></dl>
 
 </section>
@@ -198,7 +198,7 @@ contain a subset (or superset) of the taxa in the input tree.</p></li>
 <dd><p>Get each node and the taxa that are descendants of this node.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tree</strong> – The dendropy tree object to calculate the depths for.</p>
+<dd class="field-odd"><p><strong>tree</strong> – The dendropy tree object to get descendant taxa for.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A dictionary of nodes and their descendant taxa.</p>
@@ -216,7 +216,7 @@ contain a subset (or superset) of the taxa in the input tree.</p></li>
 will always yield the same internal node.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tree</strong> – The dendropy tree object to calculate the depths for.</p>
+<dd class="field-odd"><p><strong>tree</strong> – The dendropy tree object to calculate unique MRCAs for.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A dictionary of nodes and a tuple of each taxon that identifies the node.</p>

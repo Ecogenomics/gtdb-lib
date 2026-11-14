@@ -174,14 +174,23 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="gtdblib.file.itol.dataset_text.iTolDatasetTextFile.insert">
 <span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'normal'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'bold'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'italic'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'bold-italic'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size_factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.file.itol.dataset_text.iTolDatasetTextFile.insert" title="Permalink to this definition"></a></dt>
-<dd><blockquote>
-<div><p>#position defines the position of the text label on the tree:</p>
-</div></blockquote>
-<p>#  -1 = external label
-#  a number between 0 and 1 = internal label positioned at the specified valu
-e along the node branch (for example, position 0 is exactly at
-the start of node branch, position 0.5 is in the middle, and position 1 is at the end)</p>
-<p>‘normal’,’’bold’,’italic’ or ‘bold-italic’</p>
+<dd><p>Add a text label for a node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_id</strong> – Node ID or label.</p></li>
+<li><p><strong>label</strong> – Text of the label.</p></li>
+<li><p><strong>position</strong> – Position of the text label on the tree: -1 for an external label,
+or a number between 0 and 1 for an internal label positioned at the specified
+value along the node branch (e.g. 0 is exactly at the start of the node branch,
+0.5 is in the middle, and 1 is at the end).</p></li>
+<li><p><strong>color</strong> – Color of the label.</p></li>
+<li><p><strong>style</strong> – Font style: ‘normal’, ‘bold’, ‘italic’ or ‘bold-italic’.</p></li>
+<li><p><strong>size_factor</strong> – Font size factor.</p></li>
+<li><p><strong>rotation</strong> – Rotation of the label.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">

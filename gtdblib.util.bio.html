@@ -125,12 +125,12 @@
 GCF_005435135.1 -&gt; G005435135
 GCF_005435135.1_ASM543513v1_genomic -&gt; G005435135
 RS_GCF_005435135.1 -&gt; G005435135
-GB_GCA_005435135.1 -&gt;</p>
+GB_GCA_005435135.1 -&gt; G005435135</p>
 </dd>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>gid</strong> – Genome accesion to conver to canonical form.</p>
+<dd class="field-odd"><p><strong>gid</strong> – Genome accession to convert to canonical form.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Canonical form of accession.</p>
@@ -143,7 +143,7 @@ GB_GCA_005435135.1 -&gt;</p>
 <span class="sig-prename descclassname"><span class="pre">gtdblib.util.bio.accession.</span></span><span class="sig-name descname"><span class="pre">is_same_accn_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">accn1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accn2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gtdblib.util.bio.accession.is_same_accn_version" title="Permalink to this definition"></a></dt>
 <dd><p>Check if accessions have same version number.</p>
 <p>This method assumes accession versions are provided
-as a suffix proceeding a period. This is the format
+as a suffix following a period. This is the format
 used for NCBI accessions, e.g. GCF_005435135.1.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -231,8 +231,8 @@ used for NCBI accessions, e.g. GCF_005435135.1.</p>
 <dd><p>Check if a file contains sequences in nucleotide space.</p>
 <p>The check is performed by looking for the characters in
 {a,c,g,t,n,.,-} and confirming that these comprise the
-majority of a sequences. A set number of sequences are
-read and the file assumed to be not be in nucleotide space
+majority of a sequence. A set number of sequences are
+read and the file assumed to not be in nucleotide space
 if none of these sequences are comprised primarily of the
 defined nucleotide set.</p>
 <dl class="field-list simple">
@@ -244,7 +244,7 @@ defined nucleotide set.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>boolean, True is sequences are in nucleotide space.</p>
+<dd class="field-even"><p>boolean, True if sequences are in nucleotide space.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -256,9 +256,12 @@ defined nucleotide set.</p>
 <p>The check is performed by looking for the 20 amino acids,
 along with X, and the insertion characters ‘-’ and ‘.’, in
 order to confirm that these comprise the majority of a
-sequences. A set number of sequences are read and the file
-assumed to be not be in nucleotide space if none of these
-sequences are comprised primarily of the defined nucleotide set.</p>
+sequence. Since the nucleotide characters {a,c,g,t,n} are also
+amino acid characters, sequences comprised primarily of
+nucleotide characters are not considered to be in amino acid
+space. A set number of sequences are read and the file assumed
+to not be in amino acid space if none of these sequences are
+comprised primarily of the defined amino acid set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -268,7 +271,7 @@ sequences are comprised primarily of the defined nucleotide set.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>boolean, True is sequences are in amino acid space.</p>
+<dd class="field-even"><p>boolean, True if sequences are in amino acid space.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -295,7 +298,7 @@ sequences are comprised primarily of the defined nucleotide set.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>fasta_file</strong> – str, Name of fasta file to read.</p></li>
-<li><p><strong>keep_annotation</strong> – boolean, Determine is sequence id should contain annotation.</p></li>
+<li><p><strong>keep_annotation</strong> – boolean, Determine if sequence id should contain annotation.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -313,10 +316,9 @@ in order to avoid having to have large sequence files
 in memory. Input file may be gzipped.</p>
 <dl class="field-list">
 <dt class="field-odd">Example<span class="colon">:</span></dt>
-<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seq_io</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seq_io</span><span class="o">.</span><span class="n">read_fasta_seq</span><span class="p">(</span><span class="n">fasta_file</span><span class="p">):</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">seq_id</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">seq</span>
+<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">read_fasta_seq</span><span class="p">(</span><span class="n">fasta_file</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">seq_id</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
@@ -356,10 +358,9 @@ in order to avoid having to have large sequence files
 in memory. Input file may be gzipped.</p>
 <dl class="field-list">
 <dt class="field-odd">Example<span class="colon">:</span></dt>
-<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seq_io</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seq_io</span><span class="o">.</span><span class="n">read_fastq_seq</span><span class="p">(</span><span class="n">fastq_file</span><span class="p">):</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">seq_id</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">seq</span>
+<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">read_fastq_seq</span><span class="p">(</span><span class="n">fastq_file</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">seq_id</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
@@ -381,13 +382,12 @@ in order to avoid having to have large sequence files
 in memory. Input file may be gzipped and in either
 fasta or fastq format. It is slightly more efficient
 to directly call read_fasta_seq() or read_fastq_seq()
-if the type of input file in known.</p>
+if the type of input file is known.</p>
 <dl class="field-list">
 <dt class="field-odd">Example<span class="colon">:</span></dt>
-<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seq_io</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seq_io</span><span class="o">.</span><span class="n">read_seq</span><span class="p">(</span><span class="n">fasta_file</span><span class="p">):</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span> <span class="n">seq_id</span>
-<span class="go">&gt;&gt;&gt;&gt;    print seq</span>
+<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">seq_id</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">read_seq</span><span class="p">(</span><span class="n">fasta_file</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">seq_id</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
