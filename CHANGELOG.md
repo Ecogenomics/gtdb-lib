@@ -1,3 +1,16 @@
+# [1.12.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.11.0...v1.12.0) (2026-11-14)
+
+
+### Bug Fixes
+
+* exit with non-zero code on errors ([1baea4a](https://github.com/Ecogenomics/gtdb-lib/commit/1baea4af725bb8ea1dbd57e4da7e81fd7486b442))
+
+
+### Features
+
+* **bootstrap_merge:** linear-time support calculation that preserves tree labels ([59fbe1e](https://github.com/Ecogenomics/gtdb-lib/commit/59fbe1e858af4854dc8f75f2b11a19dc0448a99f))
+* **taxonomy:** add taxonomy helpers from biolib ([ee436ca](https://github.com/Ecogenomics/gtdb-lib/commit/ee436ca74a23ebaff779020f4cfb9f9ca7085756))
+
 # [1.11.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.10.1...v1.11.0) (2026-11-10)
 
 
