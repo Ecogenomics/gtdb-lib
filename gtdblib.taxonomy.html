@@ -75,9 +75,15 @@
 <li class="toctree-l6"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.Taxonomy.s"><code class="docutils literal notranslate"><span class="pre">Taxonomy.s</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.check_full_taxonomy"><code class="docutils literal notranslate"><span class="pre">check_full_taxonomy()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.extant_taxa"><code class="docutils literal notranslate"><span class="pre">extant_taxa()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.extant_taxa_for_rank"><code class="docutils literal notranslate"><span class="pre">extant_taxa_for_rank()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.fill_missing_ranks"><code class="docutils literal notranslate"><span class="pre">fill_missing_ranks()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.fill_trailing_ranks"><code class="docutils literal notranslate"><span class="pre">fill_trailing_ranks()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.read_taxonomy"><code class="docutils literal notranslate"><span class="pre">read_taxonomy()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.read_taxonomy_from_tree"><code class="docutils literal notranslate"><span class="pre">read_taxonomy_from_tree()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.sort_taxa"><code class="docutils literal notranslate"><span class="pre">sort_taxa()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gtdblib.taxonomy.taxonomy.write_taxonomy"><code class="docutils literal notranslate"><span class="pre">write_taxonomy()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#module-gtdblib.taxonomy.validation">gtdblib.taxonomy.validation module</a><ul>
@@ -225,13 +231,81 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.check_full_taxonomy">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.taxonomy.</span></span><span class="sig-name descname"><span class="pre">check_full_taxonomy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tax_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.check_full_taxonomy" title="Permalink to this definition"></a></dt>
+<dd><p>Check if a taxonomy string contains exactly the 7 canonical ranks in order.</p>
+<p>Problems with the taxonomy string are logged as errors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tax_str</strong> – Taxonomy string (e.g. d__Bacteria;p__;…;s__).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the taxonomy string is complete, else False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.extant_taxa">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.taxonomy.</span></span><span class="sig-name descname"><span class="pre">extant_taxa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taxonomy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.extant_taxa" title="Permalink to this definition"></a></dt>
+<dd><p>Get the extant taxa (e.g. genomes) in each named group at all ranks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>taxonomy</strong> – Mapping from accessions to a list of taxa for the 7 canonical ranks.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping from each named taxon to the accessions it contains.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.extant_taxa_for_rank">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.taxonomy.</span></span><span class="sig-name descname"><span class="pre">extant_taxa_for_rank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rank_label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxonomy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.extant_taxa_for_rank" title="Permalink to this definition"></a></dt>
+<dd><p>Get the extant taxa (e.g. genomes) in each named group at a rank.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rank_label</strong> – Rank of interest (e.g. ‘class’).</p></li>
+<li><p><strong>taxonomy</strong> – Mapping from accessions to a list of taxa for the 7 canonical ranks.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping from each named taxon at the rank to the accessions it contains.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.fill_missing_ranks">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.taxonomy.</span></span><span class="sig-name descname"><span class="pre">fill_missing_ranks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taxa</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warning</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.fill_missing_ranks" title="Permalink to this definition"></a></dt>
+<dd><p>Fill in missing internal and trailing ranks.</p>
+<p>Taxa are assumed to be in rank order, but some ranks may be missing or
+repeated (e.g. [d__Bacteria, p__Firmicutes, p__Firmicutes_A, f__Bacillaceae]).</p>
+<p>Example: [d__Bacteria, c__Bacilli, g__Bacillus] =&gt; [d__Bacteria, <a href="#id7"><span class="problematic" id="id8">p__</span></a>, c__Bacilli, <a href="#id7"><span class="problematic" id="id9">o__</span></a>, <a href="#id7"><span class="problematic" id="id10">f__</span></a>, g__Bacillus, <a href="#id7"><span class="problematic" id="id11">s__</span></a>]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>taxa</strong> – List of taxa.</p></li>
+<li><p><strong>warning</strong> – Flag indicating if a warning should be logged for taxa that are
+not in canonical rank order.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of taxa with all missing ranks filled in, or the original taxa
+if they are not in canonical rank order.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.fill_trailing_ranks">
 <span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.taxonomy.</span></span><span class="sig-name descname"><span class="pre">fill_trailing_ranks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taxa</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.fill_trailing_ranks" title="Permalink to this definition"></a></dt>
 <dd><p>Fill in missing trailing ranks in a taxonomy string.</p>
 <p>This function assumes it will be provided with a list
 of taxa from the 7 canonical ranks in rank order. Any
 trailing ranks are filled in.</p>
-<p>Example: [d__Bacteria, d__Firmicutes] =&gt; [d__Bacteria, d__Firmicutes, <a href="#id7"><span class="problematic" id="id8">c__</span></a>, <a href="#id7"><span class="problematic" id="id9">o__</span></a>, <a href="#id7"><span class="problematic" id="id10">f__</span></a>, <a href="#id7"><span class="problematic" id="id11">g__</span></a>, <a href="#id7"><span class="problematic" id="id12">s__</span></a>]</p>
+<p>Example: [d__Bacteria, d__Firmicutes] =&gt; [d__Bacteria, d__Firmicutes, <a href="#id7"><span class="problematic" id="id12">c__</span></a>, <a href="#id7"><span class="problematic" id="id13">o__</span></a>, <a href="#id7"><span class="problematic" id="id14">f__</span></a>, <a href="#id7"><span class="problematic" id="id15">g__</span></a>, <a href="#id7"><span class="problematic" id="id16">s__</span></a>]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>list</strong> (<em>taxa</em>) – List of taxa.</p>
@@ -251,7 +325,7 @@ and does not strictly require there to be the seven canonical ranks present.</p>
 <dl class="simple">
 <dt>Expected format is:</dt><dd><p>&lt;accession&gt;     &lt;taxonomy string&gt;</p>
 </dd>
-<dt>where the taxonomy string will typically have the formats:</dt><dd><p><a href="#id7"><span class="problematic" id="id13">d__</span></a>; <a href="#id7"><span class="problematic" id="id14">c__</span></a>; <a href="#id7"><span class="problematic" id="id15">o__</span></a>; <a href="#id7"><span class="problematic" id="id16">f__</span></a>; <a href="#id7"><span class="problematic" id="id17">g__</span></a>; <a href="#id7"><span class="problematic" id="id18">s__</span></a></p>
+<dt>where the taxonomy string will typically have the formats:</dt><dd><p><a href="#id7"><span class="problematic" id="id17">d__</span></a>; <a href="#id7"><span class="problematic" id="id18">c__</span></a>; <a href="#id7"><span class="problematic" id="id19">o__</span></a>; <a href="#id7"><span class="problematic" id="id20">f__</span></a>; <a href="#id7"><span class="problematic" id="id21">g__</span></a>; <a href="#id7"><span class="problematic" id="id22">s__</span></a></p>
 </dd>
 </dl>
 <dl class="field-list simple">
@@ -286,12 +360,43 @@ and does not strictly require extran taxa to be classified to theseven canonical
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.sort_taxa">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.taxonomy.</span></span><span class="sig-name descname"><span class="pre">sort_taxa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taxa</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.sort_taxa" title="Permalink to this definition"></a></dt>
+<dd><p>Sort taxa by rank (domain to species) and then alphabetically.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>taxa</strong> – Taxa to sort, each with a rank prefix (e.g. p__Firmicutes).</p></li>
+<li><p><strong>reverse</strong> – Flag indicating if the order should be reversed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sorted list of taxa. Taxa without a canonical rank prefix are omitted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gtdblib.taxonomy.taxonomy.write_taxonomy">
+<span class="sig-prename descclassname"><span class="pre">gtdblib.taxonomy.taxonomy.</span></span><span class="sig-name descname"><span class="pre">write_taxonomy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">taxonomy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.taxonomy.taxonomy.write_taxonomy" title="Permalink to this definition"></a></dt>
+<dd><p>Write Greengenes-style taxonomy file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>taxonomy</strong> – Mapping from accessions to a list of taxa.</p></li>
+<li><p><strong>output_file</strong> – File to write taxonomy to.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="module-gtdblib.taxonomy.validation">
 <span id="gtdblib-taxonomy-validation-module"></span><h2>gtdblib.taxonomy.validation module<a class="headerlink" href="#module-gtdblib.taxonomy.validation" title="Permalink to this heading"></a></h2>
 <p>Methods for validating a Greengenes-style taxonomy.</p>
 <dl class="simple">
-<dt>This class validates canonical 7 rank Greengenes-style taxonomy string:</dt><dd><p><a href="#id7"><span class="problematic" id="id19">d__</span></a>; <a href="#id7"><span class="problematic" id="id20">c__</span></a>; <a href="#id7"><span class="problematic" id="id21">o__</span></a>; <a href="#id7"><span class="problematic" id="id22">f__</span></a>; <a href="#id7"><span class="problematic" id="id23">g__</span></a>; <a href="#id7"><span class="problematic" id="id24">s__</span></a></p>
+<dt>This class validates canonical 7 rank Greengenes-style taxonomy string:</dt><dd><p><a href="#id7"><span class="problematic" id="id23">d__</span></a>; <a href="#id7"><span class="problematic" id="id24">c__</span></a>; <a href="#id7"><span class="problematic" id="id25">o__</span></a>; <a href="#id7"><span class="problematic" id="id26">f__</span></a>; <a href="#id7"><span class="problematic" id="id27">g__</span></a>; <a href="#id7"><span class="problematic" id="id28">s__</span></a></p>
 </dd>
 </dl>
 <dl class="py function">
@@ -351,7 +456,7 @@ assumes the two names should be separated by a space.</p>
 </dd>
 <dt>require_full<span class="classifier">boolean</span></dt><dd><p>Flag indicating if species name must include ‘generic name and ‘specific epithet’.</p>
 </dd>
-<dt>require_prefix<span class="classifier">boolean</span></dt><dd><p>Flag indicating if name must start with the species prefix (’<a href="#id7"><span class="problematic" id="id25">s__</span></a>’).</p>
+<dt>require_prefix<span class="classifier">boolean</span></dt><dd><p>Flag indicating if name must start with the species prefix (’<a href="#id7"><span class="problematic" id="id29">s__</span></a>’).</p>
 </dd>
 </dl>
 </section>

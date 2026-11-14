@@ -125,17 +125,38 @@
 </section>
 <section id="module-gtdblib.tree.bootstrap_merge">
 <span id="gtdblib-tree-bootstrap-merge-module"></span><h2>gtdblib.tree.bootstrap_merge module<a class="headerlink" href="#module-gtdblib.tree.bootstrap_merge" title="Permalink to this heading"></a></h2>
+<p>Non-parametric bootstrap support from replicate trees.</p>
+<p>Splits are compared using XOR hashing: every taxon is assigned a random
+128-bit value and the hash of a split is the XOR of the values of the taxa
+on one side of it, normalised as <code class="docutils literal notranslate"><span class="pre">min(h,</span> <span class="pre">h</span> <span class="pre">^</span> <span class="pre">h_all)</span></code> so both sides of a
+bipartition give the same value. This makes the cost of each replicate linear
+in the number of taxa, so trees with hundreds of thousands of taxa can be
+processed in seconds per replicate.</p>
+<p>Support for an edge in the input tree is the percentage of replicates that
+contain the same bipartition, after restricting both trees to the taxa they
+have in common. Replicates in which the edge is trivial after this
+restriction (fewer than two taxa on either side) are excluded from that
+edge’s denominator, so replicates containing a subset of the taxa (e.g.
+jackknifed taxa) are handled correctly.</p>
+<p>The text of the input tree (rooting, branch lengths, quoting, comments) is
+preserved. Only internal node labels are changed: the support value is
+combined with any existing taxon label as <code class="docutils literal notranslate"><span class="pre">support:taxon</span></code> (see
+<a class="reference internal" href="gtdblib.util.bio.html#gtdblib.util.bio.newick.create_label" title="gtdblib.util.bio.newick.create_label"><code class="xref py py-func docutils literal notranslate"><span class="pre">gtdblib.util.bio.newick.create_label()</span></code></a>), replacing any existing
+support value. The label of the root node is left unchanged as it does not
+correspond to an edge. If the root is bifurcating, both of its children
+represent the same bipartition and receive the same support value.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="gtdblib.tree.bootstrap_merge.bootstrap_merge_replicates">
-<span class="sig-prename descclassname"><span class="pre">gtdblib.tree.bootstrap_merge.</span></span><span class="sig-name descname"><span class="pre">bootstrap_merge_replicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicate_trees</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpus</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.tree.bootstrap_merge.bootstrap_merge_replicates" title="Permalink to this definition"></a></dt>
-<dd><p>Calculates non-parametric bootstraps for monophyletic groups and
-transposes them to the input tree.</p>
+<span class="sig-prename descclassname"><span class="pre">gtdblib.tree.bootstrap_merge.</span></span><span class="sig-name descname"><span class="pre">bootstrap_merge_replicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_tree</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicate_trees</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpus</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gtdblib.tree.bootstrap_merge.bootstrap_merge_replicates" title="Permalink to this definition"></a></dt>
+<dd><p>Calculates non-parametric bootstrap support for the edges of a tree and
+writes them as internal node labels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>input_tree</strong> – The tree to merge the bootstraps to.</p></li>
 <li><p><strong>output_tree</strong> – The path to write the tree to.</p></li>
-<li><p><strong>replicate_trees</strong> – The trees to calculate the bootstraps from.</p></li>
+<li><p><strong>replicate_trees</strong> – The trees to calculate the bootstraps from. These may
+contain a subset (or superset) of the taxa in the input tree.</p></li>
 <li><p><strong>cpus</strong> – The number of processes to use.</p></li>
 </ul>
 </dd>
