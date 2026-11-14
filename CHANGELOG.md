@@ -1,3 +1,11 @@
+## [1.12.1](https://github.com/Ecogenomics/gtdb-lib/compare/v1.12.0...v1.12.1) (2026-11-14)
+
+
+### Bug Fixes
+
+* resolve bugs and typos found in code review ([31cdeb4](https://github.com/Ecogenomics/gtdb-lib/commit/31cdeb4ce0a6b1fa1413faa6addb0785a97d288a))
+* resolve remaining review issues and speed up tree/taxonomy helpers ([03ea951](https://github.com/Ecogenomics/gtdb-lib/commit/03ea951d90e6e34ca80de81c01914c3139ea17ef))
+
 # [1.12.0](https://github.com/Ecogenomics/gtdb-lib/compare/v1.11.0...v1.12.0) (2026-11-14)
 
 
