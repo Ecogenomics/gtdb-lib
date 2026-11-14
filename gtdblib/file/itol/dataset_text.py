@@ -72,15 +72,18 @@ class iTolDatasetTextFile(File):
             size_factor: float,
             rotation: float
     ):
-        """
+        """Add a text label for a node.
 
-        #position defines the position of the text label on the tree:
-#  -1 = external label
-#  a number between 0 and 1 = internal label positioned at the specified valu
-e along the node branch (for example, position 0 is exactly at
-the start of node branch, position 0.5 is in the middle, and position 1 is at the end)
-
-'normal',''bold','italic' or 'bold-italic'
+        :param node_id: Node ID or label.
+        :param label: Text of the label.
+        :param position: Position of the text label on the tree: -1 for an external label,
+            or a number between 0 and 1 for an internal label positioned at the specified
+            value along the node branch (e.g. 0 is exactly at the start of the node branch,
+            0.5 is in the middle, and 1 is at the end).
+        :param color: Color of the label.
+        :param style: Font style: 'normal', 'bold', 'italic' or 'bold-italic'.
+        :param size_factor: Font size factor.
+        :param rotation: Rotation of the label.
         """
         # #ID,label,position,color,style,size_factor,rotation
 

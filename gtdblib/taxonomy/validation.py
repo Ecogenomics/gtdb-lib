@@ -1,15 +1,26 @@
 """Methods for validating a Greengenes-style taxonomy.
 
-This class validates canonical 7 rank Greengenes-style taxonomy string:
-    d__; c__; o__; f__; g__; s__
+This module validates canonical 7 rank Greengenes-style taxonomy strings:
+    d__; p__; c__; o__; f__; g__; s__
 """
 
 import re
 from collections import defaultdict
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Set, Tuple
 
 from gtdblib import log
 from gtdblib.taxonomy.taxonomy import Taxonomy
+
+RE_PLACEHOLDER_SUFFIX = re.compile('_[A-Z]+(?= |$)')
+RE_VALID_GROUP_NAME = re.compile('^[a-zA-Z0-9- ]+$')
+
+
+def _valid_group_name(taxon: str) -> bool:
+    """Check if a taxon name, ignoring any alphabetic suffix (e.g. _A), contains only valid characters."""
+
+    canonical_taxon = ' '.join(
+        [t.strip() for t in RE_PLACEHOLDER_SUFFIX.split(taxon[3:])]).strip()
+    return not canonical_taxon or RE_VALID_GROUP_NAME.match(canonical_taxon) is not None
 
 
 def validate_taxonomy(
@@ -21,7 +32,12 @@ def validate_taxonomy(
         check_group_names: bool,
         check_duplicate_names: bool,
         check_capitalization: bool,
-        report_errors: bool = True) -> Tuple[Dict[str, str], Dict[str, str], Dict[str, List[str]], Dict[str, List[str]]]:
+        report_errors: bool = True) -> Tuple[Dict[str, str],
+                                             Dict[str, List[str]],
+                                             Dict[str, List[str]],
+                                             Dict[str, Set[str]],
+                                             Dict[str, List[str]],
+                                             Set[str]]:
     """Check if taxonomy forms a strict hierarchy with all expected ranks.
 
     This method implements a full workflow for validating Greengenes-style taxonomy strings assigned
@@ -44,6 +60,8 @@ def validate_taxonomy(
         Flag indicating if group names should be checked for invalid characters.
     check_duplicate_names : boolean
         Flag indicating if group names should be checked for duplicates.
+    check_capitalization : boolean
+        Flag indicating if taxon names should be checked for starting with a capital letter.
     report_errors : boolean
         Flag indicating if errors should be written to screen.
 
@@ -55,17 +73,28 @@ def validate_taxonomy(
         Taxa with invalid rank prefixes.
     dict: d[taxon_id] -> [species name, error message]
         Taxa with invalid species names.
-    dict: d[child_taxon_id] -> two or more parent taxon ids
+    dict: d[child_taxon] -> two or more parent taxa
         Taxa with invalid hierarchies.
+    dict: d[taxon_id] -> [taxon, error message]
+        Taxa with invalid characters in their names.
+    set
+        Taxa that do not start with a capital letter.
     """
 
     # check for incomplete taxonomy strings or unexpected rank prefixes
+    invalid_ranks = {}
+    invalid_prefixes = {}
+    invalid_species_name = {}
+    invalid_group_name = {}
+    invalid_capitalization = set()
+
+    # results for each taxon or species name are cached as many
+    # taxon ids typically share the same taxa
+    valid_group_name_cache = {}
+    species_name_cache = {}
+
+    taxon_id, taxa = None, None
     try:
-        invalid_ranks = {}
-        invalid_prefixes = {}
-        invalid_species_name = {}
-        invalid_group_name = {}
-        invalid_capitalization = set()
         for taxon_id, taxa in taxonomy.items():
             if check_ranks:
                 if len(taxa) != len(Taxonomy.RANK_PREFIXES):
@@ -73,16 +102,19 @@ def validate_taxonomy(
                     continue
 
             if check_prefixes:
-                for r, taxon in enumerate(taxa):
-                    if taxon[0:3] != Taxonomy.RANK_PREFIXES[r]:
+                for prefix, taxon in zip(Taxonomy.RANK_PREFIXES, taxa):
+                    if taxon[0:3] != prefix:
                         invalid_prefixes[taxon_id] = [taxon, ';'.join(taxa)]
                         break
 
             if check_group_names:
                 for taxon in taxa:
-                    canonical_taxon = ' '.join(
-                        [t.strip() for t in re.split('_[A-Z]+(?= |$)', taxon[3:])]).strip()
-                    if canonical_taxon and re.match('^[a-zA-Z0-9- ]+$', canonical_taxon) is None:
+                    valid = valid_group_name_cache.get(taxon)
+                    if valid is None:
+                        valid = _valid_group_name(taxon)
+                        valid_group_name_cache[taxon] = valid
+
+                    if not valid:
                         if not taxon.startswith('s__') or check_species:
                             invalid_group_name[taxon_id] = [
                                 taxon, 'Taxon contains invalid characters']
@@ -92,8 +124,10 @@ def validate_taxonomy(
                 species_index = Taxonomy.RANK_INDEX['s__']
                 if len(taxa) > species_index:
                     species_name = taxa[species_index]
-                    valid, error_msg = validate_species_name(
-                        species_name, require_full=True, require_prefix=True)
+                    if species_name not in species_name_cache:
+                        species_name_cache[species_name] = validate_species_name(
+                            species_name, require_full=True, require_prefix=True)
+                    valid, error_msg = species_name_cache[species_name]
                     if not valid:
                         invalid_species_name[taxon_id] = [
                             species_name, error_msg]
@@ -125,7 +159,8 @@ def validate_taxonomy(
     if check_hierarchy:
         expected_parent = taxonomic_consistency(taxonomy, False)
 
-        for taxon_id, taxa in taxonomy.items():
+        # results only depend on the lineage, so each unique lineage is checked once
+        for taxa in dict.fromkeys(tuple(t) for t in taxonomy.values()):
             for r in range(1, len(taxa)):
                 if len(taxa[r]) == 3:
                     continue
@@ -142,7 +177,7 @@ def validate_taxonomy(
     if report_errors:
         if len(invalid_ranks):
             print('')
-            print('Taxonomy contains too few ranks:')
+            print('Taxonomy contains an invalid number of ranks:')
             for taxon_id, taxa_str in invalid_ranks.items():
                 print('%s\t%s' % (taxon_id, taxa_str))
 
@@ -180,7 +215,7 @@ def validate_taxonomy(
             print('')
             print('Taxonomy contains taxa with multiple parents:')
             for child_taxon, parent_taxa in invalid_hierarchies.items():
-                print('%s\t%s' % (child_taxon, ', '.join(parent_taxa)))
+                print('%s\t%s' % (child_taxon, ', '.join(sorted(parent_taxa))))
 
         if len(invalid_capitalization):
             print('')
@@ -205,9 +240,9 @@ def duplicate_names(taxonomy: Dict[str, List[str]], check_species: bool = True) 
         List of lineages for duplicate taxa.
     """
 
-    # get lineages for each taxon name
+    # get lineages for each taxon name, processing each unique lineage once
     taxon_lineages = defaultdict(set)
-    for taxa in taxonomy.values():
+    for taxa in dict.fromkeys(tuple(t) for t in taxonomy.values()):
         for i, taxon in enumerate(taxa):
             if len(taxon) > 3:
                 taxon_lineages[taxon].add(';'.join(taxa[0:i+1]))
@@ -222,10 +257,11 @@ def duplicate_names(taxonomy: Dict[str, List[str]], check_species: bool = True) 
     return duplicates
 
 
-def validate_species_name(species_name: str, require_full: bool = True, require_prefix: bool = True) -> Tuple[bool, str]:
+def validate_species_name(species_name: str, require_full: bool = True,
+                          require_prefix: bool = True) -> Tuple[bool, Optional[str]]:
     """Validate species name.
 
-    A full species name should be  binomial and include a 'generic name' (genus) and
+    A full species name should be binomial and include a 'generic name' (genus) and
     a 'specific epithet' (species), i.e. Escherichia coli. This method
     assumes the two names should be separated by a space.
 
@@ -234,7 +270,7 @@ def validate_species_name(species_name: str, require_full: bool = True, require_
     species_name : str
         Species name to validate
     require_full : boolean
-        Flag indicating if species name must include 'generic name and 'specific epithet'.
+        Flag indicating if species name must include 'generic name' and 'specific epithet'.
     require_prefix : boolean
         Flag indicating if name must start with the species prefix ('s__').
 
@@ -259,9 +295,11 @@ def validate_species_name(species_name: str, require_full: bool = True, require_
     if test_name.startswith('s__'):
         test_name = test_name[3:]
 
+    test_name_lower = test_name.lower()
+
     # test for full name
     if require_full:
-        if 'candidatus' in test_name.lower():
+        if 'candidatus' in test_name_lower:
             if len(test_name.split(' ')) <= 2:
                 return False, 'name appears to be missing the generic name'
         else:
@@ -269,29 +307,29 @@ def validate_species_name(species_name: str, require_full: bool = True, require_
                 return False, 'name appears to be missing the generic name'
 
     # check for tell-tale signs on invalid species names
-    if " bacterium" in test_name.lower():
+    if " bacterium" in test_name_lower:
         return False, "name contains the word 'bacterium'"
-    if " archaeon" in test_name.lower():
+    if " archaeon" in test_name_lower:
         return False, "name contains the word 'archaeon'"
-    if " archeaon" in test_name.lower():
+    if " archeaon" in test_name_lower:
         return False, "name contains the word 'archeaon'"
-    if "-like" in test_name.lower():
+    if "-like" in test_name_lower:
         return False, "name contains '-like'"
-    if " group " in test_name.lower():
+    if " group " in test_name_lower:
         return False, "name contains 'group'"
-    if " symbiont" in test_name.lower():
+    if " symbiont" in test_name_lower:
         return False, "name contains 'symbiont'"
-    if " endosymbiont" in test_name.lower():
+    if " endosymbiont" in test_name_lower:
         return False, "name contains 'endosymbiont'"
-    if " taxon" in test_name.lower():
+    if " taxon" in test_name_lower:
         return False, "name contains 'taxon'"
-    if " cluster" in test_name.lower():
+    if " cluster" in test_name_lower:
         return False, "name contains 'cluster'"
-    if " of " in test_name.lower():
+    if " of " in test_name_lower:
         return False, "name contains 'of'"
     if test_name[0].islower():
         return False, 'first letter of name is lowercase'
-    if 'sp.' in test_name.lower():
+    if 'sp.' in test_name_lower:
         return False, "name contains 'sp.'"
 
     return True, None
@@ -310,8 +348,8 @@ def taxonomic_consistency(taxonomy: Dict[str, List[str]], report_errors: bool = 
     Returns
     -------
     dict : d[taxa] -> expected parent
-        Expected parent taxon for taxa at all taxonomic ranks, or
-        None if the taxonomy is inconsistent.
+        Expected parent taxon for taxa at all taxonomic ranks. If the taxonomy
+        is inconsistent, the parent indicated by the last processed genome is used.
     """
 
     expected_parent = {}
@@ -333,7 +371,7 @@ def taxonomic_consistency(taxonomy: Dict[str, List[str]], report_errors: bool = 
                             'Provided taxonomy is not taxonomically consistent.')
                         log.warning('Genome %s indicates the parent of %s is %s.' % (
                             genome_id, taxa[r], taxa[r - 1]))
-                        log.warning('The parent of this taxa was previously indicated as %s.' % (
+                        log.warning('The parent of this taxon was previously indicated as %s.' % (
                             expected_parent[taxa[r]]))
 
             expected_parent[taxa[r]] = taxa[r - 1]

@@ -8,7 +8,7 @@ from gtdblib.util.bio.accession import canonical_gid
 
 
 def convert_tree_accessions_to_canonical(input_path: Path, output_path: Path):
-    """Convert all accessions a tree to their canonical form."""
+    """Convert all accessions in a tree to their canonical form."""
 
     # Validate arguments
     if not isinstance(input_path, Path):
@@ -27,11 +27,13 @@ def convert_tree_accessions_to_canonical(input_path: Path, output_path: Path):
     # Update the labels for each taxon
     labels_seen = dict()
     for taxon in track(tree.taxon_namespace, description='Processing...'):
-        gid = canonical_gid(taxon.label)
+        original_label = taxon.label
+        gid = canonical_gid(original_label)
         if gid in labels_seen:
-            log.warning(f'Leaf node {taxon.label} -> {gid} is a duplicate of {labels_seen[gid]}')
+            log.warning(f'Leaf node {original_label} -> {gid} is a duplicate of {labels_seen[gid]}')
+        else:
+            labels_seen[gid] = original_label
         taxon.label = gid
-        labels_seen[gid] = taxon.label
 
     # Save the tree
     tree.write_to_path(str(output_path), schema='newick', suppress_rooting=True, unquoted_underscores=True)

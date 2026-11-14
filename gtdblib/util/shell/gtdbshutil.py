@@ -4,7 +4,6 @@ import errno
 import os
 import sys
 import tempfile
-import mmap
 
 from gtdblib import log
 
@@ -17,10 +16,15 @@ def get_num_lines(file_path):
     :return: number of lines in file
     """
 
-    fp = open(file_path, "r+")
-    buf = mmap.mmap(fp.fileno(), 0)
     lines = 0
-    while buf.readline():
+    last_byte = b''
+    with open(file_path, 'rb') as fp:
+        for chunk in iter(lambda: fp.read(1024 * 1024), b''):
+            lines += chunk.count(b'\n')
+            last_byte = chunk[-1:]
+
+    # count a final line that is not terminated by a newline
+    if last_byte and last_byte != b'\n':
         lines += 1
 
     return lines
@@ -37,13 +41,14 @@ def symlink(target: str, link_name: str, overwrite: bool = False):
     :param overwrite: If True, overwrite existing files and directories.
 
     :raises FileExistsError: If link_name exists and overwrite=False.
+    :raises IsADirectoryError: If link_name is a directory and overwrite=True.
 
     :return: True
     '''
 
     if not overwrite:
         os.symlink(target, link_name)
-        return
+        return True
 
     # os.replace() may fail if files are on different filesystems
     link_dir = os.path.dirname(link_name)
@@ -61,11 +66,18 @@ def symlink(target: str, link_name: str, overwrite: bool = False):
         except FileExistsError:
             pass
 
+    # Atomically replace link_name with the temporary link
+    try:
+        os.replace(temp_link_name, link_name)
+    except BaseException:
+        os.remove(temp_link_name)
+        raise
+
     return True
 
 
 def check_file_exists(input_file):
-    """Check if file exists.This function is copied from `biolib <https://github.com/dparks1134/biolib>`_ on the 09/10/2020.
+    """Check if file exists. This function is copied from `biolib <https://github.com/dparks1134/biolib>`_ on the 09/10/2020.
 
     :param input_file: path to file
 
@@ -73,14 +85,14 @@ def check_file_exists(input_file):
     """
 
     if not os.path.exists(input_file) or not os.path.isfile(input_file):
-        log.error('Input file does not exists: ' + input_file + '\n')
+        log.error('Input file does not exist: ' + input_file + '\n')
         sys.exit(1)
 
     return True
 
 
 def check_dir_exists(input_dir):
-    """Check if directory exists.This function is copied from `biolib <https://github.com/dparks1134/biolib>`_ on the 09/10/2020.
+    """Check if directory exists. This function is copied from `biolib <https://github.com/dparks1134/biolib>`_ on the 09/10/2020.
 
     :param input_dir: path to directory
 
@@ -88,7 +100,7 @@ def check_dir_exists(input_dir):
     """
 
     if not os.path.exists(input_dir) or not os.path.isdir(input_dir):
-        log.error('Input directory does not exists: ' + input_dir + '\n')
+        log.error('Input directory does not exist: ' + input_dir + '\n')
         sys.exit(1)
 
     return True

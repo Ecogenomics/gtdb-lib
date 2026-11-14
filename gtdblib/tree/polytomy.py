@@ -49,11 +49,14 @@ def collapse_polytomy_tree(tree: dendropy.Tree, support: float):
     n_internal_nodes = 0
     n_collapsed = 0
     for node in tree.internal_nodes():
-        if node.label is not None:
+        # the root has no parent to collapse into
+        if node.label is not None and node.parent_node is not None:
             bs, _, _ = parse_label(node.label)
             if bs is not None and bs < support:
                 for child_node in node.child_nodes():
-                    child_node.edge_length += node.edge_length
+                    # trees may not have branch lengths
+                    if child_node.edge_length is not None and node.edge_length is not None:
+                        child_node.edge_length += node.edge_length
                     node.remove_child(child_node)
                     node.parent_node.add_child(child_node)
                 node.parent_node.remove_child(node)

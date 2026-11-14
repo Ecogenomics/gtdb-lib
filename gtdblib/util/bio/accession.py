@@ -11,9 +11,9 @@ def canonical_gid(gid: str) -> str:
         GCF_005435135.1 -> G005435135
         GCF_005435135.1_ASM543513v1_genomic -> G005435135
         RS_GCF_005435135.1 -> G005435135
-        GB_GCA_005435135.1 ->
+        GB_GCA_005435135.1 -> G005435135
 
-    :param gid: Genome accesion to conver to canonical form.
+    :param gid: Genome accession to convert to canonical form.
     :return: Canonical form of accession.
     """
 
@@ -28,7 +28,7 @@ def is_same_accn_version(accn1: str, accn2: str) -> bool:
     """Check if accessions have same version number.
 
     This method assumes accession versions are provided
-    as a suffix proceeding a period. This is the format
+    as a suffix following a period. This is the format
     used for NCBI accessions, e.g. GCF_005435135.1.
 
     :param accn1: First accession.

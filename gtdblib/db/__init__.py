@@ -1,3 +1,5 @@
+from urllib.parse import quote
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -13,7 +15,11 @@ class GenericEngine:
 
     @property
     def url(self):
-        return f'postgresql://{CONFIG.db_user}:{CONFIG.db_pass}@{CONFIG.db_host}/{self.db_name}'
+        # the user and password are escaped as they may contain characters
+        # with special meaning in a URL (e.g. '@', ':', '/')
+        user = quote(str(CONFIG.db_user), safe='')
+        password = quote(str(CONFIG.db_pass), safe='')
+        return f'postgresql://{user}:{password}@{CONFIG.db_host}/{self.db_name}'
 
     def __enter__(self):
         if self._engine is None:

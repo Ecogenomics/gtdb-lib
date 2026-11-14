@@ -5,7 +5,7 @@ from pathlib import Path
 
 import dendropy
 
-from gtdblib.tree.polytomy import collapse_polytomy
+from gtdblib.tree.polytomy import collapse_polytomy, collapse_polytomy_tree
 
 
 def _create_test_tree():
@@ -61,7 +61,8 @@ class TestTreePolytomy(unittest.TestCase):
             tree_collapsed = dendropy.Tree.get_from_path(str(path_out), schema='newick', rooting='force-rooted',
                                                          preserve_underscores=True)
 
-        self.assertEqual(str(tree_collapsed), '((A:1.5,B:2.3)80:1.0,C:4.36,D:4.16)')
+        self.assertEqual(tree_collapsed.as_string(schema='newick', suppress_rooting=True).strip(),
+                         '((A:1.5,B:2.3)80:1.0,C:4.36,D:4.16);')
 
         pdm_a = tree.phylogenetic_distance_matrix()
         pdm_b = tree_collapsed.phylogenetic_distance_matrix()
@@ -81,3 +82,9 @@ class TestTreePolytomy(unittest.TestCase):
         self.assertAlmostEqual(pdm_b_values['A']['D'], 6.66)
         self.assertAlmostEqual(pdm_b_values['B']['C'], 7.66)
         self.assertAlmostEqual(pdm_b_values['B']['D'], 7.46)
+
+    def test_collapse_polytomy_no_branch_lengths(self):
+        tree = dendropy.Tree.get(data='((A,B)80,(C,D)50)10;', schema='newick')
+        collapse_polytomy_tree(tree, 70)
+        self.assertEqual(tree.as_string(schema='newick', suppress_rooting=True).strip(),
+                         '((A,B)80,C,D)10;')

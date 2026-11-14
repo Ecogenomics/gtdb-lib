@@ -28,8 +28,7 @@ def run(cmd: List[str]) -> str:
             log.error(f'Return code: {proc.returncode}')
             sys.exit(1)
     except OSError as e:
-        print(e)
-        log.error(stderr)
+        log.error(e)
         log.error('Failed to execute command.')
         sys.exit(1)
 
@@ -52,7 +51,7 @@ def check_dependencies(programs: List[str], exit_on_fail: bool = True):
     """Check if programs are on the system path.
 
     :param programs: Names of executable programs.
-    :param exit_on_fail: Exit program with error code -1 if any program in not on path.
+    :param exit_on_fail: Exit program with error code 1 if any program is not on path.
 
     :return: True if all programs are on path, else False.
     """
@@ -67,10 +66,10 @@ def check_dependencies(programs: List[str], exit_on_fail: bool = True):
 def check_on_path(program: str, exit_on_fail: bool = True):
     """Check if program is on the system path.
 
-    :param programs: Names of executable programs.
-    :param exit_on_fail: Exit program with error code -1 if any program in not on path.
+    :param program: Name of executable program.
+    :param exit_on_fail: Exit program with error code 1 if the program is not on path.
 
-    :return: True if all program is on path, else False.
+    :return: True if the program is on path, else False.
     """
 
     if which(program):
@@ -91,7 +90,7 @@ def which(program: str):
 
     http://stackoverflow.com/questions/377017/test-if-executable-exists-in-python
 
-    :param programs: Names of executable programs.
+    :param program: Name of executable program.
 
     :return: Path to executable, or None if it isn't on the path.
     """
