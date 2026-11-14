@@ -71,7 +71,7 @@ def fill_trailing_ranks(taxa: List[str]) -> List[str]:
         last_rank = Taxonomy.RANK_PREFIXES.index(taxa[-1][0:3])
     except:
         log.error('Taxon is missing rank prefix: %s' % ';'.join(taxa))
-        sys.exit()
+        sys.exit(1)
 
     for i in range(last_rank+1, len(Taxonomy.RANK_PREFIXES)):
         taxa.append(Taxonomy.RANK_PREFIXES[i])

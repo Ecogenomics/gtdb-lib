@@ -34,7 +34,7 @@ def main():
         app()
     except GtdbLibExit as e:
         log.error(e)
-        typer.Exit(1)
+        raise typer.Exit(1)
 
 
 if __name__ == "__main__":

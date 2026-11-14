@@ -74,7 +74,7 @@ def check_file_exists(input_file):
 
     if not os.path.exists(input_file) or not os.path.isfile(input_file):
         log.error('Input file does not exists: ' + input_file + '\n')
-        sys.exit()
+        sys.exit(1)
 
     return True
 
@@ -89,7 +89,7 @@ def check_dir_exists(input_dir):
 
     if not os.path.exists(input_dir) or not os.path.isdir(input_dir):
         log.error('Input directory does not exists: ' + input_dir + '\n')
-        sys.exit()
+        sys.exit(1)
 
     return True
 
@@ -112,6 +112,6 @@ def make_sure_path_exists(path):
     except OSError as exception:
         if exception.errno != errno.EEXIST:
             log.error('Specified path could not be created: ' + path + '\n')
-            sys.exit()
+            sys.exit(1)
 
     return True
